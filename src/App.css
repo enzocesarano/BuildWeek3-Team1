@@ -7,3 +7,44 @@
   text-decoration: underline;
   color: #0776e6;
 }
+.pointer {
+    cursor: pointer;
+}
+
+.infoProfile {
+    color: #0A66C2;
+}
+
+.infoProfile:hover {
+    text-decoration: underline;
+}
+
+.sizeImg {
+    width: 20%;
+}
+
+.btnBg {
+    background-color: #0A66C2 !important;
+}
+
+.btnBg:hover {
+    background-color: #004182 !important;
+}
+
+.rounded{
+  font-size: 0.9rem;
+}
+
+.btnOutline {
+    border-color: #0A66C2 !important;
+    color: #0A66C2 !important;
+}
+
+.btnOutline:hover {
+    border-color: #004182 !important;
+    background-color: #EBF4FD !important;
+}
+
+.borderDashed {
+    border-style: dashed !important;
+  }
