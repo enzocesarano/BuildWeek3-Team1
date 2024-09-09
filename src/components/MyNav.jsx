@@ -71,7 +71,7 @@ function NavScrollExample() {
               <div className="icon-with-text">
                 <img src="https://placedog.net/30/30" alt="Profile" className="nav-profile-img" />
               </div>
-              <NavDropdown title="Tu" id="navbarScrollingDropdown">
+              <NavDropdown title="Tu" id="navbarScrollingDropdown" align="end">
                 <NavDropdown.Item href="#">
                   <div className="dropdown-profile">
                     <img src="https://placedog.net/50/50" alt="Profile" />
@@ -130,7 +130,7 @@ function NavScrollExample() {
                 <FaTh className="icon" />
               </div>
 
-              <NavDropdown title="Per le aziende" id="navbarScrollingDropdown">
+              <NavDropdown title="Per le aziende" id="navbarScrollingDropdown" align="end">
                 <div className="dropdown-columns mt-5">
                   <div className="column">
                     <p>
