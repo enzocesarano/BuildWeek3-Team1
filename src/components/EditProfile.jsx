@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setMyProfile } from "../action";
 
 const EditProfile = (props) => {
-
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
 
   const [profile, setProfile] = useState({
@@ -40,9 +39,8 @@ const EditProfile = (props) => {
 
   const onSubmitBtn = () => {
     dispatch(setMyProfile(profile));
-    props.onHide()
-  }
-
+    props.onHide();
+  };
 
   return (
     <Modal
