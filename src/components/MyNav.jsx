@@ -4,13 +4,29 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { FaHome, FaNetworkWired, FaBriefcase, FaEnvelope, FaBell, FaSearch, FaStar } from "react-icons/fa";
+import {
+  FaHome,
+  FaNetworkWired,
+  FaBriefcase,
+  FaEnvelope,
+  FaBell,
+  FaSearch,
+  FaStar,
+  FaTh,
+  FaCompass,
+  FaUsers,
+  FaChartLine,
+  FaInfoCircle,
+  FaBullseye,
+  FaPlay,
+  FaPlus,
+} from "react-icons/fa";
 import "../App.css";
 
 function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "60%" }}>
+      <Container fluid style={{ maxWidth: "70%" }}>
         <Navbar.Brand href="#">
           <img
             src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
@@ -58,6 +74,7 @@ function NavScrollExample() {
                 </div>
               }
               id="navbarScrollingDropdown"
+              className="nav-dropdown-custom"
             >
               <NavDropdown.Item href="#">
                 <div className="dropdown-profile">
@@ -97,6 +114,95 @@ function NavScrollExample() {
               </div>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#">Esci</NavDropdown.Item>
+            </NavDropdown>
+            <div className="separator-bar"></div>
+            <div className="icon-with-text">
+              <FaTh className="icon" />
+            </div>
+
+            <NavDropdown title="Per le aziende" id="navbarScrollingDropdown">
+              <div className="dropdown-columns">
+                <div className="column">
+                  <p>
+                    <strong>Scopri altri prodotti LinkedIn</strong>
+                  </p>
+                  <a href="#">
+                    <FaCompass className="icon" /> Trova lead
+                  </a>
+                  <a href="#">
+                    <FaUsers className="icon" /> Gruppi
+                  </a>
+                  <a href="#">Talent</a>
+                  <a href="#">
+                    <FaChartLine className="icon" /> Talent Insights
+                  </a>
+                  <a href="#">Vendite</a>
+                  <a href="#">
+                    <FaInfoCircle className="icon" /> Marketplace dei servizi
+                  </a>
+                  <a href="#">
+                    <FaBullseye className="icon" /> Marketing
+                  </a>
+                  <a href="#">
+                    <FaBullseye className="icon" /> Pubblicizza
+                  </a>
+                  <a href="#">
+                    <FaPlay className="icon" /> Learning
+                  </a>
+                  <a href="#">
+                    <FaPlay className="icon" /> Learning
+                  </a>
+                </div>
+                <div className="column">
+                  <p>
+                    <strong>Scopri altro per il business</strong>
+                  </p>
+                  <div>
+                    <p>
+                      <strong>Assumi su LinkedIn</strong>
+                    </p>
+                    <p>Trova, attrai e assumi</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Vendi con LinkedIn</strong>
+                    </p>
+                    <p>Sblocca nuove opportunità di vendita</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Offerta di lavoro gratuita</strong>
+                    </p>
+                    <p>Ottieni rapidamente candidati qualificati</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Fai pubblicità su LinkedIn</strong>
+                    </p>
+                    <p>Acquisisci clienti e fai crescere la tua azienda</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Impara con LinkedIn</strong>
+                    </p>
+                    <p>Assumi su LinkedIn</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Admin Center</strong>
+                    </p>
+                    <p>Gestisci i dettagli di fatturazione e account</p>
+                  </div>
+                  <div>
+                    <p>
+                      <strong>Crea una pagina aziendale</strong> <FaPlus className="icon" />
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="icon-with-text">
+                <div className="nav-text">Pubblica un'offerta di lavoro</div>
+              </div>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
