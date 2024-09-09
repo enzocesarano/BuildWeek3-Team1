@@ -4,27 +4,28 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {
-  FaHome,
-  FaNetworkWired,
-  FaBriefcase,
-  FaEnvelope,
-  FaBell,
-  FaUserCircle,
-  FaSearch,
-  FaStar,
-} from "react-icons/fa";
+import { FaHome, FaNetworkWired, FaBriefcase, FaEnvelope, FaBell, FaSearch, FaStar } from "react-icons/fa";
 import "../App.css";
 
 function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "50%" }}>
+      <Container fluid style={{ maxWidth: "60%" }}>
         <Navbar.Brand href="#">
-          <img src="https://placedog.net/50/50" alt="Logo" style={{ height: "35px" }} />
+          <img
+            src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
+            alt="Logo"
+            style={{ height: "35px" }}
+          />
         </Navbar.Brand>
         <Form className="d-flex me-auto" style={{ flex: 1, maxWidth: "300px" }}>
-          <Form.Control type="search" placeholder="🔍 Cerca" className="me-1" aria-label="Search" style={{ flex: 1 }} />
+          <Form.Control
+            type="search"
+            placeholder="🔍 Cerca"
+            className="me-1 search-input"
+            aria-label="Search"
+            style={{ flex: 1 }}
+          />
         </Form>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -51,10 +52,10 @@ function NavScrollExample() {
             </Nav.Link>
             <NavDropdown
               title={
-                <>
-                  <FaUserCircle className="nav-icon" />
+                <div className="nav-dropdown-title">
+                  <img src="https://placedog.net/50/50" alt="Profile" className="nav-profile-img" />
                   <div className="nav-text">Tu</div>
-                </>
+                </div>
               }
               id="navbarScrollingDropdown"
             >
