@@ -1,10 +1,10 @@
-
+import MyFooter from './components/MyFooter';
 import './App.css';
 
 function App() {
   return (
    <>
-   ciao
+   <MyFooter />
    </>
   );
 }
