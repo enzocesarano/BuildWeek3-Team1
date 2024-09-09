@@ -69,7 +69,7 @@ function NavScrollExample() {
             </Nav.Link>
             <div className="icon-above-dropdown ">
               <div className="icon-with-text">
-                <img src="https://placedog.net/50/50" alt="Profile" className="nav-profile-img" />
+                <img src="https://placedog.net/30/30" alt="Profile" className="nav-profile-img" />
               </div>
               <NavDropdown title="Tu" id="navbarScrollingDropdown">
                 <NavDropdown.Item href="#">
@@ -124,72 +124,93 @@ function NavScrollExample() {
                     <p>
                       <strong>Scopri altri prodotti LinkedIn</strong>
                     </p>
-                    <a href="#">
-                      <FaCompass className="icon" /> Trova lead
+                    <a href="#" className="mb-4 mt-5 fw-bold ms-3">
+                      <FaCompass className="icon iconBlu me-3 " /> Trova lead
                     </a>
-                    <a href="#">
-                      <FaUsers className="icon" /> Gruppi
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
+                      <FaUsers className="icon iconBlu me-3" /> Gruppi
                     </a>
-                    <a href="#">Talent</a>
-                    <a href="#">
-                      <FaChartLine className="icon" /> Talent Insights
+                    <a href="#" className="text-secondary">
+                      Talent
                     </a>
-                    <a href="#">Vendite</a>
-                    <a href="#">
-                      <FaInfoCircle className="icon" /> Marketplace dei servizi
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
+                      <FaChartLine className="icon iconBlu me-3" /> Talent Insights
                     </a>
-                    <a href="#">Marketing</a>
-                    <a href="#">
-                      <FaBullseye className="icon" /> Pubblicizza
+                    <a href="#" className="text-secondary">
+                      Vendite
                     </a>
-                    <a href="#">Learning</a>
-                    <a href="#">
-                      <FaPlay className="icon" /> Learning
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <FaInfoCircle className="icon iconBlu me-3 " /> Marketplace dei servizi
+                    </a>
+                    <a href="#" className="text-secondary">
+                      Marketing
+                    </a>
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
+                      <FaBullseye className="icon iconBlu me-3" /> Pubblicizza
+                    </a>
+                    <a href="#" className="text-secondary">
+                      Learning
+                    </a>
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
+                      <FaPlay className="icon iconBlu me-3" /> Learning
                     </a>
                   </div>
                   <div className="column">
                     <p>
-                      <strong>Scopri altro per il business</strong>
+                      <strong className="mb-5 fw-bold ms-3 ">Scopri altro per il business</strong>
                     </p>
                     <div>
-                      <p>
-                        <strong>Assumi su LinkedIn</strong>
-                      </p>
-                      <p>Trova, attrai e assumi</p>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3 ">Assumi su LinkedIn</strong>
+                          <p className="ms-3">Trova, attrai e assumi</p>
+                        </div>
+                      </a>
+                    </div>
+                    <div>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3">Vendi con LinkedIn</strong>
+                          <p className="ms-3">Sblocca nuove opportunità di vendita</p>
+                        </div>
+                      </a>
+                    </div>
+                    <div>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3">Offerta di lavoro gratuita</strong>
+                          <p className="ms-3">Ottieni rapidamente candidati qualificati</p>
+                        </div>
+                      </a>
+                    </div>
+                    <div>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3">Fai pubblicità su LinkedIn</strong>
+                          <p className="ms-3">Acquisisci clienti e fai crescere la tua azienda</p>
+                        </div>
+                      </a>
+                    </div>
+                    <div>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3">Impara con LinkedIn</strong>
+                          <p className="ms-3">Assumi su LinkedIn</p>
+                        </div>
+                      </a>
+                    </div>
+                    <div>
+                      <a href="#">
+                        <div>
+                          <strong className="mb-5 fw-bold ms-3"> Admin Center</strong>
+                          <p className="ms-3">Gestisci i dettagli di fatturazione e account</p>
+                        </div>
+                      </a>
                     </div>
                     <div>
                       <p>
-                        <strong>Vendi con LinkedIn</strong>
-                      </p>
-                      <p>Sblocca nuove opportunità di vendita</p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Offerta di lavoro gratuita</strong>
-                      </p>
-                      <p>Ottieni rapidamente candidati qualificati</p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Fai pubblicità su LinkedIn</strong>
-                      </p>
-                      <p>Acquisisci clienti e fai crescere la tua azienda</p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Impara con LinkedIn</strong>
-                      </p>
-                      <p>Assumi su LinkedIn</p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Admin Center</strong>
-                      </p>
-                      <p>Gestisci i dettagli di fatturazione e account</p>
-                    </div>
-                    <div>
-                      <p>
-                        <strong>Crea una pagina aziendale</strong> <FaPlus className="icon" />
+                        <strong className="ms-3">Crea una pagina aziendale</strong>{" "}
+                        <FaPlus className="icon ms-3 iconPlus" />
                       </p>
                     </div>
                   </div>

@@ -8,47 +8,46 @@
   color: #0776e6 !important;
 }
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .infoProfile {
-    color: #0A66C2;
+  color: #0a66c2;
 }
 
 .infoProfile:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .sizeImg {
-    width: 20%;
+  width: 20%;
 }
 
 .btnBg {
-    background-color: #0A66C2 !important;
+  background-color: #0a66c2 !important;
 }
 
 .btnBg:hover {
-    background-color: #004182 !important;
+  background-color: #004182 !important;
 }
 
-.rounded{
+.rounded {
   font-size: 0.9rem;
 }
 
 .btnOutline {
-    border-color: #0A66C2 !important;
-    color: #0A66C2 !important;
+  border-color: #0a66c2 !important;
+  color: #0a66c2 !important;
 }
 
 .btnOutline:hover {
-    border-color: #004182 !important;
-    background-color: #EBF4FD !important;
+  border-color: #004182 !important;
+  background-color: #ebf4fd !important;
 }
 
 .borderDashed {
-    border-style: dashed !important;
-  }
-
+  border-style: dashed !important;
+}
 
 .nav-item {
   display: flex;
@@ -164,8 +163,8 @@
 }
 
 .nav-profile-img {
-  height: 35px;
-  width: 35px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
 }
 .separator-bar {
@@ -242,4 +241,30 @@
   height: auto;
   background-color: #c5b8b8;
   margin: 0 15px;
+}
+.iconBlu {
+  color: #0a66c2;
+}
+.iconPlus {
+  width: 4%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: #0a66c2;
+}
+
+a div strong,
+a div p {
+  color: inherit;
+}
+
+a:hover div strong,
+a:hover div p {
+  text-decoration: underline;
+  text-decoration-color: #0a66c2;
 }
