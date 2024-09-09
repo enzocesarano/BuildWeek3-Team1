@@ -1,3 +1,12 @@
+.footer-link {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  color: #0776e6;
+}
 .pointer {
     cursor: pointer;
 }
