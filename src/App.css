@@ -1,12 +1,4 @@
-.footer-link {
-  text-decoration: none;
-  color: #6c757d;
-}
 
-.footer-link:hover {
-  text-decoration: underline !important;
-  color: #0776e6 !important;
-}
 .pointer {
     cursor: pointer;
 }
@@ -242,4 +234,19 @@
   height: auto;
   background-color: #c5b8b8;
   margin: 0 15px;
+}
+
+/* Footer */
+footer {
+  font-size: 0.8em;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.footer-link:hover {
+  text-decoration: underline !important;
+  color: #0776e6 !important;
 }
