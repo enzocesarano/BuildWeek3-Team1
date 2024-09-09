@@ -27,7 +27,7 @@ import "../App.css";
 function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "80%" }}>
+      <Container fluid style={{ maxWidth: "70%" }}>
         <Navbar.Brand href="#">
           <img
             src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
