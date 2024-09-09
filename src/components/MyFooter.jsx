@@ -1,6 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap-icons/font/bootstrap-icons.css";
+
 import { Dropdown } from "react-bootstrap";
 
 const MyFooter = () => {
@@ -142,7 +141,7 @@ const MyFooter = () => {
             <label htmlFor="language" className="me-2">
               Seleziona lingua
             </label>
-            <select id="language" className="form-select d-inline w-auto">
+            <select id="language" className="form-select d-inline border border-1 border-dark w-auto">
               <option value="it"> Italiano (Italiano)</option>
               <option value="en"> English (Inglese)</option>
               <option value="fr"> French (Francese)</option>
