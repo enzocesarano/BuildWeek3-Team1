@@ -1,41 +1,245 @@
-.App {
-  text-align: center;
+.footer-link {
+  text-decoration: none;
+  color: #6c757d;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.footer-link:hover {
+  text-decoration: underline !important;
+  color: #0776e6 !important;
+}
+.pointer {
+    cursor: pointer;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.infoProfile {
+    color: #0A66C2;
+}
+
+.infoProfile:hover {
+    text-decoration: underline;
+}
+
+.sizeImg {
+    width: 20%;
+}
+
+.btnBg {
+    background-color: #0A66C2 !important;
+}
+
+.btnBg:hover {
+    background-color: #004182 !important;
+}
+
+.rounded{
+  font-size: 0.9rem;
+}
+
+.btnOutline {
+    border-color: #0A66C2 !important;
+    color: #0A66C2 !important;
+}
+
+.btnOutline:hover {
+    border-color: #004182 !important;
+    background-color: #EBF4FD !important;
+}
+
+.borderDashed {
+    border-style: dashed !important;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+
+.nav-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-icon {
+  font-size: 1.2rem;
+  transition: color 0.1s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-icon:hover {
+  color: black;
 }
-.rounded{
-  font-size: 0.9rem;
+
+.nav-text {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .form-control {
+  max-width: 300px;
+  background-color: #edf3f8;
+  height: 35px;
+}
+
+.navbar .navbar-nav {
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .dropdown-toggle::after {
+  margin-left: 0.5rem;
+}
+
+.dropdown-item button {
+  width: 100%;
+  border-radius: 30px;
+  border: 1px solid #007bff;
+  background-color: white;
+  color: #007bff;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.dropdown-profile {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-profile img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.dropdown-profile strong {
+  display: block;
+}
+
+.dropdown-profile p {
+  margin: 0;
+}
+
+.dropdown-section {
+  padding: 10px 0;
+}
+
+.dropdown-section hr {
+  margin: 10px 0;
+}
+
+.dropdown-section a {
+  display: block;
+  padding: 5px 0;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-section a:hover {
+  text-decoration: underline;
+}
+
+.dropdown-section .icon {
+  font-size: 0.75rem;
+  color: #007bff;
+  margin-left: 5px;
+}
+
+.search-input {
+  background-color: #edf3f8;
+  height: 35px;
+}
+
+.nav-dropdown-title {
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-title .nav-text {
+  margin-left: 5px;
+}
+
+.nav-profile-img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+.separator-bar {
+  width: 1px;
+  height: 40px;
+  background-color: #ccc;
+  margin: 0 15px;
+}
+
+.icon-with-text {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.icon-with-text .icon {
+  margin-right: 5px;
+}
+
+.dropdown-columns {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.dropdown-columns .column {
+  margin: 0 20px;
+}
+
+.dropdown-columns .column a {
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.dropdown-columns .column a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.dropdown-columns .column .icon {
+  margin-right: 5px;
+}
+
+.separator-bar {
+  width: 1px;
+  height: auto;
+  background-color: #ccc;
+  margin: 0 15px;
+}
+.icon-above-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-with-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.icon {
+  font-size: 24px;
+}
+.separator-bar {
+  width: 2px;
+  height: auto;
+  background-color: #c5b8b8;
+  margin: 0 15px;
 }
