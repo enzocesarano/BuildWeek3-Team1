@@ -263,3 +263,14 @@ a {
 .dropdown-columns .column a:hover div {
   color: inherit;
 }
+.small-text {
+  font-size: 0.8rem;
+}
+.secSmalltext {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.DropdownColortext {
+  color: #232323;
+}

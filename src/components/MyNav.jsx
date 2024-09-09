@@ -88,28 +88,40 @@ function NavScrollExample() {
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4">
                   <a href="#">
-                    <strong>Account</strong>
+                    <strong className="DropdownColortext ">Account</strong>
                   </a>
-                  <a href="#">
+                  <a href="#" className="text-secondary fw-bold ">
                     <FaStar className="icon" /> Prova 1 mese di Premium per 0 EUR
                   </a>
                 </div>
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4 text-secondary">
-                  <a href="#">Impostazioni e privacy</a>
-                  <a href="#">Guida</a>
-                  <a href="#">Lingua</a>
+                  <a href="#" className="text-secondary">
+                    Impostazioni e privacy
+                  </a>
+                  <a href="#" className="text-secondary">
+                    Guida
+                  </a>
+                  <a href="#" className="text-secondary">
+                    Lingua
+                  </a>
                 </div>
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4">
                   <a href="#">
-                    <strong>Gestisci</strong>
+                    <strong className="DropdownColortext">Gestisci</strong>
                   </a>
-                  <a href="#">Post e attività</a>
-                  <a href="#">Account per la pubblicazione di offerte di lavoro</a>
+                  <a href="#" className="text-secondary">
+                    Post e attività
+                  </a>
+                  <a href="#" className="text-secondary">
+                    Account per la pubblicazione di offerte di lavoro
+                  </a>
                 </div>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#">Esci</NavDropdown.Item>
+                <NavDropdown.Item href="#" className="text-secondary">
+                  Esci
+                </NavDropdown.Item>
               </NavDropdown>
             </div>
             <div className="separator-bar"></div>
@@ -119,100 +131,113 @@ function NavScrollExample() {
               </div>
 
               <NavDropdown title="Per le aziende" id="navbarScrollingDropdown">
-                <div className="dropdown-columns">
+                <div className="dropdown-columns mt-5">
                   <div className="column">
                     <p>
                       <strong>Scopri altri prodotti LinkedIn</strong>
                     </p>
-                    <a href="#" className="mb-4 mt-5 fw-bold ms-3">
-                      <FaCompass className="icon iconBlu me-3 " /> Trova lead
+                    <a href="#" className="mb-4 mt-5 fw-bold ms-3 ">
+                      <FaCompass className="icon iconBlu me-3  " />{" "}
+                      <span className="DropdownColortext small-text"> Trova lead </span>
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
-                      <FaUsers className="icon iconBlu me-3" /> Gruppi
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <FaUsers className="icon iconBlu me-3 " />{" "}
+                      <span className="DropdownColortext small-text"> Gruppi </span>
                     </a>
-                    <a href="#" className="text-secondary">
+                    <a href="#" className="text-secondary ">
                       Talent
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
-                      <FaChartLine className="icon iconBlu me-3" /> Talent Insights
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <FaChartLine className="icon iconBlu me-3 " />
+                      <span className="DropdownColortext small-text"> Talent Insights</span>
                     </a>
-                    <a href="#" className="text-secondary">
+                    <a href="#" className="text-secondary ">
                       Vendite
                     </a>
                     <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
-                      <FaInfoCircle className="icon iconBlu me-3 " /> Marketplace dei servizi
+                      <FaInfoCircle className="icon iconBlu me-3 " />
+                      <span className="DropdownColortext small-text"> Marketplace dei servizi</span>
                     </a>
-                    <a href="#" className="text-secondary">
+                    <a href="#" className="text-secondary ">
                       Marketing
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
-                      <FaBullseye className="icon iconBlu me-3" /> Pubblicizza
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <FaBullseye className="icon iconBlu me-3 " />
+                      <span className="DropdownColortext small-text"> Pubblicizza</span>
                     </a>
-                    <a href="#" className="text-secondary">
+                    <a href="#" className="text-secondary ">
                       Learning
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3">
-                      <FaPlay className="icon iconBlu me-3" /> Learning
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <FaPlay className="icon iconBlu me-3 " />{" "}
+                      <span className="DropdownColortext small-text">Learning</span>
                     </a>
                   </div>
                   <div className="column">
                     <p>
-                      <strong className="mb-5 fw-bold ms-3 ">Scopri altro per il business</strong>
+                      <strong className="ms-3">Scopri altro per il business</strong>
                     </p>
                     <div>
                       <a href="#">
-                        <div>
-                          <strong className="mb-5 fw-bold ms-3 ">Assumi su LinkedIn</strong>
-                          <p className="ms-3">Trova, attrai e assumi</p>
+                        <div className="mt-4">
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">Assumi su LinkedIn</strong>
+                          <p className="ms-3 secSmalltext ">Trova, attrai e assumi</p>
                         </div>
                       </a>
                     </div>
                     <div>
                       <a href="#">
-                        <div>
-                          <strong className="mb-5 fw-bold ms-3">Vendi con LinkedIn</strong>
-                          <p className="ms-3">Sblocca nuove opportunità di vendita</p>
+                        <div className="mt-4">
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">Vendi con LinkedIn</strong>
+                          <p className="ms-3 secSmalltext">Sblocca nuove opportunità di vendita</p>
                         </div>
                       </a>
                     </div>
-                    <div>
+                    <div className="mt-4">
                       <a href="#">
                         <div>
-                          <strong className="mb-5 fw-bold ms-3">Offerta di lavoro gratuita</strong>
-                          <p className="ms-3">Ottieni rapidamente candidati qualificati</p>
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">
+                            Offerta di lavoro gratuita
+                          </strong>
+                          <p className="ms-3 secSmalltext">Ottieni rapidamente candidati qualificati</p>
                         </div>
                       </a>
                     </div>
-                    <div>
+                    <div className="mt-4">
                       <a href="#">
                         <div>
-                          <strong className="mb-5 fw-bold ms-3">Fai pubblicità su LinkedIn</strong>
-                          <p className="ms-3">Acquisisci clienti e fai crescere la tua azienda</p>
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">
+                            Fai pubblicità su LinkedIn
+                          </strong>
+                          <p className="ms-3 secSmalltext">Acquisisci clienti e fai crescere la tua azienda</p>
                         </div>
                       </a>
                     </div>
-                    <div>
+                    <div className="mt-4">
                       <a href="#">
                         <div>
-                          <strong className="mb-5 fw-bold ms-3">Impara con LinkedIn</strong>
-                          <p className="ms-3">Assumi su LinkedIn</p>
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">Impara con LinkedIn</strong>
+                          <p className="ms-3 secSmalltext">Assumi su LinkedIn</p>
                         </div>
                       </a>
                     </div>
-                    <div>
+                    <div className="mb-3 mt-4">
                       <a href="#">
                         <div>
-                          <strong className="mb-5 fw-bold ms-3"> Admin Center</strong>
-                          <p className="ms-3">Gestisci i dettagli di fatturazione e account</p>
+                          <strong className="fw-bold ms-3 DropdownColortext small-text">Admin Center</strong>
+                          <p className="ms-3 secSmalltext">Gestisci i dettagli di fatturazione e account</p>
                         </div>
                       </a>
                     </div>
-                    <div>
-                      <p>
-                        <strong className="ms-3">Crea una pagina aziendale</strong>{" "}
-                        <FaPlus className="icon ms-3 iconPlus" />
-                      </p>
-                    </div>
+                    <a href="#">
+                      <div>
+                        <p>
+                          <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
+
+                          <FaPlus className="icon ms-3 iconPlus " />
+                        </p>
+                      </div>
+                    </a>
                   </div>
                 </div>
               </NavDropdown>
