@@ -237,7 +237,12 @@
 }
 
 /* Footer */
-footer {
+
+footer .footer-link {
+  font-size: 0.8em;
+}
+
+footer p {
   font-size: 0.8em;
 }
 

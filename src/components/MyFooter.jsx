@@ -149,7 +149,7 @@ const MyFooter = () => {
             </select>
           </div>
         </div>
-        <div className="row mt-3">
+        <div className="row">
           <div className="col-md-12">
             <p className="text-secondary">LinkedIn Corporation © 2024</p>
           </div>
