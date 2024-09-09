@@ -22,6 +22,8 @@ import {
   FaPlus,
   FaTag,
 } from "react-icons/fa";
+import { HiHome } from "react-icons/hi";
+import { BsChatDotsFill } from "react-icons/bs";
 import "../App.css";
 
 function NavScrollExample() {
@@ -48,7 +50,7 @@ function NavScrollExample() {
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
             <Nav.Link href="#home" className="nav-item">
-              <FaHome className="nav-icon" />
+              <HiHome className="nav-icon" />
               <div className="nav-text">Home</div>
             </Nav.Link>
             <Nav.Link href="#network" className="nav-item">
@@ -60,7 +62,7 @@ function NavScrollExample() {
               <div className="nav-text">Lavoro</div>
             </Nav.Link>
             <Nav.Link href="#messaging" className="nav-item">
-              <FaEnvelope className="nav-icon" />
+              <BsChatDotsFill className="nav-icon" />
               <div className="nav-text">Messaggistica</div>
             </Nav.Link>
             <Nav.Link href="#notifications" className="nav-item">
@@ -126,9 +128,11 @@ function NavScrollExample() {
             </div>
             <div className="separator-bar"></div>
             <div className="icon-above-dropdown ">
-              <div className="icon-with-text">
-                <FaTh className="icon" />
-              </div>
+              <a href="#">
+                <div className="icon-with-text">
+                  <FaTh className="icon workIconColor" />
+                </div>
+              </a>
 
               <NavDropdown title="Per le aziende" id="navbarScrollingDropdown" align="end">
                 <div className="dropdown-columns mt-5">
@@ -242,10 +246,12 @@ function NavScrollExample() {
                 </div>
               </NavDropdown>
             </div>
-            <div className="icon-with-text">
-              <FaTag className="icon" />
-              <div className="nav-text">Pubblica Un'offerta di lavoro</div>
-            </div>
+            <a href="#">
+              <div className="icon-with-text workIconColor">
+                <FaTag className="icon" />
+                <div className="nav-text">Pubblica Un'offerta di lavoro</div>
+              </div>
+            </a>
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -58,8 +58,7 @@
 }
 
 .nav-icon {
-  font-size: 1.2rem;
-  transition: color 0.1s;
+  font-size: 1.4rem;
 }
 
 .nav-icon:hover {
@@ -273,4 +272,10 @@ a {
 
 .DropdownColortext {
   color: #232323;
+}
+.workIconColor {
+  color: #575757;
+}
+.workIconColor:hover {
+  color: black;
 }
