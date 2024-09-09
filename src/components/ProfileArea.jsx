@@ -1,22 +1,22 @@
-import { useDispatch } from "react-redux"
-import Profile from "./Profile"
-import { useEffect } from "react"
-import { getProfile } from "../action"
-
-
+import { useDispatch } from "react-redux";
+import Profile from "./Profile";
+import { useEffect } from "react";
+import { getProfile } from "../action";
+import CardProfile from "./CardProfile";
 
 const ProfileArea = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getProfile("me"));
+  }, []);
 
-    useEffect(() => {
-        dispatch(getProfile('me'))
-    }, [])
-    
-    return(
-        <Profile />
-    )
-}
+  return (
+    <>
+      <Profile />
+      <CardProfile />
+    </>
+  );
+};
 
-
-export default ProfileArea
+export default ProfileArea;

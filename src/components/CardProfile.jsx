@@ -5,14 +5,14 @@ import {ArrowRight} from  'react-bootstrap-icons';
 
 const CardProfile = () => {
   return (
-    <div className="card-profile-wrapper">
+    <div className="card-profile-wrapper bg-light">
       <div className="card-header">
         <div className="left-section">
           <div className="title">Attività</div>
           <div className="caption text-primary">0 follower</div>
         </div>
         <div className="right-section">
-        <button type="button" class="btn btn-outline-primary card-button">Crea un post</button>
+        <button type="button" className="btn btn-outline-primary card-button">Crea un post</button>
         <PencilSquare size={25}/>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { GET_PROFILE } from "../action";
+import { GET_PROFILE, SET_PROFILE } from "../action";
 
 
 const initialState = {
@@ -12,6 +12,13 @@ const myProfile = (state = initialState, action) => {
           ...state,
           myProfile: action.payload,
         };
+
+        case SET_PROFILE: 
+        return {
+          ...state,
+          myProfile: action.payload
+        };
+        
     default:
       return state;
   }
