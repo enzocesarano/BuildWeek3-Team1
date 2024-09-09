@@ -252,19 +252,14 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
-a:hover {
-  text-decoration: underline;
-  text-decoration-color: #0a66c2;
-}
-
-a div strong,
-a div p {
+.dropdown-columns .column a:hover {
   color: inherit;
-}
-
-a:hover div strong,
-a:hover div p {
   text-decoration: underline;
   text-decoration-color: #0a66c2;
+}
+
+.dropdown-columns .column a:hover p,
+.dropdown-columns .column a:hover strong,
+.dropdown-columns .column a:hover div {
+  color: inherit;
 }
