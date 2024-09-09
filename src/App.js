@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { Col, Container, Row } from "react-bootstrap";
 import LinkedInSidebar from "./components/Sidebar";
+import MyFooter from "./components/MyFooter";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <LinkedInSidebar />
           </Row>
         </Container>
+        <MyFooter />
       </div>
     </Provider>
   );

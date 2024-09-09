@@ -4,8 +4,8 @@
 }
 
 .footer-link:hover {
-  text-decoration: underline;
-  color: #0776e6;
+  text-decoration: underline !important;
+  color: #0776e6 !important;
 }
 .pointer {
     cursor: pointer;

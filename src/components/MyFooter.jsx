@@ -23,7 +23,7 @@ const MyFooter = () => {
                 <Dropdown>
                   <Dropdown.Toggle
                     variant="link"
-                    className="text-secondary text-decoration-none p-0"
+                    className="text-secondary footer-link text-decoration-none p-0"
                     id="dropdown-basic"
                   >
                     Privacy e condizioni
