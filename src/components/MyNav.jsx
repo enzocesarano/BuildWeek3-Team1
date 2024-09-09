@@ -4,66 +4,97 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { FaHome, FaNetworkWired, FaBriefcase, FaEnvelope, FaBell, FaUserCircle, FaSearch } from "react-icons/fa";
+import {
+  FaHome,
+  FaNetworkWired,
+  FaBriefcase,
+  FaEnvelope,
+  FaBell,
+  FaUserCircle,
+  FaSearch,
+  FaStar,
+} from "react-icons/fa";
+import "../App.css";
 
 function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "80%" }}>
+      <Container fluid style={{ maxWidth: "50%" }}>
         <Navbar.Brand href="#">
-          <img src="https://placedog.net/50/50" alt="Logo" style={{ height: "40px" }} />
+          <img src="https://placedog.net/50/50" alt="Logo" style={{ height: "35px" }} />
         </Navbar.Brand>
-        <Form className="d-flex me-auto" style={{ flex: 1 }}>
-          <Form.Control type="search" placeholder="🔍 Cerca" className="me-2" aria-label="Search" style={{ flex: 1 }} />
+        <Form className="d-flex me-auto" style={{ flex: 1, maxWidth: "300px" }}>
+          <Form.Control type="search" placeholder="🔍 Cerca" className="me-1" aria-label="Search" style={{ flex: 1 }} />
         </Form>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="ms-auto my-2 my-lg-0" navbarScroll>
-            <Nav.Link href="#home">
-              <FaHome />
-              <div>Home</div>
+          <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
+            <Nav.Link href="#home" className="nav-item">
+              <FaHome className="nav-icon" />
+              <div className="nav-text">Home</div>
             </Nav.Link>
-            <Nav.Link href="#network">
-              <FaNetworkWired />
-              <div>Rete</div>
+            <Nav.Link href="#network" className="nav-item">
+              <FaNetworkWired className="nav-icon" />
+              <div className="nav-text">Rete</div>
             </Nav.Link>
-            <Nav.Link href="#jobs">
-              <FaBriefcase />
-              <div>Lavoro</div>
+            <Nav.Link href="#jobs" className="nav-item">
+              <FaBriefcase className="nav-icon" />
+              <div className="nav-text">Lavoro</div>
             </Nav.Link>
-            <Nav.Link href="#messaging">
-              <FaEnvelope />
-              <div>Messaggistica</div>
+            <Nav.Link href="#messaging" className="nav-item">
+              <FaEnvelope className="nav-icon" />
+              <div className="nav-text">Messaggistica</div>
             </Nav.Link>
-            <Nav.Link href="#notifications">
-              <FaBell />
-              <div>Notifiche</div>
+            <Nav.Link href="#notifications" className="nav-item">
+              <FaBell className="nav-icon" />
+              <div className="nav-text">Notifiche</div>
             </Nav.Link>
             <NavDropdown
               title={
                 <>
-                  <FaUserCircle />
-                  <div>Tu</div>
+                  <FaUserCircle className="nav-icon" />
+                  <div className="nav-text">Tu</div>
                 </>
               }
               id="navbarScrollingDropdown"
             >
               <NavDropdown.Item href="#">
-                <img src="https://placedog.net/50/50" alt="Profile" style={{ height: "40px", marginRight: "10px" }} />
-                <strong>Enzo Ceserano</strong>
-                <p>Io sono un lavoratore onesto</p>
+                <div className="dropdown-profile">
+                  <img src="https://placedog.net/50/50" alt="Profile" />
+                  <div>
+                    <strong>Enzo Ceserano</strong>
+                    <p>Io sono un lavoratore onesto</p>
+                  </div>
+                </div>
               </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#">Visualizza profilo</NavDropdown.Item>
+              <NavDropdown.Item href="#">
+                <button>Visualizza profilo</button>
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#">Account</NavDropdown.Item>
-              <NavDropdown.Item href="#">Prova 1 mese di Premium per 0 EUR</NavDropdown.Item>
-              <NavDropdown.Item href="#">Impostazioni e privacy</NavDropdown.Item>
-              <NavDropdown.Item href="#">Guida</NavDropdown.Item>
-              <NavDropdown.Item href="#">Lingua</NavDropdown.Item>
-              <NavDropdown.Item href="#">Gestisci</NavDropdown.Item>
-              <NavDropdown.Item href="#">Post e attività</NavDropdown.Item>
-              <NavDropdown.Item href="#">Account per la pubblicazione di offerte di lavoro</NavDropdown.Item>
+              <div className="dropdown-section ms-4">
+                <a href="#">
+                  <strong>Account</strong>
+                </a>
+                <a href="#">
+                  <FaStar className="icon" /> Prova 1 mese di Premium per 0 EUR
+                </a>
+              </div>
+              <NavDropdown.Divider />
+              <div className="dropdown-section ms-4 text-secondary">
+                <a href="#">Impostazioni e privacy</a>
+                <a href="#">Guida</a>
+                <a href="#">Lingua</a>
+              </div>
+              <NavDropdown.Divider />
+              <div className="dropdown-section ms-4">
+                <a href="#">
+                  <strong>Gestisci</strong>
+                </a>
+                <a href="#">Post e attività</a>
+                <a href="#">Account per la pubblicazione di offerte di lavoro</a>
+              </div>
+              <NavDropdown.Divider />
               <NavDropdown.Item href="#">Esci</NavDropdown.Item>
             </NavDropdown>
           </Nav>
