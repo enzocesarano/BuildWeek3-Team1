@@ -236,6 +236,66 @@
   margin: 0 15px;
 }
 
+/* Box Messaggi */
+
+.messaging-box {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  width: 20vw;
+  background-color: white; 
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  overflow: hidden; /* Nasconde il contenuto che esce dai limiti */
+  max-height: 60px; /* Altezza iniziale senza questo l'animazione non avviene */
+}
+
+.messaging-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-image {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder per l'immagine dell'utente */
+}
+
+.icons i {
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+.messaging-content {
+  padding: 10px;
+  background-color: white;
+  border-top: 1px solid #ccc;
+}
+
+.linkedin-image {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.no-messages {
+  text-align: center;
+}
+
+.messaging-button {
+  background-color: white !important; /* Colore del pulsante messaggistica */
+  color: black !important;
+  border: none;
+}
+
+.messaging-box.open {
+  max-height: 90vh; /* Altezza massima del box quando è aperto */
+}
+
+
 /* Footer */
 
 footer .footer-link {
