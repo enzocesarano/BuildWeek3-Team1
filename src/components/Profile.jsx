@@ -15,14 +15,14 @@ const Profile = () => {
           className="mb-5"
         />
         <div className="position-absolute top-0 end-0 me-4 mt-4 pointer fs-4">
-          <i class="bi bi-camera"></i>
+          <i className="bi bi-camera"></i>
         </div>
         <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
           <div className="rounded-circle border border-3 border-light sizeImg overflow-hidden">
             <img src={myProfile.image} alt="" className=" w-100" />
           </div>
           <div className="pointer">
-            <i class="bi bi-pencil fs-4"></i>
+            <i className="bi bi-pencil fs-4"></i>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@ const Profile = () => {
             {myProfile.name} {myProfile.surname}
           </Card.Title>
           <Button className="btnOutline borderDashed bg-transparent rounded-5 ms-3 py-0 fw-medium">
-          <i class="bi bi-patch-check fw-medium"></i> Verifica ora
+          <i className="bi bi-patch-check fw-medium"></i> Verifica ora
           </Button>
         </div>
         <Card.Text className="mb-2 text-secondary-emphasis">

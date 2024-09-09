@@ -27,9 +27,8 @@ const LinkedInSidebar = () => {
   ];
 
   return (
-    <Container className="p-3 bg-white rounded shadow-sm">
-      <Row className="d-none d-md-flex">
-        <Col xs={0} md={4}>
+    
+        <Col xs={0} md={4} className='d-none d-md-block mt-5'>
           <Card className="mb-4">
             <Card.Body>
               <Card.Title>Lingua del profilo</Card.Title>
@@ -109,10 +108,12 @@ const LinkedInSidebar = () => {
             </Card.Body>
           </Card>
         </Col>
-      </Row>
-    </Container>
   );
 };
 
 export default LinkedInSidebar;
+
+
+/* <Container className="p-3 bg-white rounded shadow-sm">
+      <Row className="d-none d-md-flex"> */
 
