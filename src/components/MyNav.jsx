@@ -5,12 +5,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import {
-  FaHome,
   FaNetworkWired,
   FaBriefcase,
-  FaEnvelope,
   FaBell,
-  FaSearch,
   FaStar,
   FaTh,
   FaCompass,
