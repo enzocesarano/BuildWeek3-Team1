@@ -26,7 +26,7 @@ import "../App.css";
 
 function NavScrollExample() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" style={{ width: "100%" }}>
+    <Navbar expand="lg" className="bg-light position-fixed z-1" style={{ width: "100%" }}>
       <Container fluid style={{ maxWidth: "70%" }}>
         <Navbar.Brand href="#">
           <img

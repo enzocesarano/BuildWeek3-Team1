@@ -7,13 +7,15 @@ import store from "./store";
 import { Col, Container, Row } from "react-bootstrap";
 import LinkedInSidebar from "./components/Sidebar";
 import MyFooter from "./components/MyFooter";
+import NavScrollExample from "./components/MyNav";
 
 function App() {
   return (
     <Provider store={store}>
       <div className="bg-secondary-subtle">
+        <NavScrollExample />
         <Container>
-          <Row>
+          <Row className="py-5">
             <Col className="col-12 col-md-8 mt-5">
               <ProfileArea />
             </Col>
