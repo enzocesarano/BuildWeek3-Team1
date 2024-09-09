@@ -1,11 +1,12 @@
-
-import './App.css';
+import "./App.css";
+import NavScrollExample from "./components/MyNav";
 
 function App() {
   return (
-   <>
-   ciao
-   </>
+    <>
+      <NavScrollExample />
+      <div>ciao</div>
+    </>
   );
 }
 
