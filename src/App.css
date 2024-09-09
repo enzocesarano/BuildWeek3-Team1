@@ -46,12 +46,12 @@
 }
 
 .nav-icon {
-  font-size: 1.2rem; /* Ridimensiona le icone */
-  transition: color 0.1s; /* Transizione per l'hover */
+  font-size: 1.2rem;
+  transition: color 0.1s;
 }
 
 .nav-icon:hover {
-  color: black; /* Colore nero al passaggio del mouse */
+  color: black;
 }
 
 .nav-text {
@@ -63,20 +63,20 @@
   padding-top: 0;
   padding-bottom: 0;
   display: flex;
-  align-items: center; /* Centra verticalmente gli elementi */
+  align-items: center;
 }
 
 .navbar .form-control {
-  max-width: 300px; /* Allarga il campo di ricerca */
+  max-width: 300px;
   background-color: #edf3f8;
-  height: 35px; /* Assicura che il campo di ricerca abbia la stessa altezza degli altri elementi */
+  height: 35px;
 }
 
 .navbar .navbar-nav {
   margin-top: 0;
   margin-bottom: 0;
   display: flex;
-  align-items: center; /* Centra verticalmente gli elementi */
+  align-items: center;
 }
 
 .navbar .dropdown-toggle::after {
@@ -138,7 +138,7 @@
 
 .search-input {
   background-color: #edf3f8;
-  height: 35px; /* Assicura che il campo di ricerca abbia la stessa altezza degli altri elementi */
+  height: 35px;
 }
 
 .nav-dropdown-title {
@@ -175,10 +175,12 @@
 .dropdown-columns {
   display: flex;
   justify-content: space-between;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .dropdown-columns .column {
-  margin-right: 20px;
+  margin: 0 20px;
 }
 
 .dropdown-columns .column a {
@@ -186,7 +188,8 @@
   align-items: center;
   color: black;
   text-decoration: none;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .dropdown-columns .column a:hover {
@@ -196,4 +199,34 @@
 
 .dropdown-columns .column .icon {
   margin-right: 5px;
+}
+
+.separator-bar {
+  width: 1px;
+  height: auto;
+  background-color: #ccc;
+  margin: 0 15px;
+}
+.icon-above-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-with-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.icon {
+  font-size: 24px;
+}
+.separator-bar {
+  width: 2px;
+  height: auto;
+  background-color: #c5b8b8;
+  margin: 0 15px;
 }
