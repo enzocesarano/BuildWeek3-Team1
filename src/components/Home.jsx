@@ -54,9 +54,7 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body className="text-nowrap">
-              <Card.Title className="secondary-title">
-                Fai crescere la tua carriera o il tuo business con Premium
-              </Card.Title>
+              <Card.Title className="secondary-title">Espandi la tua carriera o il tuo business con Premium</Card.Title>
               <Card.Text>
                 <a href="#" className="premium-link">
                   <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
@@ -74,8 +72,8 @@ const Home = ({ setModalShow }) => {
 
           <Card>
             <ListGroup variant="flush">
-              <ListGroup.Item className="list-item">
-                <i className="bi bi-bookmark-fill icon-small"></i> Elementi salvati
+              <ListGroup.Item className="list-item ">
+                <i className="bi bi-bookmark-fill icon-small "></i> Elementi salvati
               </ListGroup.Item>
               <ListGroup.Item className="list-item">
                 <i className="bi bi-people-fill icon-small"></i> Gruppi
@@ -88,30 +86,36 @@ const Home = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={6} lg={6}>
-          <Card body>This is some text within a card body.</Card>
+          <Card body>
+            Serve solo a testare come suddividere le colonne , verra sostituita poi con la creazione dei post
+          </Card>
         </Col>
 
         <Col xs={12} md={3} lg={3}>
           <Card>
-            <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
             <Card.Body>
-              <Card.Title className="black-title">Card Title</Card.Title>
-              <Card.Text className="secondary-text">
-                Some quick example text to build on the card title and make up the bulk of the card's content.
-              </Card.Text>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroup.Item className="list-item">Cras justo odio</ListGroup.Item>
-              <ListGroup.Item className="list-item">Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item className="list-item">Vestibulum at eros</ListGroup.Item>
-            </ListGroup>
-            <Card.Body>
-              <Card.Link href="#" className="secondary-text">
-                Card Link
-              </Card.Link>
-              <Card.Link href="#" className="secondary-text">
-                Another Link
-              </Card.Link>
+              <Card.Title className="black-title fw-bold fs-5">LinkedIn Notizie</Card.Title>
+              <Card.Text className="secondary-text fw-bold fontStory">Storie principali</Card.Text>
+              <div className="news-item">
+                <span className="firstp fw-bold ">I migliori MBA per dare slancio alla tua carriera</span>
+                <p className="text-secondary secP">5 giorni fa • 13.828 lettori</p>
+              </div>
+              <div className="news-item">
+                <span className="firstp fw-bold">I lavori più richiesti nei prossimi 5 anni</span>
+                <p className="text-secondary secP">1 giorno fa • 861 lettori</p>
+              </div>
+              <div className="news-item">
+                <span className="firstp fw-bold">Che si dice della Nutella vegana</span>
+                <p className="text-secondary secP">22 ore fa • 599 lettori</p>
+              </div>
+              <div className="news-item">
+                <span className="firstp fw-bold">Fotogrammi dal Lido</span>
+                <p className="text-secondary secP">3 ore fa • 443 lettori</p>
+              </div>
+              <div className="news-item">
+                <span className="firstp fw-bold">Arriva il Voucher 3I per l'innovazione</span>
+                <p className="text-secondary secP">3 giorni fa • 345 lettori</p>
+              </div>
             </Card.Body>
           </Card>
         </Col>

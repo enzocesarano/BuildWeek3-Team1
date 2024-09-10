@@ -298,7 +298,7 @@ a {
 
 .black-title {
   font-size: 0.7rem;
-  color: black;
+  color: #232323;
 }
 
 .secondary-text {
@@ -307,16 +307,26 @@ a {
 }
 
 .list-item {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 .icon-small {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 .reduced-font {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .reduced-font-link {
+  font-size: 0.7rem;
+}
+.fontStory {
+  font-size: 0.8rem;
+}
+.firstp {
+  color: #232323;
+  font-size: 0.8rem;
+}
+.secP {
   font-size: 0.6rem;
 }
