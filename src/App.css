@@ -240,13 +240,17 @@
   position: fixed;
   bottom: 0;
   right: 10px;
-  width: 20vw;
+  width: 15vw;
   background-color: white; 
   border: 1px solid #ccc;
   border-radius: 10px;
-  transition: 0.3s ease-in-out;
+  transition: height 0.3s ease-in-out;
   overflow: hidden; /* Nasconde il contenuto che esce dai limiti */
-  max-height: 60px; /* Altezza iniziale senza questo l'animazione non avviene */
+  height: 60px; /* Altezza iniziale */
+}
+
+.messaging-box.open {
+  height: 90vh; /* Altezza massima del box quando è aperto */
 }
 
 .messaging-header {
@@ -257,8 +261,8 @@
 }
 
 .user-image {
-  width: 2.5em;
-  height: 2.5em;
+  width: 2em;
+  height: 2em;
   border-radius: 50%;
   background-color: #ccc; /* Placeholder per l'immagine dell'utente */
 }
@@ -268,16 +272,44 @@
   cursor: pointer;
 }
 
-.messaging-content {
-  padding: 10px;
-  background-color: white;
-  border-top: 1px solid #ccc;
+/* Stili per la barra di ricerca della messaggistica */
+
+.search-box {
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  margin: 0 8px;
 }
 
-.linkedin-image {
-  width: 100%;
-  margin-bottom: 10px;
+.search-box:focus-within {
+  border-color: black; /* Bordo nero quando è selezionato */
 }
+
+.search-icon, .filter-icon {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.search-input:focus {
+  border-color: black;
+  box-shadow: none; /* Rimuove il bordo azzurrino al focus */
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.messaging-box { 
+  min-width: 300px;
+  max-width: 400px;
+ } /* Questa regola è per far mantenere la larghezza del box messaggistica
+ anche rimpicciolendo la pagina, finchè non scompare */
 
 .no-messages {
   text-align: center;
@@ -288,11 +320,6 @@
   color: black !important;
   border: none;
 }
-
-.messaging-box.open {
-  max-height: 90vh; /* Altezza massima del box quando è aperto */
-}
-
 
 /* Footer */
 
