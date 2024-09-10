@@ -12,7 +12,6 @@ const ProfileArea = ({myProfile}) => {
   return (
     <>
       <Profile myProfile={myProfile}/>
-      <CardProfile />
       <ActivityProfile/>
       <ExperienceCard/>
     </>

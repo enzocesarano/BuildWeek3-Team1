@@ -8,7 +8,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import LinkedInSidebar from "./components/Sidebar";
 import MyFooter from "./components/MyFooter";
 import MessagingBox from "./components/MessagingBox";
-import ProfileArea from "./components/ProfileArea";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";

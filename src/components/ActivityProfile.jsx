@@ -26,13 +26,14 @@ const ActivityProfile = ({ showButton = true }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmUwNjA1M2FmNDM0YjAwMTU5ZDgzYmQiLCJpYXQiOjE3MjU5ODA3NTUsImV4cCI6MTcyNzE5MDM1NX0.8U5ugE53yZhXOT0x6-Pz6fEAVbwHBZIIA68DRtRM-tA"
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE"
       },
       body: JSON.stringify({ text: postContent })
     });
     if (response.ok) {
       setPostContent("");
       handleClose();
+      console.log(postContent)
     } else {
       console.error("Errore nella pubblicazione del post");
     }
