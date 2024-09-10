@@ -2,15 +2,15 @@ import { GET_SEARCH_PROFILE } from "../action";
 
 
 const initialState = {
-  profileSelect: 'me'
+  searchProfile: {}
 }
 
-const profileSelect = (state = initialState, action) => {
+const searchProfile = (state = initialState, action) => {
   switch (action.type) {
     case GET_SEARCH_PROFILE:
         return {
           ...state,
-          profileSelect: action.payload,
+          searchProfile: action.payload,
         };
         
     default:
@@ -18,4 +18,4 @@ const profileSelect = (state = initialState, action) => {
   }
 }
 
-export default profileSelect
+export default searchProfile

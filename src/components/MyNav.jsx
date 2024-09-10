@@ -15,6 +15,8 @@ import SearchModal from "./SearchModal";
 
 function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
+  const searchProfile = useSelector((state) => state.searchProfile.searchProfile)
+  console.log(searchProfile)
   const arrayAllProfiles = useSelector(
     (state) => state.arrayAllProfiles.arrayAllProfiles
   );
@@ -22,10 +24,10 @@ function NavScroll() {
   const [value, setValue] = useState("");
   const [modalShow, setModalShow] = useState(false);
 
-  // Funzione per resettare la ricerca
+
   const handleProfileSelect = () => {
-    setValue(""); // Azzerare il campo di ricerca
-    setModalShow(false); // Chiudere il modale
+    setValue(""); 
+    setModalShow(false);
   };
 
   const filteredProfiles = arrayAllProfiles.filter((profile) => {
@@ -72,7 +74,7 @@ function NavScroll() {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
-              <Link to="/home" className="nav-link">
+              <Link to="/" className="nav-link">
                 <HiHome className="nav-icon" />
                 <div className="nav-text">Home</div>
               </Link>
@@ -118,7 +120,7 @@ function NavScroll() {
                     </div>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/">
+                  <NavDropdown.Item as={Link} to="/profile">
                     <button>Visualizza profilo</button>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />

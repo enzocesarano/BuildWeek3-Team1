@@ -4,19 +4,11 @@ import { useEffect } from "react";
 import { getProfile } from "../action";
 import CardProfile from "./CardProfile";
 
-const ProfileArea = () => {
-  const dispatch = useDispatch();
-
-  const profileSelect = useSelector((store) => store.profileSelect.profileSelect)
-  
-  useEffect(() => {
-    dispatch(getProfile(profileSelect,''));
-  }, [profileSelect]);
-
+const ProfileArea = ({myProfile}) => {
 
   return (
     <>
-      <Profile />
+      <Profile myProfile={myProfile}/>
       <CardProfile />
     </>
   );

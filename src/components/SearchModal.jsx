@@ -1,13 +1,15 @@
 import { useEffect } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { profileSelect } from "../action";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { searchProfile } from "../action";
 
 
 
 const SearchModal = ({ filteredProfiles, onProfileSelect }) => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate('')
 
     return (
           <Container className="position-absolute top-100 start-0 overflow-hidden z-3">
@@ -15,7 +17,8 @@ const SearchModal = ({ filteredProfiles, onProfileSelect }) => {
               {filteredProfiles.length > 0 ? (
                 filteredProfiles.slice(0, 5).map((element) => (
                   <Col key={element._id} xs={12} id={element._id} className="px-1 py-2 pointer" onClick={() => {
-                    dispatch(profileSelect(element._id))
+                    navigate(`/profile/${element._id}`);
+                    dispatch(searchProfile(element._id));
                     onProfileSelect();
                   }}>
                     <div className="search-item d-flex justify-content-between align-items-baseline" >

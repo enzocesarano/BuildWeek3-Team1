@@ -4,15 +4,14 @@ import { useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
 import ImageSet from "./ImageSet";
 
-const Profile = () => {
-  const myProfile = useSelector((state) => state.myProfile.myProfile);
+const Profile = ({myProfile}) => {
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShowImg, setModalShowImg] = useState(false);
 
   return (
     <>
-      <Card className="bg-light mb-3">
+    {myProfile && <Card className="bg-light mb-3">
         <div className="position-relative">
           <Card.Img
             variant="top"
@@ -61,7 +60,7 @@ const Profile = () => {
             <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">Atro</Button>
           </ButtonGroup>
         </Card.Body>
-      </Card>
+      </Card>}
 
       <EditProfile show={modalShow} onHide={() => setModalShow(false)} />
       <ImageSet show={modalShowImg} onHide={() => setModalShowImg(false)} />
