@@ -2,7 +2,7 @@ import { GET_ALL_PROFILES } from "../action";
 
 
 const initialState = {
-  arrayAllProfiles: {}
+  arrayAllProfiles: []
 }
 
 const arrayAllProfiles = (state = initialState, action) => {

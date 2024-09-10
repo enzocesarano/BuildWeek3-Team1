@@ -24,7 +24,7 @@ const Profile = () => {
           </div>
           <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
             <div
-              className="rounded-circle border border-3 border-light sizeImg overflow-hidden"
+              className="rounded-circle border border-3 border-light sizeImg overflow-hidden pointer"
               onClick={() => setModalShowImg(true)}
             >
               <img src={myProfile.image} alt="" className=" w-100" />

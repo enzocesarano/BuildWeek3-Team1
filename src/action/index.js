@@ -5,35 +5,46 @@ export const GET_ALL_PROFILES = "GET_ALL_PROFILES";
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
 
+  const profilePromise = fetch(baseEndpoint + id + "/" + experiences, {
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+    },
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Errore nel recupero del profilo");
+    }
+  });
+
+  const allProfilesPromise = fetch(baseEndpoint, {
+    headers: {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+    },
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error("Errore nel recupero di tutti i profili");
+    }
+  });
+
   return (dispatch) => {
-    fetch(baseEndpoint + id + "/" + experiences, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Errore nel recupero");
-        }
-      })
-      .then((profile) => {
-        if (id || experiences) {
-          dispatch({
-            type: GET_PROFILE,
-            payload: profile,
-          });
-        } else {
-          dispatch({
-            type: GET_ALL_PROFILES,
-            payload: profile,
-          });
-        }
+    Promise.all([profilePromise, allProfilesPromise])
+      .then(([profile, allProfiles]) => {
+        dispatch({
+          type: GET_PROFILE,
+          payload: profile,
+        });
+        dispatch({
+          type: GET_ALL_PROFILES,
+          payload: allProfiles,
+        });
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   };
 };
