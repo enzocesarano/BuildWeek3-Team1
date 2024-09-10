@@ -30,7 +30,7 @@ function AppContent() {
       <Container>
         <Row className="py-5">
           {location.pathname === "/home" ? (
-            <Col className="col-12">
+            <Col className="col-12 py-5">
               <Home />
             </Col>
           ) : (

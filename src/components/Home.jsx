@@ -38,10 +38,15 @@ const Home = ({ setModalShow }) => {
                     {myProfile.name} {myProfile.surname}
                   </Card.Title>
                 </div>
-                <Card.Text className="mb-2 text-secondary-emphasis">{myProfile.title}</Card.Text>
-                <Card.Text className="text-secondary">
+                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
+                <Card.Text className="text-secondary reduced-font">
                   {myProfile.area} • {""}
-                  <span className="infoProfile pointer fw-medium">Informazioni di contatto</span>
+                  <div>
+                    {" "}
+                    <a href="#" className="text-dark reduced-font-link">
+                      <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
+                    </a>
+                  </div>
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -49,12 +54,12 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body className="text-nowrap">
-              <Card.Title style={{ fontSize: "0.5rem" }}>
+              <Card.Title className="secondary-title">
                 Fai crescere la tua carriera o il tuo business con Premium
               </Card.Title>
               <Card.Text>
-                <a href="#">
-                  <FaStar className="icon" /> Prova 1 mese di Premium per 0 EUR
+                <a href="#" className="premium-link">
+                  <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
                 </a>
               </Card.Text>
             </Card.Body>
@@ -62,21 +67,21 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title style={{ fontSize: "0.5rem" }}>Collegamento</Card.Title>
-              <Card.Text style={{ fontSize: "0.5rem" }}>Espandi la tua rete</Card.Text>
+              <Card.Title className="black-title">Collegamento</Card.Title>
+              <Card.Text className="secondary-text">Espandi la tua rete</Card.Text>
             </Card.Body>
           </Card>
 
           <Card>
             <ListGroup variant="flush">
-              <ListGroup.Item>
-                <i className="bi bi-bookmark-fill"></i> Elementi salvati
+              <ListGroup.Item className="list-item">
+                <i className="bi bi-bookmark-fill icon-small"></i> Elementi salvati
               </ListGroup.Item>
-              <ListGroup.Item>
-                <i className="bi bi-people-fill"></i> Gruppi
+              <ListGroup.Item className="list-item">
+                <i className="bi bi-people-fill icon-small"></i> Gruppi
               </ListGroup.Item>
-              <ListGroup.Item>
-                <i className="bi bi-calendar-event-fill"></i> Eventi
+              <ListGroup.Item className="list-item">
+                <i className="bi bi-calendar-event-fill icon-small"></i> Eventi
               </ListGroup.Item>
             </ListGroup>
           </Card>
@@ -90,21 +95,21 @@ const Home = ({ setModalShow }) => {
           <Card>
             <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
             <Card.Body>
-              <Card.Title style={{ fontSize: "0.5rem" }}>Card Title</Card.Title>
-              <Card.Text style={{ fontSize: "0.5rem" }}>
+              <Card.Title className="black-title">Card Title</Card.Title>
+              <Card.Text className="secondary-text">
                 Some quick example text to build on the card title and make up the bulk of the card's content.
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Vestibulum at eros</ListGroup.Item>
+              <ListGroup.Item className="list-item">Cras justo odio</ListGroup.Item>
+              <ListGroup.Item className="list-item">Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item className="list-item">Vestibulum at eros</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="#" style={{ fontSize: "0.5rem" }}>
+              <Card.Link href="#" className="secondary-text">
                 Card Link
               </Card.Link>
-              <Card.Link href="#" style={{ fontSize: "0.5rem" }}>
+              <Card.Link href="#" className="secondary-text">
                 Another Link
               </Card.Link>
             </Card.Body>
