@@ -351,3 +351,54 @@ a {
 .workIconColor:hover {
   color: black;
 }
+#navbarScrollingDropdown {
+  padding-top: 0 !important;
+}
+.secondary-title {
+  font-size: 0.7rem;
+  color: var(--bs-secondary);
+}
+
+.premium-link {
+  font-size: 0.7rem;
+}
+
+.icon-blue {
+  font-size: 0.6rem;
+  color: #0a66c2;
+}
+
+.black-title {
+  font-size: 0.7rem;
+  color: #232323;
+}
+
+.secondary-text {
+  font-size: 0.7rem;
+  color: var(--bs-secondary);
+}
+
+.list-item {
+  font-size: 0.8rem;
+}
+
+.icon-small {
+  font-size: 0.7rem;
+}
+.reduced-font {
+  font-size: 0.7rem;
+}
+
+.reduced-font-link {
+  font-size: 0.7rem;
+}
+.fontStory {
+  font-size: 0.8rem;
+}
+.firstp {
+  color: #232323;
+  font-size: 0.8rem;
+}
+.secP {
+  font-size: 0.6rem;
+}

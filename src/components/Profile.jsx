@@ -30,10 +30,7 @@ const Profile = () => {
               <img src={myProfile.image} alt="" className=" w-100" />
             </div>
             <div className="pointer">
-              <i
-                className="bi bi-pencil fs-4"
-                onClick={() => setModalShow(true)}
-              ></i>
+              <i className="bi bi-pencil fs-4" onClick={() => setModalShow(true)}></i>
             </div>
           </div>
         </div>
@@ -47,33 +44,21 @@ const Profile = () => {
               <i className="bi bi-patch-check fw-medium"></i> Verifica ora
             </Button>
           </div>
-          <Card.Text className="mb-2 text-secondary-emphasis">
-            {myProfile.title}
-          </Card.Text>
+          <Card.Text className="mb-2 text-secondary-emphasis">{myProfile.title}</Card.Text>
           <Card.Text className="text-secondary">
             {myProfile.area} • {""}
-            <span className="infoProfile pointer fw-medium">
-              Informazioni di contatto
-            </span>
+            <span className="infoProfile pointer fw-medium">Informazioni di contatto</span>
           </Card.Text>
           <Card.Text>
-            <span className="infoProfile pointer fw-medium">
-              56 collegamenti
-            </span>
+            <span className="infoProfile pointer fw-medium">56 collegamenti</span>
           </Card.Text>
           <ButtonGroup className="d-block d-md-inline-block">
-            <Button className="btnBg border-0 rounded-5 fw-bold me-2 mb-2">
-              Disponibile per
-            </Button>
+            <Button className="btnBg border-0 rounded-5 fw-bold me-2 mb-2">Disponibile per</Button>
             <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">
               Aggiungi sezione del profilo
             </Button>
-            <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">
-              Migliora profilo
-            </Button>
-            <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">
-              Atro
-            </Button>
+            <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">Migliora profilo</Button>
+            <Button className="btnOutline bg-transparent me-2 rounded-5 fw-bold mb-2">Atro</Button>
           </ButtonGroup>
         </Card.Body>
       </Card>
