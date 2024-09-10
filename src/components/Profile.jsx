@@ -27,7 +27,7 @@ const Profile = () => {
               className="rounded-circle border border-3 border-light sizeImg overflow-hidden pointer"
               onClick={() => setModalShowImg(true)}
             >
-              <img src={myProfile.image} alt="" className=" w-100" />
+              <img src={myProfile.image} alt={myProfile.name} className=" w-100" />
             </div>
             <div className="pointer">
               <i className="bi bi-pencil fs-4" onClick={() => setModalShow(true)}></i>

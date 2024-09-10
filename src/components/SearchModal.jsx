@@ -5,7 +5,7 @@ import { profileSelect } from "../action";
 
 
 
-const SearchModal = ({ filteredProfiles }) => {
+const SearchModal = ({ filteredProfiles, onProfileSelect }) => {
 
     const dispatch = useDispatch()
 
@@ -16,6 +16,7 @@ const SearchModal = ({ filteredProfiles }) => {
                 filteredProfiles.slice(0, 5).map((element) => (
                   <Col key={element._id} xs={12} id={element._id} className="px-1 py-2 pointer" onClick={() => {
                     dispatch(profileSelect(element._id))
+                    onProfileSelect();
                   }}>
                     <div className="search-item d-flex justify-content-between align-items-baseline" >
                         <div>

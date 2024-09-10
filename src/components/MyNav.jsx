@@ -1,47 +1,37 @@
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Container, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { HiHome } from "react-icons/hi";
 import {
   FaNetworkWired,
   FaBriefcase,
   FaBell,
-  FaStar,
-  FaTh,
-  FaCompass,
-  FaUsers,
-  FaChartLine,
-  FaInfoCircle,
-  FaBullseye,
-  FaPlay,
-  FaPlus,
   FaTag,
+  FaStar,
 } from "react-icons/fa";
-import { HiHome } from "react-icons/hi";
-import { Link } from "react-router-dom";
 import { BsChatDotsFill } from "react-icons/bs";
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import "../App.css";
 import SearchModal from "./SearchModal";
 
 function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
-
   const arrayAllProfiles = useSelector(
     (state) => state.arrayAllProfiles.arrayAllProfiles
   );
 
   const [value, setValue] = useState("");
+  const [modalShow, setModalShow] = useState(false);
+
+  // Funzione per resettare la ricerca
+  const handleProfileSelect = () => {
+    setValue(""); // Azzerare il campo di ricerca
+    setModalShow(false); // Chiudere il modale
+  };
 
   const filteredProfiles = arrayAllProfiles.filter((profile) => {
     const fullName = `${profile.name} ${profile.surname}`.toLowerCase();
     return fullName.includes(value.toLowerCase());
   });
-
-  const [modalShow, setModalShow] = useState(false);
 
   return (
     <>
@@ -73,7 +63,10 @@ function NavScroll() {
               onFocus={() => setModalShow(true)}
             />
             {modalShow && value && (
-              <SearchModal filteredProfiles={filteredProfiles} />
+              <SearchModal
+                filteredProfiles={filteredProfiles}
+                onProfileSelect={handleProfileSelect} // Passare la funzione di reset
+              />
             )}
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -117,9 +110,8 @@ function NavScroll() {
                       <img src={myProfile.image} alt="Profile" />
                       <div>
                         <p>
-                          {" "}
                           <span>{myProfile.name}</span>{" "}
-                          <span>{myProfile.surname}</span>{" "}
+                          <span>{myProfile.surname}</span>
                         </p>
                         <p>{myProfile.title}</p>
                       </div>
