@@ -1,5 +1,5 @@
-export const GET_PROFILE = "GET_PROFILE"
-export const SET_PROFILE = "SET_PROFILE"
+export const GET_PROFILE = "GET_PROFILE";
+export const SET_PROFILE = "SET_PROFILE";
 
 export const getProfile = (id) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -29,8 +29,6 @@ export const getProfile = (id) => {
       });
   };
 };
-
-
 
 export const setMyProfile = (editProfile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;

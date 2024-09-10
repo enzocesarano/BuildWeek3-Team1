@@ -20,6 +20,7 @@ import {
   FaTag,
 } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { BsChatDotsFill } from "react-icons/bs";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -50,10 +51,10 @@ function NavScroll() {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
-            <Nav.Link href="#home" className="nav-item">
+            <Link to="/home" className="nav-link">
               <HiHome className="nav-icon" />
               <div className="nav-text">Home</div>
-            </Nav.Link>
+            </Link>
             <Nav.Link href="#network" className="nav-item">
               <FaNetworkWired className="nav-icon" />
               <div className="nav-text">Rete</div>
@@ -88,7 +89,7 @@ function NavScroll() {
                   </div>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#">
+                <NavDropdown.Item as={Link} to="/profile">
                   <button>Visualizza profilo</button>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

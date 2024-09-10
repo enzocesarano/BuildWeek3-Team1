@@ -1,5 +1,5 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import myProfile from '../reducers/getMyProfile';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import myProfile from "../reducers/getMyProfile";
 
 const bigReducer = combineReducers({
   myProfile: myProfile,
