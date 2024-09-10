@@ -4,7 +4,7 @@ import { Container, Button, Card, ListGroup, Form, Row, Col } from 'react-bootst
 import { useState } from 'react';
 
 
-const LinkedInSidebar = () => {
+const LinkedInSidebar = ({myProfile}) => {
   const [selectedLanguage, setSelectedLanguage] = useState('Italiano');
 
   const languages = ['Italiano', 'Inglese', 'Francese', 'Tedesco', 'Spagnolo','Russo'];
@@ -43,7 +43,7 @@ const LinkedInSidebar = () => {
                 ))}
               </Form.Select>
               <Card.Title className="mt-3">Profilo pubblico e URL</Card.Title>
-              <p>www.linkedin.com/in/inserire-nome-profilo</p>
+              <p>www.linkedin.com/in/{myProfile.username}</p>
             </Card.Body>
           </Card>
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Button, FormControl, InputGroup, OverlayTrigger, Popover } from "react-bootstrap";
+import { Button, FormControl, Image, InputGroup } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const MessagingBox = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +21,15 @@ const MessagingBox = () => {
       </Popover.Body>
     </Popover>
   );
+  const myProfile = useSelector((state) => state.myProfile.myProfile);
 
   return (
     <div className={`messaging-box ${isOpen ? "open" : ""} d-none d-md-block`}>
       <div className="messaging-header">
-        <div className="user-image"></div>
-        <Button onClick={toggleOpen} className="messaging-button p-0 ms-1">
+        <div className="user-image">
+          <Image src={myProfile.image} alt={myProfile.name} roundedCircle className="w-100" />
+        </div>
+        <Button onClick={toggleOpen} className="messaging-button p-0">
           Messaggistica
         </Button>
         <div className="icons d-flex">

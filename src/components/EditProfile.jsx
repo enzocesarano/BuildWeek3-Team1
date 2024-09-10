@@ -38,7 +38,7 @@ const EditProfile = (props) => {
   };
 
   const onSubmitBtn = () => {
-    dispatch(setMyProfile(profile));
+    dispatch(setMyProfile(profile, '', ''));
     props.onHide();
   };
 
