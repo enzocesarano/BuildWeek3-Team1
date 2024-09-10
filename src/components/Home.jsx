@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, Button, ButtonGroup, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
 import { FaStar } from "react-icons/fa";
 import { getProfile } from "../action";
 
@@ -13,9 +13,9 @@ const Home = ({ setModalShow }) => {
   }, [dispatch]);
 
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col xs={2}>
+        <Col xs={12} md={3} lg={3}>
           {myProfile && myProfile.image && (
             <Card className="bg-light mb-3">
               <div className="position-relative">
@@ -48,8 +48,10 @@ const Home = ({ setModalShow }) => {
           )}
 
           <Card className="mb-3">
-            <Card.Body>
-              <Card.Title>Fai crescere la tua carriera o il tuo business con Premium</Card.Title>
+            <Card.Body className="text-nowrap">
+              <Card.Title style={{ fontSize: "0.5rem" }}>
+                Fai crescere la tua carriera o il tuo business con Premium
+              </Card.Title>
               <Card.Text>
                 <a href="#">
                   <FaStar className="icon" /> Prova 1 mese di Premium per 0 EUR
@@ -60,47 +62,51 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title>Collegamento</Card.Title>
-              <Card.Text>Espandi la tua rete</Card.Text>
+              <Card.Title style={{ fontSize: "0.5rem" }}>Collegamento</Card.Title>
+              <Card.Text style={{ fontSize: "0.5rem" }}>Espandi la tua rete</Card.Text>
             </Card.Body>
           </Card>
 
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <i className="bi bi-bookmark"></i> Elementi salvati
+                <i className="bi bi-bookmark-fill"></i> Elementi salvati
               </ListGroup.Item>
               <ListGroup.Item>
-                <i className="bi bi-people"></i> Gruppi
+                <i className="bi bi-people-fill"></i> Gruppi
               </ListGroup.Item>
               <ListGroup.Item>
-                <i className="bi bi-calendar-event"></i> Eventi
+                <i className="bi bi-calendar-event-fill"></i> Eventi
               </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
 
-        <Col xs={8}>
+        <Col xs={12} md={6} lg={6}>
           <Card body>This is some text within a card body.</Card>
         </Col>
 
-        <Col xs={2}>
-          <Card style={{ width: "18rem" }}>
+        <Col xs={12} md={3} lg={3}>
+          <Card>
             <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
             <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
+              <Card.Title style={{ fontSize: "0.5rem" }}>Card Title</Card.Title>
+              <Card.Text style={{ fontSize: "0.5rem" }}>
                 Some quick example text to build on the card title and make up the bulk of the card's content.
               </Card.Text>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroup.Item>Cras justo odio</ListGroup.Item>
-              <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Cras justo odio</ListGroup.Item>
+              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Dapibus ac facilisis in</ListGroup.Item>
+              <ListGroup.Item style={{ fontSize: "0.5rem" }}>Vestibulum at eros</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-              <Card.Link href="#">Card Link</Card.Link>
-              <Card.Link href="#">Another Link</Card.Link>
+              <Card.Link href="#" style={{ fontSize: "0.5rem" }}>
+                Card Link
+              </Card.Link>
+              <Card.Link href="#" style={{ fontSize: "0.5rem" }}>
+                Another Link
+              </Card.Link>
             </Card.Body>
           </Card>
         </Col>

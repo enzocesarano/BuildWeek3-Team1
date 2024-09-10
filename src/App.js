@@ -29,13 +29,20 @@ function AppContent() {
       <NavScroll />
       <Container>
         <Row className="py-5">
-          <Col className="col-12 col-md-8 mt-5">
-            <Routes>
-              <Route path="/" element={<ProfileArea />} />
-              <Route path="/home" element={<Home />} />
-            </Routes>
-          </Col>
-          {location.pathname !== "/home" && <LinkedInSidebar />}
+          {location.pathname === "/home" ? (
+            <Col className="col-12">
+              <Home />
+            </Col>
+          ) : (
+            <>
+              <Col className="col-12 col-md-8 mt-5">
+                <Routes>
+                  <Route path="/" element={<ProfileArea />} />
+                </Routes>
+              </Col>
+              <LinkedInSidebar />
+            </>
+          )}
         </Row>
       </Container>
       {location.pathname !== "/home" && <MyFooter />}

@@ -5,7 +5,7 @@ import EditProfile from "./EditProfile";
 
 const Profile = () => {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
-  console.log(myProfile);
+
   const [modalShow, setModalShow] = useState(false);
 
   return (
