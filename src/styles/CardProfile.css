@@ -3,6 +3,7 @@
     border-radius: 20px;
     border: 1px solid lightgray;
     overflow: hidden;
+    margin-bottom: 20px;
     .card-header {
         margin: 20px;
         display: flex;
@@ -46,3 +47,10 @@
     }
 }
 
+.plus-button{
+    width: 3em;
+    height: 35px;
+}
+.plus-button:hover {
+    cursor: pointer;
+}

@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import Profile from "./Profile";
 import { useEffect } from "react";
 import { getProfile } from "../action";
-import CardProfile from "./CardProfile";
+import ActivityProfile from "./ActivityProfile";
+import ExperienceCard from "./ExperienceCard";
 
 const ProfileArea = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const ProfileArea = () => {
   return (
     <>
       <Profile />
-      <CardProfile />
+      <ActivityProfile/>
+      <ExperienceCard/>
     </>
   );
 };
