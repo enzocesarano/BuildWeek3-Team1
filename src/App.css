@@ -279,3 +279,6 @@ a {
 .workIconColor:hover {
   color: black;
 }
+#navbarScrollingDropdown {
+  padding-top: 0 !important;
+}
