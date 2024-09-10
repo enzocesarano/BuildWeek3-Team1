@@ -1,5 +1,6 @@
-export const GET_PROFILE = "GET_PROFILE"
-export const SET_PROFILE = "SET_PROFILE"
+export const GET_PROFILE = "GET_PROFILE";
+export const SET_PROFILE = "SET_PROFILE";
+export const GET_ALL_PROFILES = "GET_ALL_PROFILES";
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -19,18 +20,23 @@ export const getProfile = (id, experiences) => {
         }
       })
       .then((profile) => {
-        dispatch({
-          type: GET_PROFILE,
-          payload: profile,
-        });
+        if (id || experiences) {
+          dispatch({
+            type: GET_PROFILE,
+            payload: profile,
+          });
+        } else {
+          dispatch({
+            type: GET_ALL_PROFILES,
+            payload: profile,
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 };
-
-
 
 export const setMyProfile = (editProfile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
@@ -64,13 +70,11 @@ export const setMyProfile = (editProfile) => {
   };
 };
 
-
-
 export const setMyImg = (id, endpoint, imageFile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
 
   const formData = new FormData();
-  formData.append('profile', imageFile)
+  formData.append("profile", imageFile);
 
   return (dispatch) => {
     fetch(baseEndpoint + id + "/" + endpoint, {
