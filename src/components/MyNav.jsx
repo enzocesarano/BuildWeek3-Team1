@@ -89,7 +89,7 @@ function NavScroll() {
                   </div>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/profile">
+                <NavDropdown.Item as={Link} to="/">
                   <button>Visualizza profilo</button>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />

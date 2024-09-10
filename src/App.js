@@ -10,7 +10,6 @@ import MyFooter from "./components/MyFooter";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
-import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
                 <Routes>
                   <Route path="/" element={<ProfileArea />} />
                   <Route path="/home" element={<Home />} />
-                  <Route path="/profile" element={<Profile />} />
                 </Routes>
               </Col>
               <LinkedInSidebar />
