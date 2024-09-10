@@ -16,19 +16,9 @@ import Home from "./components/Home";
 function App() {
   return (
     <Provider store={store}>
-      <div className="bg-secondary-subtle">
-        <NavScrollExample />
-        <Container>
-          <Row className="py-5">
-            <Col className="col-12 col-md-8 mt-5">
-              <ProfileArea />
-            </Col>
-            <LinkedInSidebar />
-          </Row>
-        </Container>
-        <MyFooter />
-        <MessagingBox />
-      </div>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
     </Provider>
   );
 }
@@ -55,6 +45,10 @@ function AppContent() {
               <LinkedInSidebar />
             </>
           )}
+
+          <Col>
+            <MessagingBox />
+          </Col>
         </Row>
       </Container>
       {location.pathname !== "/home" && <MyFooter />}

@@ -22,11 +22,9 @@ import {
 import { HiHome } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { BsChatDotsFill } from "react-icons/bs";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "../App.css";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import SearchModal from "./SearchModal";
 
 function NavScroll() {

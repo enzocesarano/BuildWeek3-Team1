@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const SearchModal = ({filteredProfiles}) => {
 
-    
+    console.log(filteredProfiles)
     return (
         <Container>
             <Row>
