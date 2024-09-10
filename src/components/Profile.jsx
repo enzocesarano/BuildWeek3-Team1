@@ -3,8 +3,11 @@ import { Button, ButtonGroup, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
 import ImageSet from "./ImageSet";
+import { useLocation } from "react-router-dom";
 
 const Profile = ({myProfile}) => {
+
+  const location = useLocation();
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShowImg, setModalShowImg] = useState(false);
@@ -18,18 +21,22 @@ const Profile = ({myProfile}) => {
             src="https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq"
             className="mb-5"
           />
-          <div className="position-absolute top-0 end-0 me-4 mt-4 pointer fs-4">
+          {location.pathname === "/profile" ? <div className="position-absolute top-0 end-0 me-4 mt-4 pointer fs-4">
             <i className="bi bi-camera"></i>
-          </div>
+          </div> : <></>}
           <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
-            <div
+          {location.pathname === "/profile" ? <div
               className="rounded-circle border border-3 border-light sizeImg overflow-hidden pointer"
               onClick={() => setModalShowImg(true)}
             >
               <img src={myProfile.image} alt={myProfile.name} className=" w-100" />
-            </div>
+            </div> : <div
+              className="rounded-circle border border-3 border-light sizeImg overflow-hidden"
+            >
+              <img src={myProfile.image} alt={myProfile.name} className=" w-100" />
+            </div>}
             <div className="pointer">
-              <i className="bi bi-pencil fs-4" onClick={() => setModalShow(true)}></i>
+              {location.pathname === "/profile" ? <i className="bi bi-pencil fs-4" onClick={() => setModalShow(true)}></i> : <></>}
             </div>
           </div>
         </div>
@@ -39,9 +46,9 @@ const Profile = ({myProfile}) => {
             <Card.Title className="fs-4 mb-0">
               {myProfile.name} {myProfile.surname}
             </Card.Title>
-            <Button className="btnOutline borderDashed bg-transparent rounded-5 ms-3 py-0 fw-medium">
+            {location.pathname === "/profile" ? <Button className="btnOutline borderDashed bg-transparent rounded-5 ms-3 py-0 fw-medium">
               <i className="bi bi-patch-check fw-medium"></i> Verifica ora
-            </Button>
+            </Button> : <></>}
           </div>
           <Card.Text className="mb-2 text-secondary-emphasis">{myProfile.title}</Card.Text>
           <Card.Text className="text-secondary">

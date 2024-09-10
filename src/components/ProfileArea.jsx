@@ -6,6 +6,8 @@ import CardProfile from "./CardProfile";
 
 const ProfileArea = ({myProfile}) => {
 
+  
+
   return (
     <>
       <Profile myProfile={myProfile}/>
