@@ -53,7 +53,7 @@ function AppContent() {
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile}/>} />
                 </Routes>
               </Col>
-              <LinkedInSidebar />
+              {location.pathname === "/profile" ? <LinkedInSidebar myProfile={myProfile}/> : <LinkedInSidebar myProfile={searchProfile}/>}
             </>
           )}
 
