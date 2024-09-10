@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Card } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
+import ImageSet from "./ImageSet";
 
 const Profile = () => {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
 
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowImg, setModalShowImg] = useState(false);
 
   return (
     <>
@@ -21,7 +23,10 @@ const Profile = () => {
             <i className="bi bi-camera"></i>
           </div>
           <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
-            <div className="rounded-circle border border-3 border-light sizeImg overflow-hidden">
+            <div
+              className="rounded-circle border border-3 border-light sizeImg overflow-hidden"
+              onClick={() => setModalShowImg(true)}
+            >
               <img src={myProfile.image} alt="" className=" w-100" />
             </div>
             <div className="pointer">
@@ -73,7 +78,8 @@ const Profile = () => {
         </Card.Body>
       </Card>
 
-      <EditProfile show={modalShow} onHide={() => setModalShow(false)}/>
+      <EditProfile show={modalShow} onHide={() => setModalShow(false)} />
+      <ImageSet show={modalShowImg} onHide={() => setModalShowImg(false)} />
     </>
   );
 };

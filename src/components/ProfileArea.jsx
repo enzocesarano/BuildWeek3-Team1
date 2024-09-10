@@ -8,7 +8,7 @@ const ProfileArea = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfile("me"));
+    dispatch(getProfile("me",''));
   }, []);
 
   return (

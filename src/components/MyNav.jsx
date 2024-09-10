@@ -24,6 +24,8 @@ import { BsChatDotsFill } from "react-icons/bs";
 import "../App.css";
 
 function NavScrollExample() {
+
+  
   return (
     <Navbar expand="lg" className="bg-light position-fixed z-1" style={{ width: "100%" }}>
       <Container fluid style={{ maxWidth: "70%" }}>
