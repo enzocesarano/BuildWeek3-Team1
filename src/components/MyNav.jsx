@@ -21,9 +21,13 @@ import {
 } from "react-icons/fa";
 import { HiHome } from "react-icons/hi";
 import { BsChatDotsFill } from "react-icons/bs";
+import React from "react";
+import { useSelector } from "react-redux";
 import "../App.css";
 
-function NavScrollExample() {
+function NavScroll() {
+  const myProfile = useSelector((state) => state.myProfile.myProfile);
+
   return (
     <Navbar expand="lg" className="bg-light position-fixed z-1" style={{ width: "100%" }}>
       <Container fluid style={{ maxWidth: "70%" }}>
@@ -68,15 +72,18 @@ function NavScrollExample() {
             </Nav.Link>
             <div className="icon-above-dropdown ">
               <div className="icon-with-text">
-                <img src="https://placedog.net/30/30" alt="Profile" className="nav-profile-img" />
+                <img src={myProfile.image} alt="Profile" className="nav-profile-img" />
               </div>
               <NavDropdown title="Tu" id="navbarScrollingDropdown" align="end">
                 <NavDropdown.Item href="#">
                   <div className="dropdown-profile">
-                    <img src="https://placedog.net/50/50" alt="Profile" />
+                    <img src={myProfile.image} alt="Profile" />
                     <div>
-                      <strong>Enzo Ceserano</strong>
-                      <p>Io sono un lavoratore onesto</p>
+                      <p>
+                        {" "}
+                        <span>{myProfile.name}</span> <span>{myProfile.surname}</span>{" "}
+                      </p>
+                      <p>{myProfile.title}</p>
                     </div>
                   </div>
                 </NavDropdown.Item>
@@ -256,4 +263,4 @@ function NavScrollExample() {
   );
 }
 
-export default NavScrollExample;
+export default NavScroll;
