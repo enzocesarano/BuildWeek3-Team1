@@ -1,6 +1,7 @@
 export const GET_PROFILE = "GET_PROFILE";
 export const SET_PROFILE = "SET_PROFILE";
 export const GET_ALL_PROFILES = "GET_ALL_PROFILES";
+export const GET_SEARCH_PROFILE = "GET_SEARCH_PROFILE"
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -112,5 +113,14 @@ export const setMyImg = (id, endpoint, imageFile) => {
       .catch((err) => {
         console.error(err);
       });
+  };
+};
+
+
+
+export const profileSelect = (profile) => {
+  return {
+    type: GET_SEARCH_PROFILE,
+    payload: profile,
   };
 };

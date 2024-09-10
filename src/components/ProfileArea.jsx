@@ -1,16 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Profile from "./Profile";
 import { useEffect } from "react";
 import { getProfile } from "../action";
 import CardProfile from "./CardProfile";
-import arrayAllProfiles from "../reducers/getAllProfiles";
 
 const ProfileArea = () => {
   const dispatch = useDispatch();
 
+  const profileSelect = useSelector((store) => store.profileSelect.profileSelect)
+  
   useEffect(() => {
-    dispatch(getProfile("me",''));
-  }, []);
+    dispatch(getProfile(profileSelect,''));
+  }, [profileSelect]);
+
 
   return (
     <>

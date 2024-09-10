@@ -59,7 +59,7 @@ function NavScroll() {
             />
           </Navbar.Brand>
           <Form
-            className="d-flex me-auto"
+            className="d-flex me-auto position-relative"
             style={{ flex: 1, maxWidth: "300px" }}
           >
             <Form.Control
@@ -72,6 +72,9 @@ function NavScroll() {
               value={value}
               onFocus={() => setModalShow(true)}
             />
+            {modalShow && value && (
+              <SearchModal filteredProfiles={filteredProfiles} />
+            )}
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -181,7 +184,6 @@ function NavScroll() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {modalShow && <SearchModal filteredProfiles={filteredProfiles} />}
     </>
   );
 }

@@ -342,6 +342,10 @@ a {
   color: gray;
 }
 
+.supersmalltext {
+  font-size: 0.6em;
+}
+
 .DropdownColortext {
   color: #232323;
 }
@@ -401,4 +405,10 @@ a {
 }
 .secP {
   font-size: 0.6rem;
+}
+
+
+.imageSearch{
+  width: 30px !important;
+  height: 30px !important;
 }
