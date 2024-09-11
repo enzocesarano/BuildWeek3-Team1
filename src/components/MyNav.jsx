@@ -275,8 +275,6 @@ function NavScroll() {
                             <strong className="ms-3 DropdownColortext small-text">
                               Crea una pagina aziendale <i class="bi bi-plus ms-3 fw-bold fs-4"></i>
                             </strong>
-
-                            
                           </p>
                         </div>
                       </a>

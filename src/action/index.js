@@ -3,9 +3,10 @@ export const SET_PROFILE = "SET_PROFILE";
 export const GET_ALL_PROFILES = "GET_ALL_PROFILES";
 export const GET_SEARCH_PROFILE = "GET_SEARCH_PROFILE";
 export const GET_EXPERIENCES = "GET_EXPERIENCES";
-export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE"
-export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
-export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
+export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE";
+export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE";
+export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE";
+export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -82,8 +83,6 @@ export const searchProfile = (id) => {
   };
 };
 
-
-
 export const setMyProfile = (editProfile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
 
@@ -150,13 +149,9 @@ export const setMyImg = (id, endpoint, imageFile) => {
   };
 };
 
-
-
-
 export const getExperience = (id) => {
-
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
-  return(dispatch) => {
+  return (dispatch) => {
     fetch(baseEndpoint + id + "/experiences", {
       headers: {
         "Content-Type": "application/json",
@@ -164,29 +159,28 @@ export const getExperience = (id) => {
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
       },
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Errore nell'aggiornamento del profilo");
-      }
-    })
-    .then((experiences) => {
-      dispatch({
-        type: GET_EXPERIENCES,
-        payload: experiences,
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((experiences) => {
+        dispatch({
+          type: GET_EXPERIENCES,
+          payload: experiences,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  } 
+  };
 };
-
 
 export const postMyExperience = (experience) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences";
-  return(dispatch) => {
+  return (dispatch) => {
     fetch(baseEndpoint, {
       method: "POST",
       body: JSON.stringify(experience),
@@ -196,25 +190,24 @@ export const postMyExperience = (experience) => {
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
       },
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Errore nell'aggiornamento del profilo");
-      }
-    })
-    .then((experience) => {
-      dispatch({
-        type: POST_MY_EXPERIENCE,
-        payload: experience,
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((experience) => {
+        dispatch({
+          type: POST_MY_EXPERIENCE,
+          payload: experience,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  } 
-}
-
+  };
+};
 
 export const deleteMyExperience = (idExperience) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/";
@@ -226,29 +219,28 @@ export const deleteMyExperience = (idExperience) => {
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
       },
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.text(); 
-      } else {
-        throw new Error("Errore nell'aggiornamento del profilo");
-      }
-    })
-    .then((text) => {
-      if (text === "Deleted") {
-        dispatch({
-          type: DELETE_MY_EXPERIENCE,
-          payload: idExperience,
-        });
-      } else {
-        console.error("Risposta inaspettata:", text);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+      .then((response) => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((text) => {
+        if (text === "Deleted") {
+          dispatch({
+            type: DELETE_MY_EXPERIENCE,
+            payload: idExperience,
+          });
+        } else {
+          console.error("Risposta inaspettata:", text);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 };
-
 
 export const setMyExperience = (editExperience, id) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/`;
@@ -282,4 +274,24 @@ export const setMyExperience = (editExperience, id) => {
   };
 };
 
+export const setSearchResults = (results) => ({
+  type: SET_SEARCH_RESULTS,
+  payload: results,
+});
 
+export const fetchSearchResults = (query, page = 1) => {
+  return async (dispatch) => {
+    const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
+    try {
+      const response = await fetch(`${baseEndpoint}${query}&limit=20&page=${page}`);
+      if (response.ok) {
+        const { data } = await response.json();
+        dispatch(setSearchResults(data));
+      } else {
+        alert("Error fetching results");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
