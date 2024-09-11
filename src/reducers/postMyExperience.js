@@ -3,7 +3,7 @@ import { POST_MY_EXPERIENCE, DELETE_MY_EXPERIENCE, EDIT_MY_EXPERIENCE } from "..
 
 const initialState = {
   myExperience: [],
-  myExperienceSelected: {}
+  myExperienceSelected: []
 }
 
 const myExperience = (state = initialState, action) => {

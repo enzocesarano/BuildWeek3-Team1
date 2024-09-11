@@ -14,6 +14,7 @@ const ExperienceCard = ({ showButton = true }) => {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEdit, setModalShowEdit] = useState(false);
+  const [selectedExperience, setSelectedExperience] = useState(null);
 
   const formatDate = (format) => {
     const date = new Date(format);
@@ -35,51 +36,54 @@ const ExperienceCard = ({ showButton = true }) => {
         </div>
         <div className="right-section">
           {location.pathname === "/profile/66deab4f4d0def0015cef0f9" ? (
-            <>
-              <Plus
-                className="plus-button"
-                onClick={() => setModalShow(true)}
-              />
-            </>
-          ) : (
-            <></>
+            <Plus
+              className="plus-button pointer"
+              onClick={() => setModalShow(true)}
+            />
+          ) : <></>}
+          <AddExperience show={modalShow} onHide={() => setModalShow(false)} />
+          {selectedExperience && (
+            <AddExperience
+              show={modalShowEdit}
+              onHide={() => setModalShowEdit(false)}
+              element={selectedExperience}
+            />
           )}
-          <AddExperience show={modalShow} onHide={() => setModalShow(false)}/>
         </div>
       </div>
       <div className="card-content">
         {experiences.length > 0 ? (
-          experiences.map((element) => {
-            return (
-              <div
-                key={element._id}
-                className="mb-4 d-flex justify-content-between align-items-start"
-              >
-                <div>
-                  <h4 className="text-dark">{element.role}</h4>
-                  <h5 className="text-secondary fw-bolder">
-                    {element.company}
-                  </h5>
-                  <h6 className="text-secondary">
-                    {formatDate(element.startDate)} -{" "}
-                    {formatDate(element.endDate)}
-                  </h6>
-                  <h6 className="text-secondary">{element.area}</h6>
-                </div>
-                <div className="d-flex align-items-center">
-                  <i
-                    className="bi bi-trash3-fill fs-4 me-3" title="Elimina"
-                    onClick={() => handleDeleteExperience(element._id)}
-                  ></i>
-                  <i className="bi bi-pencil-square fs-4" title="Modifica" onClick={() => {setModalShowEdit(true); console.log(element)}}></i>
-                  <AddExperience show={modalShowEdit} onHide={() => setModalShowEdit(false)} element={element}/>
-                </div>
+          experiences.map((element) => (
+            <div
+              key={element._id}
+              className="mb-4 d-flex justify-content-between align-items-start"
+            >
+              <div>
+                <h4 className="text-dark">{element.role}</h4>
+                <h5 className="text-secondary fw-bolder">{element.company}</h5>
+                <h6 className="text-secondary">
+                  {formatDate(element.startDate)} - {formatDate(element.endDate)}
+                </h6>
+                <h6 className="text-secondary">{element.area}</h6>
               </div>
-            );
-          })
-        ) : (
-          <></>
-        )}
+              {location.pathname === "/profile/66deab4f4d0def0015cef0f9" ? (<div className="d-flex align-items-center">
+                <i
+                  className="bi bi-trash3-fill fs-4 me-3 pointer"
+                  title="Elimina"
+                  onClick={() => handleDeleteExperience(element._id)}
+                ></i>
+                <i
+                  className="bi bi-pencil-square fs-4 pointer"
+                  title="Modifica"
+                  onClick={() => {
+                    setSelectedExperience(element);
+                    setModalShowEdit(true);
+                  }}
+                ></i>
+              </div>) : (<></>)}
+            </div>
+          ))
+        ) : null}
       </div>
       {showButton !== true ? (
         <div className="card-footer">
@@ -90,4 +94,5 @@ const ExperienceCard = ({ showButton = true }) => {
     </div>
   );
 };
+
 export default ExperienceCard;

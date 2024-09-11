@@ -8,6 +8,11 @@ import { getExperience, postMyExperience, setMyExperience } from "../action";
 const AddExperience = (props) => {
   const dispatch = useDispatch();
 
+  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
+  const myExperience = useSelector((state) => state.myExperience.myExperience);
+  const myExperienceSelected = useSelector((state) => state.myExperience.myExperienceSelected);
+  
+
   const [experienceValue, setExperienceValue] = useState({
     company: "",
     description: "",
@@ -20,8 +25,8 @@ const AddExperience = (props) => {
   const formatDateForInput = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
   };
 
@@ -38,9 +43,6 @@ const AddExperience = (props) => {
     }
   }, [props.element]);
 
-  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
-  const myExperience = useSelector((state) => state.myExperience.myExperience);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setExperienceValue((prevExperienceValue) => ({
@@ -49,20 +51,18 @@ const AddExperience = (props) => {
     }));
   };
 
-  useEffect(() => {
-    dispatch(getExperience(id));
-  }, [myExperience]);
-
   const onSubmitBtn = () => {
-    if(!props.element) {
-        dispatch(postMyExperience(experienceValue))
+    if (!props.element) {
+      dispatch(postMyExperience(experienceValue));
     } else {
-        dispatch(setMyExperience(props.element, props.element._id))
+      dispatch(setMyExperience(experienceValue, props.element._id));
     }
     props.onHide();
   };
 
-  
+  useEffect(() => {
+    dispatch(getExperience(id));
+  }, [myExperience, myExperienceSelecteduo]);
 
   return (
     <Modal
