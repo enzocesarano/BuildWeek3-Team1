@@ -121,7 +121,7 @@ function NavScroll() {
                     </div>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/profile">
+                  <NavDropdown.Item as={Link} to="/profile/66deab4f4d0def0015cef0f9">
                     <button>Visualizza profilo</button>
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
@@ -272,9 +272,11 @@ function NavScroll() {
                       <a href="#">
                         <div>
                           <p>
-                            <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
+                            <strong className="ms-3 DropdownColortext small-text">
+                              Crea una pagina aziendale <i class="bi bi-plus ms-3 fw-bold fs-4"></i>
+                            </strong>
 
-                            <FaPlus className="icon ms-3 iconPlus " />
+                            
                           </p>
                         </div>
                       </a>

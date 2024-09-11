@@ -33,8 +33,19 @@ function AppContent() {
 
   const dispatch = useDispatch();
 
+  
+  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
+
   useEffect(() => {
-    dispatch(getProfile("me", ""));
+    setId(location.pathname.split("/").pop());
+  }, [location]);
+
+  useEffect(() => {
+    dispatch(getExperience(id));
+  }, [id]);
+
+  useEffect(() => {
+    dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
   }, []);
 
   return (
@@ -55,7 +66,7 @@ function AppContent() {
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/profile" element={<ProfileArea myProfile={myProfile} />} />
+                  <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
                 </Routes>
