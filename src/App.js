@@ -46,10 +46,15 @@ function AppContent() {
             <Col className="col-12 py-5">
               <Home />
             </Col>
+          ) : location.pathname === "/search-job" ? (
+            <Col className="col-12 py-5">
+              <SearchJob />
+            </Col>
           ) : (
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
+                  <Route path="/" element={<Home />} />
                   <Route path="/profile" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
@@ -63,14 +68,15 @@ function AppContent() {
             </>
           )}
 
-          <Col>
-            <MessagingBox />
-          </Col>
+          {location.pathname !== "/search-job" && (
+            <Col>
+              <MessagingBox />
+            </Col>
+          )}
         </Row>
       </Container>
-      {location.pathname !== "/" && <MyFooter />}
+      {location.pathname !== "/" && location.pathname !== "/search-job" && <MyFooter />}
     </div>
   );
 }
-
 export default App;

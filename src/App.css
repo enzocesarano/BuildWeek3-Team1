@@ -459,3 +459,7 @@ a {
 .horizontal-list li:not(:last-child) {
   margin-right: 10px;
 }
+.search-job-img {
+  width: 35%;
+  height: auto;
+}

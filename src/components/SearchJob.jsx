@@ -23,12 +23,12 @@ const SearchJob = ({ setModalShow }) => {
                 <Card.Img
                   variant="top"
                   src="https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq"
-                  className="mb-5"
+                  className="mb-5 "
                 />
                 <div className="position-absolute top-0 end-0 me-4 mt-4 pointer fs-4"></div>
                 <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
-                  <div className="rounded-circle border border-3 border-light sizeImg overflow-hidden">
-                    <img src={myProfile.image} alt="" className=" w-100" />
+                  <div className="rounded-circle border border-3 border-light sizeImg overflow-hidden search-job-img">
+                    <img src={myProfile.image} alt="" className=" w-100 " />
                   </div>
                   <div className="pointer"></div>
                 </div>
