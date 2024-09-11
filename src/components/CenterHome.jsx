@@ -5,7 +5,7 @@ import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
 import postsReducer from "../reducers/postReducer";
-import { setPosts, addPost } from "../action";
+import { setPosts, addPost, DELETE_POST } from "../action";
 
 const CenterHome = ({ loggedInUserId }) => {
   const [state, dispatch] = useReducer(postsReducer, { posts: [] });
@@ -66,6 +66,8 @@ const CenterHome = ({ loggedInUserId }) => {
     setIsPublishing(false);
   };
 
+
+  
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 

@@ -1,19 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Modal, Form, Card } from 'react-bootstrap';
-import { Plus, PencilSquare, ArrowRight, Trash } from 'react-bootstrap-icons';
-import { FaRegImage, FaRegCalendarAlt, FaCertificate, FaUserTie } from 'react-icons/fa';
-import { MdWork } from 'react-icons/md';
-import { RiBarChart2Fill } from 'react-icons/ri';
-import { IoIosDocument } from 'react-icons/io';
+import React, { useEffect, useState } from "react";
+import { Button, Modal, Form, Card } from "react-bootstrap";
+import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
+import {
+  FaRegImage,
+  FaRegCalendarAlt,
+  FaCertificate,
+  FaUserTie,
+} from "react-icons/fa";
+import { MdWork } from "react-icons/md";
+import { RiBarChart2Fill } from "react-icons/ri";
+import { IoIosDocument } from "react-icons/io";
+import { DELETE_POST, deleteMyPost } from "../action";
+import { useDispatch } from "react-redux";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
-  const [postContent, setPostContent] = useState('');
+  const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
 
+  const dispatch = useDispatch();
+
+  const deletePost = (id) => {
+    dispatch(deleteMyPost(id));
+  };
+
   useEffect(() => {
-    const savedPosts = localStorage.getItem('posts');
+    const savedPosts = localStorage.getItem("posts");
     if (savedPosts) {
       setPosts(JSON.parse(savedPosts));
     } else {
@@ -23,22 +36,25 @@ const ActivityProfile = ({ showButton = true, userId }) => {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('https://striveschool-api.herokuapp.com/api/posts/', {
-        headers: {
-          Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-      },
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         const userPosts = data.filter((post) => post.user._id === userId);
         setPosts(userPosts);
-        localStorage.setItem('posts', JSON.stringify(userPosts));
+        localStorage.setItem("posts", JSON.stringify(userPosts));
       } else {
-        console.error('Errore nel recupero dei post');
+        console.error("Errore nel recupero dei post");
       }
     } catch (error) {
-      console.error('Errore:', error);
+      console.error("Errore:", error);
     }
   };
 
@@ -52,44 +68,41 @@ const ActivityProfile = ({ showButton = true, userId }) => {
   const handlePublish = async () => {
     setIsPublishing(true);
     try {
-      const response = await fetch('https://striveschool-api.herokuapp.com/api/posts/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-      },
-        body: JSON.stringify({ text: postContent }),
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+          body: JSON.stringify({ text: postContent }),
+        }
+      );
       if (response.ok) {
         const newPost = await response.json();
         const updatedPosts = [...posts, newPost];
         setPosts(updatedPosts);
-        localStorage.setItem('posts', JSON.stringify(updatedPosts));
-        setPostContent('');
+        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        setPostContent("");
         handleClose();
       } else {
-        console.error('Errore nella pubblicazione del post');
+        console.error("Errore nella pubblicazione del post");
       }
     } catch (error) {
-      console.error('Errore:', error);
+      console.error("Errore:", error);
     }
     setIsPublishing(false);
   };
 
-  const handleDelete = (postId) => {
-    const updatedPosts = posts.filter(post => post._id !== postId);
-    setPosts(updatedPosts);
-    localStorage.setItem('posts', JSON.stringify(updatedPosts));
-  };
-
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
     return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
@@ -102,7 +115,11 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         </div>
         <div>
           {showButton ? (
-            <Button variant="outline-primary" onClick={handleShow} className='me-2'>
+            <Button
+              variant="outline-primary"
+              onClick={handleShow}
+              className="me-2"
+            >
               <Plus /> Crea un post
             </Button>
           ) : (
@@ -124,9 +141,17 @@ const ActivityProfile = ({ showButton = true, userId }) => {
               <Card.Body className="d-flex justify-content-between align-items-start">
                 <div>
                   <Card.Text>{post.text}</Card.Text>
-                  <Card.Subtitle className="text-muted">{formatDate(post.createdAt)}</Card.Subtitle>
+                  <Card.Subtitle className="text-muted">
+                    {formatDate(post.createdAt)}
+                  </Card.Subtitle>
                 </div>
-                <Button variant="outline-danger" onClick={() => handleDelete(post._id)}>
+                <Button
+                  variant="outline-danger"
+                  onClick={() => {
+                    console.log(post._id)
+                    deletePost(post._id);
+                  }}
+                >
                   <Trash />
                 </Button>
               </Card.Body>
@@ -142,7 +167,11 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         </div>
       )}
 
-      <Modal show={showModal} onHide={handleClose} dialogClassName="custom-modal">
+      <Modal
+        show={showModal}
+        onHide={handleClose}
+        dialogClassName="custom-modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>placeholder nome utente</Modal.Title>
         </Modal.Header>

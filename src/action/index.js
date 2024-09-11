@@ -9,6 +9,7 @@ export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
 export const SET_POSTS = 'SET_POSTS';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -293,6 +294,39 @@ export const deleteMyExperience = (idExperience) => {
         dispatch({
           type: DELETE_MY_EXPERIENCE,
           payload: idExperience,
+        });
+      } else {
+        console.error("Risposta inaspettata:", text);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  };
+};
+
+export const deleteMyPost = (idPost) => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/posts/";
+  return (dispatch) => {
+    fetch(baseEndpoint + idPost, {
+      method: "DELETE",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+      },
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.text(); 
+      } else {
+        throw new Error("Errore nell'aggiornamento del profilo");
+      }
+    })
+    .then((text) => {
+      if (text === "Deleted") {
+        dispatch({
+          type: DELETE_POST,
+          payload: idPost,
         });
       } else {
         console.error("Risposta inaspettata:", text);
