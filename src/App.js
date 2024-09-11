@@ -61,6 +61,12 @@ function AppContent() {
             <Col className="col-12 py-5">
               <SearchJob />
             </Col>
+          ) : location.pathname.startsWith("/job/") ? (
+            <Col className="col-12 mt-5">
+              <Routes>
+                <Route path="/job/:id" element={<JobDetails />} />
+              </Routes>
+            </Col>
           ) : (
             <>
               <Col className="col-12 col-md-8 mt-5">
@@ -69,7 +75,6 @@ function AppContent() {
                   <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
-                  <Route path="/job/:id" element={<JobDetails />} />
                 </Routes>
               </Col>
               {location.pathname.startsWith("/profile") && (

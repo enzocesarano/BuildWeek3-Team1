@@ -9,12 +9,14 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
+        console.log(`Fetching job details for ID: ${id}`);
         const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs/${id}`);
         if (response.ok) {
           const data = await response.json();
+          console.log("Job data:", data);
           setJob(data);
         } else {
-          alert("Error fetching job details");
+          alert("Errore nel recupero dei dettagli del lavoro");
         }
       } catch (error) {
         console.log(error);

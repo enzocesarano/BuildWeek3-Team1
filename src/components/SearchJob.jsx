@@ -109,13 +109,17 @@ const SearchJob = ({ setModalShow }) => {
         <Col xs={12} md={6} lg={6}>
           <ListGroup>
             {searchResults.map((result) => (
-              <ListGroup.Item key={result._id}>
-                <Card body className="my-2">
-                  <Card.Title>
-                    <Link to={`/job/${result._id}`}>{result.title}</Link>
-                  </Card.Title>
-                </Card>
-              </ListGroup.Item>
+              <ListGroup>
+                {searchResults.map((result) => (
+                  <ListGroup.Item key={result._id}>
+                    <Card body className="my-2">
+                      <Card.Title>
+                        <Link to={`/job/${result._id}`}>{result.title}</Link>
+                      </Card.Title>
+                    </Card>
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
             ))}
           </ListGroup>
         </Col>
