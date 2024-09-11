@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap";
+import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
-import { FaEllipsisV } from "react-icons/fa";
+import { BsListUl } from "react-icons/bs";
+import { FaPencilAlt } from "react-icons/fa";
 const SearchJob = ({ setModalShow }) => {
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
@@ -76,17 +77,21 @@ const SearchJob = ({ setModalShow }) => {
               </Card.Body>
             </Card>
           )}
-          <Card className="mb-3">
-            <Card.Body>
-              <div className="d-flex align-items-center">
-                <FaEllipsisV className="icon-style me-2" />
-                <Card.Text className="icon-style my-2">Preferenze</Card.Text>
+          <Card className="mb-3 ">
+            <Card.Body className="mx-2 my-1 ">
+              <div className="d-flex align-items-center ">
+                <BsListUl className="icon-style me-2" />
+                <Card.Text className="text fw-bold my-2 ">Preferenze</Card.Text>
               </div>
-              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style  ">
-                <Card.Text className="icon-style ms-2">Le mie offerte</Card.Text>
+              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style ">
+                <Card.Text className="text fw-bold ms-2">Le mie offerte</Card.Text>
               </div>
             </Card.Body>
           </Card>
+          <button className="btnJob p-4 border border-primary text-primary fw-bold w-100">
+            <FaPencilAlt className="me-2" />
+            Pubblica offerta gratuita
+          </button>
         </Col>
 
         <Col xs={12} md={6} lg={6}>

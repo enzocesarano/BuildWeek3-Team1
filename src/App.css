@@ -513,14 +513,21 @@ a {
   }
 }
 .icon-style {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #404040;
 }
 
-.black-title {
-  font-size: 1.25rem;
+.text {
+  font-size: 0.8rem;
+  color: #404040;
+}
+.btnJob {
+  border-radius: 60px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
-.secondary-text {
-  font-size: 1.25rem;
+.btnJob:hover {
+  border-color: #004182;
+  background-color: #e1e8ee;
 }
