@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap";
 import { FaStar } from "react-icons/fa";
 import { getProfile } from "../action";
+import { FaPlus } from "react-icons/fa";
 
 const Home = ({ setModalShow }) => {
   const dispatch = useDispatch();
@@ -118,6 +119,94 @@ const Home = ({ setModalShow }) => {
               </div>
             </Card.Body>
           </Card>
+          <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-5 align-items-center">
+            <li className="mb-2  ">
+              <a href="#" className="text-secondary footer-link text-decoration-none  horizontal-list ">
+                Informazioni
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Accessibilità
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Centro assistenza
+              </a>
+            </li>
+            <li className="mb-2">
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="link"
+                  className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+                  id="dropdown-basic"
+                >
+                  Privacy e condizioni
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#">Informativa sulla privacy</Dropdown.Item>
+                  <Dropdown.Item href="#">Contratto di licenza</Dropdown.Item>
+                  <Dropdown.Item href="#">Termini e condizioni delle pagine</Dropdown.Item>
+                  <Dropdown.Item href="#">Informativa sui cookie</Dropdown.Item>
+                  <Dropdown.Item href="#">Informativa sul copyright</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Opzioni per gli annunci pubblicitari
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Pubblicità
+              </a>
+            </li>
+            <li className="mb-2">
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="link"
+                  className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+                  id="dropdown-basic"
+                >
+                  Servizi alle aziende
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Card className="mb-3">
+                    <Card.Body>
+                      <Card.Title className="black-title">Impara con LinkedIn</Card.Title>
+                      <Card.Text className="secondary-text">Assumi su LinkedIn</Card.Text>
+                      <Card.Title className="black-title">Admin Center</Card.Title>
+                      <Card.Text className="secondary-text">Gestisci i dettagli di fatturazione e account</Card.Text>
+                      <p>
+                        <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
+                        <FaPlus className="icon ms-3 iconPlus " />
+                      </p>
+                    </Card.Body>
+                  </Card>
+                </Dropdown.Menu>
+              </Dropdown>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Scarica l’app LinkedIn
+              </a>
+            </li>
+            <li className="mb-2">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+                Altro
+              </a>
+            </li>
+            <li className="d-flex align-items-center">
+              <img
+                src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2022/08/Linkedin-Logo-e1660320077673.png"
+                alt="LinkedIn Logo"
+                className="logo-img me-2"
+              />
+              <p className="mb-0">LinkedIn Corporation © 2024</p>
+            </li>
+          </ul>
         </Col>
       </Row>
     </Container>

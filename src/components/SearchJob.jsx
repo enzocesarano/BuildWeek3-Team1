@@ -93,30 +93,27 @@ const SearchJob = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={3} lg={3}>
-          <ul className="list-unstyled d-flex flex-wrap horizontal-list">
-            <li className="mb-2">
-              <a href="#" className="footer-link">
+          <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-2 align-items-center">
+            <li className="mb-2  ">
+              <a href="#" className="text-secondary footer-link text-decoration-none  horizontal-list ">
                 Informazioni
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Accessibilità
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Centro assistenza
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
               <Dropdown>
                 <Dropdown.Toggle
                   variant="link"
-                  className="text-secondary footer-link text-decoration-none p-0"
+                  className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
                   id="dropdown-basic"
                 >
                   Privacy e condizioni
@@ -131,23 +128,20 @@ const SearchJob = ({ setModalShow }) => {
               </Dropdown>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Opzioni per gli annunci pubblicitari
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Pubblicità
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
               <Dropdown>
                 <Dropdown.Toggle
                   variant="link"
-                  className="text-secondary footer-link text-decoration-none p-0"
+                  className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
                   id="dropdown-basic"
                 >
                   Servizi alle aziende
@@ -169,19 +163,22 @@ const SearchJob = ({ setModalShow }) => {
               </Dropdown>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Scarica l’app LinkedIn
               </a>
             </li>
             <li className="mb-2">
-              <span className="dot">•</span>
-              <a href="#" className="footer-link">
+              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
                 Altro
               </a>
             </li>
-            <li>
-              <p className="text-secondary">LinkedIn Corporation © 2024</p>
+            <li className="d-flex align-items-center">
+              <img
+                src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2022/08/Linkedin-Logo-e1660320077673.png"
+                alt="LinkedIn Logo"
+                className="logo-img me-2"
+              />
+              <p className="mb-0">LinkedIn Corporation © 2024</p>
             </li>
           </ul>
         </Col>
