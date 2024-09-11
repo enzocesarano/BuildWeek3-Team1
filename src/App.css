@@ -1,3 +1,7 @@
+.bgApp {
+  background-color: #f4f2ee;
+}
+
 .pointer {
   cursor: pointer;
 }
@@ -281,7 +285,7 @@
 }
 
 .search-box:focus-within {
-  border-color: black; /* Bordo nero quando è selezionato */
+  border-color: black;
 }
 
 .search-icon,
@@ -317,7 +321,7 @@
 }
 
 .messaging-button {
-  background-color: white !important; /* Colore del pulsante messaggistica */
+  background-color: white !important;
   color: black !important;
   border: none;
 }
@@ -491,4 +495,20 @@ a {
 }
 .textPlus {
   font-size: 1rem;
+}
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }

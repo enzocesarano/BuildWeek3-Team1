@@ -38,7 +38,7 @@ function AppContent() {
   }, []);
 
   return (
-    <div className="bg-secondary-subtle">
+    <div className="bgApp">
       <NavScroll />
       <Container>
         <Row className="py-5">

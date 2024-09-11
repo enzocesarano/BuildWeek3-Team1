@@ -1,17 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
-import { FaPlus } from "react-icons/fa";
+import MyFooter from "./MyFooter";
 
 const Home = ({ setModalShow }) => {
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
+  const [showFooter, setShowFooter] = useState(false);
+  const footerRef = useRef(null);
 
   useEffect(() => {
     dispatch(getProfile("me"));
   }, [dispatch]);
+
+  const handleShowFooter = (event) => {
+    event.stopPropagation();
+    setShowFooter(true);
+  };
+
+  const handleClickOutside = (event) => {
+    if (footerRef.current && !footerRef.current.contains(event.target)) {
+      setShowFooter(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showFooter) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [showFooter]);
 
   return (
     <Container fluid>
@@ -121,17 +145,29 @@ const Home = ({ setModalShow }) => {
           </Card>
           <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-5 align-items-center">
             <li className="mb-2  ">
-              <a href="#" className="text-secondary footer-link text-decoration-none  horizontal-list ">
+              <a
+                href="https://about.linkedin.com/it-it  "
+                target="_blank"
+                className="text-secondary footer-link text-decoration-none  horizontal-list "
+              >
                 Informazioni
               </a>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="https://it.linkedin.com/accessibility? "
+                target="_blank"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+              >
                 Accessibilità
               </a>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="https://www.linkedin.com/help/linkedin?trk=footer_d_flagship3_job_home&lipi=urn%3Ali%3Apage%3Ad_flagship3_job_home%3BiD0s3ALZTAStDxD03w08Wg%3D%3D"
+                target="_blank"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+              >
                 Centro assistenza
               </a>
             </li>
@@ -154,12 +190,21 @@ const Home = ({ setModalShow }) => {
               </Dropdown>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="https://www.linkedin.com/help/linkedin/answer/a1342443/?lang=it&lipi=urn%3Ali%3Apage%3Ad_flagship3_job_home%3BiD0s3ALZTAStDxD03w08Wg%3D%3D"
+                target="_blank"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+              >
                 Opzioni per gli annunci pubblicitari
               </a>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="https://business.linkedin.com/marketing-solutions/ads?trk=n_nav_ads_rr_b&src=li-nav&veh=ad%2Fstart"
+                _
+                target="_blank"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+              >
                 Pubblicità
               </a>
             </li>
@@ -194,7 +239,11 @@ const Home = ({ setModalShow }) => {
               </a>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="#"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+                onClick={handleShowFooter}
+              >
                 Altro
               </a>
             </li>
@@ -209,6 +258,11 @@ const Home = ({ setModalShow }) => {
           </ul>
         </Col>
       </Row>
+      {showFooter && (
+        <div className="footer-container" ref={footerRef}>
+          <MyFooter />
+        </div>
+      )}
     </Container>
   );
 };
