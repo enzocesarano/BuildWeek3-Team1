@@ -1,12 +1,13 @@
-import { PencilSquare } from "react-bootstrap-icons";
 import "../styles/CardProfile.css";
-import { ArrowRight } from "react-bootstrap-icons";
 import { Plus } from "react-bootstrap-icons";
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { deleteMyExperience, getExperience } from "../action";
+import { deleteMyExperience } from "../action";
 import { useDispatch, useSelector } from "react-redux";
 import AddExperience from "./AddExperience";
+import { Image } from "react-bootstrap";
+
+import ImageSetExperience from "./ImageSetExperience";
+import { useState } from "react";
 
 const ExperienceCard = ({ showButton = true }) => {
   const location = useLocation();
@@ -14,7 +15,9 @@ const ExperienceCard = ({ showButton = true }) => {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
   const [modalShowEdit, setModalShowEdit] = useState(false);
+  const [modalShowImg, setModalShowImg] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null)
 
   const formatDate = (format) => {
     const date = new Date(format);
@@ -60,17 +63,28 @@ const ExperienceCard = ({ showButton = true }) => {
                 key={element._id}
                 className="mb-4 d-flex justify-content-between align-items-start"
               >
-                <div>
-                  <h4 className="text-dark">{element.role}</h4>
-                  <h5 className="text-secondary fw-bolder">
-                    {element.company}
-                  </h5>
-                  <h6 className="text-secondary">
-                    {formatDate(element.startDate)} -{" "}
-                    {formatDate(element.endDate)}
-                  </h6>
-                  <h6 className="text-secondary">{element.area}</h6>
+                <div className="d-flex">
+                  <div className="imageSet me-3">
+                    <Image
+                      src={element.image ? element.image : "https://lh6.googleusercontent.com/proxy/7sdXnh6Xkt32RUZhZEilfBZ_eGrjrCblL3vok60Vd8XGQn9llK0nW5nTIAaFq85tvopIrSxP4evR4BkRFQ_OtGFBhBfInoRLiSm6y7Bz-Zjo1MfLSxixLJanZBoJEvc"}
+                      className="w-100"
+                      alt={element.company}
+                      onClick={() => {setModalShowImg(true); setSelectedImg(element)}}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-dark">{element.role}</h4>
+                    <h5 className="text-secondary fw-bolder">
+                      {element.company}
+                    </h5>
+                    <h6 className="text-secondary">
+                      {formatDate(element.startDate)} -{" "}
+                      {formatDate(element.endDate)}
+                    </h6>
+                    <h6 className="text-secondary">{element.area}</h6>
+                  </div>
                 </div>
+
                 {location.pathname === "/profile/66deab4f4d0def0015cef0f9" ? (
                   <div className="d-flex align-items-center">
                     <i
@@ -94,12 +108,11 @@ const ExperienceCard = ({ showButton = true }) => {
             ))
           : null}
       </div>
-      {showButton !== true ? (
-        <div className="card-footer">
-          <div className="footer-content">Mostra tutte le attività</div>
-          <ArrowRight />
-        </div>
-      ) : null}
+      <ImageSetExperience
+        show={modalShowImg}
+        onHide={() => setModalShowImg(false)}
+        experiences={selectedImg}
+      />
     </div>
   );
 };

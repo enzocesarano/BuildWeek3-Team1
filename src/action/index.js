@@ -6,6 +6,7 @@ export const GET_EXPERIENCES = "GET_EXPERIENCES";
 export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE"
 export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
 export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
+export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE"
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -141,6 +142,41 @@ export const setMyImg = (id, endpoint, imageFile) => {
       .then((updatedProfile) => {
         dispatch({
           type: SET_PROFILE,
+          payload: updatedProfile,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
+
+export const setImgExp = (id, endpoint, idExp, imageFile) => {
+  const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
+
+  const formData = new FormData();
+  formData.append("experience", imageFile);
+
+  return (dispatch) => {
+    fetch(baseEndpoint + id + "/" + endpoint + "/" + idExp + "/picture" , {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((updatedProfile) => {
+        dispatch({
+          type: SET_IMG_EXPERIENCE,
           payload: updatedProfile,
         });
       })
