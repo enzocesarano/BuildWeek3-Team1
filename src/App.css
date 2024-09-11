@@ -1,54 +1,46 @@
-.footer-link {
-  text-decoration: none;
-  color: #6c757d;
-}
 
-.footer-link:hover {
-  text-decoration: underline !important;
-  color: #0776e6 !important;
-}
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .infoProfile {
-    color: #0A66C2;
+  color: #0a66c2;
 }
 
 .infoProfile:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .sizeImg {
-    width: 20%;
+  width: 150px;
+  height: 150px;
 }
 
 .btnBg {
-    background-color: #0A66C2 !important;
+  background-color: #0a66c2 !important;
 }
 
 .btnBg:hover {
-    background-color: #004182 !important;
+  background-color: #004182 !important;
 }
 
-.rounded{
+.rounded {
   font-size: 0.9rem;
 }
 
 .btnOutline {
-    border-color: #0A66C2 !important;
-    color: #0A66C2 !important;
+  border-color: #0a66c2 !important;
+  color: #0a66c2 !important;
 }
 
 .btnOutline:hover {
-    border-color: #004182 !important;
-    background-color: #EBF4FD !important;
+  border-color: #004182 !important;
+  background-color: #ebf4fd !important;
 }
 
 .borderDashed {
-    border-style: dashed !important;
-  }
-
+  border-style: dashed !important;
+}
 
 .nav-item {
   display: flex;
@@ -59,8 +51,7 @@
 }
 
 .nav-icon {
-  font-size: 1.2rem;
-  transition: color 0.1s;
+  font-size: 1.4rem;
 }
 
 .nav-icon:hover {
@@ -164,8 +155,8 @@
 }
 
 .nav-profile-img {
-  height: 35px;
-  width: 35px;
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
 }
 .separator-bar {
@@ -242,4 +233,210 @@
   height: auto;
   background-color: #c5b8b8;
   margin: 0 15px;
+}
+
+/* Box Messaggi */
+
+.messaging-box {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  width: 15vw;
+  background-color: white; 
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: height 0.3s ease-in-out;
+  overflow: hidden; /* Nasconde il contenuto che esce dai limiti */
+  height: 60px; /* Altezza iniziale */
+}
+
+.messaging-box.open {
+  height: 90vh; /* Altezza massima del box quando è aperto */
+}
+
+.messaging-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user-image {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background-color: #ccc; /* Placeholder per l'immagine dell'utente */
+}
+
+.icons i {
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+/* Stili per la barra di ricerca della messaggistica */
+
+.search-box {
+  border: 2px solid transparent;
+  transition: border-color 0.2s ease;
+  margin: 0 8px;
+}
+
+.search-box:focus-within {
+  border-color: black; /* Bordo nero quando è selezionato */
+}
+
+.search-icon, .filter-icon {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.search-input:focus {
+  border-color: black;
+  box-shadow: none; /* Rimuove il bordo azzurrino al focus */
+}
+
+.search-input::placeholder {
+  color: #888;
+}
+
+.messaging-box { 
+  min-width: 300px;
+  max-width: 400px;
+ } /* Questa regola è per far mantenere la larghezza del box messaggistica
+ anche rimpicciolendo la pagina, finchè non scompare */
+
+.no-messages {
+  text-align: center;
+}
+
+.messaging-button {
+  background-color: white !important; /* Colore del pulsante messaggistica */
+  color: black !important;
+  border: none;
+}
+
+/* Footer */
+
+footer .footer-link {
+  font-size: 0.8em;
+}
+
+footer p {
+  font-size: 0.8em;
+}
+
+.footer-link {
+  text-decoration: none;
+  color: #6c757d;
+}
+
+.footer-link:hover {
+  text-decoration: underline !important;
+  color: #0776e6 !important;
+}
+.iconBlu {
+  color: #0a66c2;
+}
+.iconPlus {
+  width: 4%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.dropdown-columns .column a:hover {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #0a66c2;
+}
+
+.dropdown-columns .column a:hover p,
+.dropdown-columns .column a:hover strong,
+.dropdown-columns .column a:hover div {
+  color: inherit;
+}
+.small-text {
+  font-size: 0.8rem;
+}
+.secSmalltext {
+  font-size: 0.8rem;
+  color: gray;
+}
+
+.supersmalltext {
+  font-size: 0.6em;
+}
+
+.DropdownColortext {
+  color: #232323;
+}
+.workIconColor {
+  color: #575757;
+}
+.workIconColor:hover {
+  color: black;
+}
+#navbarScrollingDropdown {
+  padding-top: 0 !important;
+}
+.secondary-title {
+  font-size: 0.7rem;
+  color: var(--bs-secondary);
+}
+
+.premium-link {
+  font-size: 0.7rem;
+}
+
+.icon-blue {
+  font-size: 0.6rem;
+  color: #0a66c2;
+}
+
+.black-title {
+  font-size: 0.7rem;
+  color: #232323;
+}
+
+.secondary-text {
+  font-size: 0.7rem;
+  color: var(--bs-secondary);
+}
+
+.list-item {
+  font-size: 0.8rem;
+}
+
+.icon-small {
+  font-size: 0.7rem;
+}
+.reduced-font {
+  font-size: 0.7rem;
+}
+
+.reduced-font-link {
+  font-size: 0.7rem;
+}
+.fontStory {
+  font-size: 0.8rem;
+}
+.firstp {
+  color: #232323;
+  font-size: 0.8rem;
+}
+.secP {
+  font-size: 0.6rem;
+}
+
+
+.imageSearch{
+  width: 30px !important;
+  height: 30px !important;
 }
