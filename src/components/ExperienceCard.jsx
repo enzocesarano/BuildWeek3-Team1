@@ -11,8 +11,9 @@ import AddExperience from "./AddExperience";
 const ExperienceCard = ({ showButton = true }) => {
   const location = useLocation();
   const experiences = useSelector((state) => state.experiences.experiences);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowEdit, setModalShowEdit] = useState(false);
 
   const formatDate = (format) => {
     const date = new Date(format);
@@ -22,9 +23,8 @@ const ExperienceCard = ({ showButton = true }) => {
     return formattedDate;
   };
 
-
   const handleDeleteExperience = (id) => {
-    dispatch(deleteMyExperience(id))
+    dispatch(deleteMyExperience(id));
   };
 
   return (
@@ -40,19 +40,21 @@ const ExperienceCard = ({ showButton = true }) => {
                 className="plus-button"
                 onClick={() => setModalShow(true)}
               />
-              <PencilSquare size={25} />
             </>
           ) : (
             <></>
           )}
-          <AddExperience show={modalShow} onHide={() => setModalShow(false)} />
+          <AddExperience show={modalShow} onHide={() => setModalShow(false)}/>
         </div>
       </div>
       <div className="card-content">
         {experiences.length > 0 ? (
           experiences.map((element) => {
             return (
-              <div key={element._id} className="mb-4 d-flex justify-content-between align-items-start">
+              <div
+                key={element._id}
+                className="mb-4 d-flex justify-content-between align-items-start"
+              >
                 <div>
                   <h4 className="text-dark">{element.role}</h4>
                   <h5 className="text-secondary fw-bolder">
@@ -64,7 +66,14 @@ const ExperienceCard = ({ showButton = true }) => {
                   </h6>
                   <h6 className="text-secondary">{element.area}</h6>
                 </div>
-                <i className="bi bi-trash3-fill fs-4" onClick={() => handleDeleteExperience(element._id)}></i>
+                <div className="d-flex align-items-center">
+                  <i
+                    className="bi bi-trash3-fill fs-4 me-3" title="Elimina"
+                    onClick={() => handleDeleteExperience(element._id)}
+                  ></i>
+                  <i className="bi bi-pencil-square fs-4" title="Modifica" onClick={() => {setModalShowEdit(true); console.log(element)}}></i>
+                  <AddExperience show={modalShowEdit} onHide={() => setModalShowEdit(false)} element={element}/>
+                </div>
               </div>
             );
           })

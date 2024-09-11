@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { getExperience, postMyExperience } from "../action";
+import { getExperience, postMyExperience, setMyExperience } from "../action";
 
 const AddExperience = (props) => {
   const dispatch = useDispatch();
@@ -14,11 +14,32 @@ const AddExperience = (props) => {
     role: "",
     startDate: "",
     endDate: "",
-    area: ""
+    area: "",
   });
 
+  const formatDateForInput = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  useEffect(() => {
+    if (props.element) {
+      setExperienceValue({
+        company: props.element.company,
+        description: props.element.description,
+        role: props.element.role,
+        area: props.element.area,
+        startDate: formatDateForInput(props.element.startDate),
+        endDate: formatDateForInput(props.element.endDate),
+      });
+    }
+  }, [props.element]);
+
   const [id, setId] = useState("66deab4f4d0def0015cef0f9");
-  const myExperience = useSelector((state) => state.myExperience.myExperience)
+  const myExperience = useSelector((state) => state.myExperience.myExperience);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,12 +51,18 @@ const AddExperience = (props) => {
 
   useEffect(() => {
     dispatch(getExperience(id));
-  }, [myExperience])
+  }, [myExperience]);
 
   const onSubmitBtn = () => {
-    dispatch(postMyExperience(experienceValue));
+    if(!props.element) {
+        dispatch(postMyExperience(experienceValue))
+    } else {
+        dispatch(setMyExperience(props.element, props.element._id))
+    }
     props.onHide();
   };
+
+  
 
   return (
     <Modal
@@ -56,6 +83,7 @@ const AddExperience = (props) => {
               placeholder="Developer..."
               className="mb-3"
               name="role"
+              required
               onChange={handleInputChange}
               value={experienceValue.role}
             />
@@ -65,6 +93,7 @@ const AddExperience = (props) => {
               placeholder="EPICODE"
               className="mb-3"
               name="company"
+              required
               onChange={handleInputChange}
               value={experienceValue.company}
             />
@@ -74,6 +103,7 @@ const AddExperience = (props) => {
               placeholder="In breve..."
               className="mb-3"
               name="description"
+              required
               onChange={handleInputChange}
               value={experienceValue.description}
             />
@@ -83,6 +113,7 @@ const AddExperience = (props) => {
               placeholder="Roma"
               className="mb-3"
               name="area"
+              required
               onChange={handleInputChange}
               value={experienceValue.area}
             />
@@ -92,6 +123,7 @@ const AddExperience = (props) => {
                 <Form.Control
                   type="date"
                   name="startDate"
+                  required
                   onChange={handleInputChange}
                   value={experienceValue.startDate}
                 />
@@ -101,6 +133,7 @@ const AddExperience = (props) => {
                 <Form.Control
                   type="date"
                   name="endDate"
+                  required
                   onChange={handleInputChange}
                   value={experienceValue.endDate}
                 />

@@ -5,6 +5,7 @@ export const GET_SEARCH_PROFILE = "GET_SEARCH_PROFILE";
 export const GET_EXPERIENCES = "GET_EXPERIENCES";
 export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE"
 export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
+export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -248,5 +249,37 @@ export const deleteMyExperience = (idExperience) => {
   };
 };
 
+
+export const setMyExperience = (editExperience, id) => {
+  const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/`;
+
+  return (dispatch) => {
+    fetch(baseEndpoint + id, {
+      method: "PUT",
+      body: JSON.stringify(editExperience),
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((editExperience) => {
+        dispatch({
+          type: EDIT_MY_EXPERIENCE,
+          payload: editExperience,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
 
 
