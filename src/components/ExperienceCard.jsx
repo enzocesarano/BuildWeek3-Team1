@@ -66,7 +66,7 @@ const ExperienceCard = ({ showButton = true }) => {
                 <div className="d-flex">
                   <div className="imageSet me-3">
                     <Image
-                      src={element.image ? element.image : "https://lh6.googleusercontent.com/proxy/7sdXnh6Xkt32RUZhZEilfBZ_eGrjrCblL3vok60Vd8XGQn9llK0nW5nTIAaFq85tvopIrSxP4evR4BkRFQ_OtGFBhBfInoRLiSm6y7Bz-Zjo1MfLSxixLJanZBoJEvc"}
+                      src={element.image ? element.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"}
                       className="w-100"
                       alt={element.company}
                       onClick={() => {setModalShowImg(true); setSelectedImg(element)}}
