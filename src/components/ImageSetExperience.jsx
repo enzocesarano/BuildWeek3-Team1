@@ -80,7 +80,7 @@ const ImageSetExperience = (props) => {
             ref={cropperRef}
           />
         ) : (
-          <Image src={props.experiences.image ? props.experiences.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"} />
+          <Image src={props.experiences ? props.experiences.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"} />
         )}
       </Modal.Body>
       <Modal.Footer className="bg-dark border-secondary text-light p-3 d-block">

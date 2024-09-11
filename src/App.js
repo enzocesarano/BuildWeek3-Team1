@@ -27,6 +27,7 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
+  const idLocation = location.pathname.split('/').pop()
 
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
@@ -37,6 +38,11 @@ function AppContent() {
   useEffect(() => {
     dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
   }, []);
+
+  useEffect(() => {
+    dispatch(getExperience(idLocation));
+  }, [idLocation]);
+
 
   return (
     <div className="bgApp">
