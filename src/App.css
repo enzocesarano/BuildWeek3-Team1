@@ -466,3 +466,29 @@ a {
 .logo-img {
   height: 1.2em;
 }
+.custom-hover {
+  color: inherit;
+}
+
+.custom-hover:hover {
+  text-decoration: underline;
+  text-decoration-color: blue;
+}
+.small-dropdown .dropdown-menu {
+  font-size: 0.8rem;
+}
+
+.small-dropdown .dropdown-item p {
+  margin: 0;
+}
+
+.small-dropdown .small-text {
+  font-size: 0.7rem;
+}
+
+.small-dropdown .small-icon {
+  width: 2%;
+}
+.textPlus {
+  font-size: 1rem;
+}

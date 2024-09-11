@@ -119,11 +119,21 @@ const SearchJob = ({ setModalShow }) => {
                   Privacy e condizioni
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#">Informativa sulla privacy</Dropdown.Item>
-                  <Dropdown.Item href="#">Contratto di licenza</Dropdown.Item>
-                  <Dropdown.Item href="#">Termini e condizioni delle pagine</Dropdown.Item>
-                  <Dropdown.Item href="#">Informativa sui cookie</Dropdown.Item>
-                  <Dropdown.Item href="#">Informativa sul copyright</Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sulla privacy
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Contratto di licenza
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Termini e condizioni delle pagine
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sui cookie
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sul copyright
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
@@ -138,27 +148,31 @@ const SearchJob = ({ setModalShow }) => {
               </a>
             </li>
             <li className="mb-2">
-              <Dropdown>
+              <Dropdown className="small-dropdown">
                 <Dropdown.Toggle
                   variant="link"
                   className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
                   id="dropdown-basic"
                 >
-                  Servizi alle aziende
+                  Privacy e condizioni
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Card className="mb-3">
-                    <Card.Body>
-                      <Card.Title className="black-title">Impara con LinkedIn</Card.Title>
-                      <Card.Text className="secondary-text">Assumi su LinkedIn</Card.Text>
-                      <Card.Title className="black-title">Admin Center</Card.Title>
-                      <Card.Text className="secondary-text">Gestisci i dettagli di fatturazione e account</Card.Text>
-                      <p>
-                        <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
-                        <FaPlus className="icon ms-3 iconPlus " />
-                      </p>
-                    </Card.Body>
-                  </Card>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="fs-6 fw-bold custom-hover">Impara con LinkedIn</p>
+                    <p className="text-secondary custom-hover small-text">Assumi su LinkedIn</p>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="fs-6 fw-bold custom-hover">Admin Center</p>
+                    <p className="text-secondary custom-hover small-text">
+                      Gestisci i dettagli di fatturazione e account
+                    </p>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="custom-hover small-text">
+                      <strong className="textPlus">Crea una pagina aziendale</strong>
+                      <FaPlus className="icon ms-2 iconPlus mb-2  " />
+                    </p>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
