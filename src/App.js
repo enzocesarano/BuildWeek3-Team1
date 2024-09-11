@@ -11,8 +11,8 @@ import MessagingBox from "./components/MessagingBox";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
-import { getProfile } from "./action";
-import { useEffect } from "react";
+import { getExperience, getProfile } from "./action";
+import { useEffect, useState } from "react";
 
 function App() {
   return (
@@ -31,6 +31,17 @@ function AppContent() {
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile)
 
   const dispatch = useDispatch();
+
+  
+  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
+
+  useEffect(() => {
+    setId(location.pathname.split("/").pop());
+  }, [location]);
+
+  useEffect(() => {
+    dispatch(getExperience(id));
+  }, [id]);
 
   useEffect(() => {
     dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
