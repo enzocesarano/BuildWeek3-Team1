@@ -72,23 +72,24 @@ function AppContent() {
                   <Route path="/job/:id" element={<JobDetails />} />
                 </Routes>
               </Col>
-              {location.pathname === "/profile" ? (
-                <LinkedInSidebar myProfile={myProfile} />
-              ) : (
-                <LinkedInSidebar myProfile={searchProfile} />
+              {location.pathname.startsWith("/profile") && (
+                <LinkedInSidebar myProfile={location.pathname === "/profile" ? myProfile : searchProfile} />
               )}
             </>
           )}
 
-          {location.pathname !== "/search-job" && location.pathname !== "/job/:id" && (
+          {location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
             <Col>
               <MessagingBox />
             </Col>
           )}
         </Row>
       </Container>
-      {location.pathname !== "/" && location.pathname !== "/search-job" && <MyFooter />}
+      {location.pathname !== "/" && location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
+        <MyFooter />
+      )}
     </div>
   );
 }
+
 export default App;

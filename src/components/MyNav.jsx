@@ -54,7 +54,7 @@ function NavScroll() {
       <Container fluid style={{ maxWidth: "70%" }}>
         <Navbar.Brand href="#">
           <img
-            src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
+            src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473"
             alt="Logo"
             style={{ height: "35px" }}
             className="ms-3"

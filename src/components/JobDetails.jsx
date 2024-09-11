@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
+import { useState, useEffect } from "react";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -30,7 +30,21 @@ const JobDetails = () => {
         <Card>
           <Card.Body>
             <Card.Title>{job.title}</Card.Title>
-            <Card.Text>{job.description}</Card.Text>
+            <Card.Text>
+              <strong>Company:</strong> {job.company_name}
+              <br />
+              <strong>Category:</strong> {job.category}
+              <br />
+              <strong>Job Type:</strong> {job.job_type}
+              <br />
+              <strong>Publication Date:</strong> {new Date(job.publication_date).toLocaleDateString()}
+              <br />
+              <strong>Location:</strong> {job.candidate_required_location}
+              <br />
+              <strong>Salary:</strong> {job.salary || "Not specified"}
+              <br />
+              <strong>Description:</strong> <div dangerouslySetInnerHTML={{ __html: job.description }} />
+            </Card.Text>
           </Card.Body>
         </Card>
       ) : (
