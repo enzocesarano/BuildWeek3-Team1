@@ -45,13 +45,12 @@ function NavScroll() {
       <Navbar expand="lg" className="bg-white position-fixed z-1" style={{ width: "100%" }}>
         <Container fluid style={{ maxWidth: "70%" }}>
           <Navbar.Brand href="#">
-            {location.pathname !== "/search-job" && (
-              <img
-                src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
-                alt="Logo"
-                style={{ height: "35px" }}
-              />
-            )}
+            <img
+              src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
+              alt="Logo"
+              style={{ height: "35px" }}
+              className="ms-3"
+            />
           </Navbar.Brand>
           <Form className="d-flex me-auto position-relative" style={{ flex: 1, maxWidth: "300px" }}>
             {location.pathname !== "/search-job" && (
