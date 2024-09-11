@@ -33,7 +33,7 @@ function AppContent() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfile('me',''));
+    dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
   }, []);
 
   return (
@@ -49,11 +49,11 @@ function AppContent() {
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
-                  <Route path="/profile" element={<ProfileArea myProfile={myProfile} />} />
+                  <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile}/>} />
                 </Routes>
               </Col>
-              {location.pathname === "/profile" ? <LinkedInSidebar myProfile={myProfile}/> : <LinkedInSidebar myProfile={searchProfile}/>}
+              {location.pathname === "/profile/66deab4f4d0def0015cef0f9" ? <LinkedInSidebar myProfile={myProfile}/> : <LinkedInSidebar myProfile={searchProfile}/>}
             </>
           )}
 
