@@ -6,6 +6,26 @@ export const GET_EXPERIENCES = "GET_EXPERIENCES";
 export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE"
 export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
 export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
+export const SET_POSTS = 'SET_POSTS';
+export const ADD_POST = 'ADD_POST';
+export const DELETE_POST = 'DELETE_POST';
+
+export const setPosts = (posts) => ({
+  type: SET_POSTS,
+  payload: posts,
+});
+
+export const addPost = (post) => ({
+  type: ADD_POST,
+  payload: post,
+});
+
+export const deletePost = (postId) => ({
+  type: DELETE_POST,
+  payload: postId,
+});
+
+
 
 export const getProfile = (id, experiences) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";

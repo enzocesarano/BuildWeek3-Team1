@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap"
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
+import CenterHome from "./CenterHome";
 
 const Home = ({ setModalShow }) => {
   const dispatch = useDispatch();
@@ -117,10 +118,7 @@ const Home = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={6} lg={6}>
-          <Card body>
-            Serve solo a testare come suddividere le colonne , verra sostituita
-            poi con la creazione dei post
-          </Card>
+        <CenterHome/>
         </Col>
 
         <Col xs={12} md={3} lg={3}>
