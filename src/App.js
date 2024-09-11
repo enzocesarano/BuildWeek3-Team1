@@ -11,8 +11,8 @@ import MessagingBox from "./components/MessagingBox";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
-import { getProfile } from "./action";
-import { useEffect } from "react";
+import { getExperience, getProfile } from "./action";
+import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
 
 function App() {
