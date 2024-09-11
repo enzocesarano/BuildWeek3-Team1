@@ -1,4 +1,3 @@
-
 .pointer {
   cursor: pointer;
 }
@@ -242,7 +241,7 @@
   bottom: 0;
   right: 10px;
   width: 15vw;
-  background-color: white; 
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 10px;
   transition: height 0.3s ease-in-out;
@@ -285,7 +284,8 @@
   border-color: black; /* Bordo nero quando è selezionato */
 }
 
-.search-icon, .filter-icon {
+.search-icon,
+.filter-icon {
   border: none;
   cursor: pointer;
   background-color: white;
@@ -306,10 +306,10 @@
   color: #888;
 }
 
-.messaging-box { 
+.messaging-box {
   min-width: 300px;
   max-width: 400px;
- } /* Questa regola è per far mantenere la larghezza del box messaggistica
+} /* Questa regola è per far mantenere la larghezza del box messaggistica
  anche rimpicciolendo la pagina, finchè non scompare */
 
 .no-messages {
@@ -435,8 +435,27 @@ a {
   font-size: 0.6rem;
 }
 
-
-.imageSearch{
+.imageSearch {
   width: 30px !important;
   height: 30px !important;
+}
+.horizontal-list {
+  font-size: 0.8em;
+}
+
+.horizontal-list .footer-link {
+  font-weight: normal;
+}
+
+.horizontal-list .dot {
+  margin: 0 5px;
+}
+
+.horizontal-list li {
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-list li:not(:last-child) {
+  margin-right: 10px;
 }
