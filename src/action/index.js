@@ -279,19 +279,15 @@ export const setSearchResults = (results) => ({
   payload: results,
 });
 
-export const fetchSearchResults = (query, page = 1) => {
-  return async (dispatch) => {
-    const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?search=";
-    try {
-      const response = await fetch(`${baseEndpoint}${query}&limit=20&page=${page}`);
-      if (response.ok) {
-        const { data } = await response.json();
-        dispatch(setSearchResults(data));
-      } else {
-        alert("Error fetching results");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const fetchSearchResults = (query) => async (dispatch) => {
+  try {
+    const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`);
+    const data = await response.json();
+    dispatch({
+      type: "SET_SEARCH_RESULTS",
+      payload: data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, Dropdown, Form, Button, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, Dropdown, ListGroup } from "react-bootstrap";
 import { FaStar, FaPlus, FaPencilAlt } from "react-icons/fa";
 import { BsListUl } from "react-icons/bs";
 import { getProfile, fetchSearchResults } from "../action";
@@ -102,11 +102,11 @@ const SearchJob = ({ setModalShow }) => {
         </Col>
         <Col xs={12} md={6} lg={6}>
           <ListGroup>
-            {searchResults.map((job) => (
-              <ListGroup.Item key={job._id}>
-                <h5>{job.title}</h5>
-                <p>{job.company_name}</p>
-                <p>{job.location}</p>
+            {searchResults.map((result) => (
+              <ListGroup.Item key={result._id}>
+                <Card body className="my-2">
+                  <Card.Title>{result.title}</Card.Title>
+                </Card>
               </ListGroup.Item>
             ))}
           </ListGroup>
