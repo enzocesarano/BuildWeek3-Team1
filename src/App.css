@@ -537,3 +537,9 @@ a {
 .twoLabel {
   width: 300px;
 }
+
+
+.imageSet {
+  width: 50px !important;
+  height: 50px !important;
+}

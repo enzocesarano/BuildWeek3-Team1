@@ -22,6 +22,7 @@ const AddExperience = (props) => {
     area: "",
   });
 
+
   const formatDateForInput = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
@@ -32,7 +33,7 @@ const AddExperience = (props) => {
 
   useEffect(() => {
     if (props.element) {
-      setExperienceValue({
+        setExperienceValue({
         company: props.element.company,
         description: props.element.description,
         role: props.element.role,
@@ -57,6 +58,16 @@ const AddExperience = (props) => {
     } else {
       dispatch(setMyExperience(experienceValue, props.element._id));
     }
+
+    setExperienceValue({
+        company: "",
+        description: "",
+        role: "",
+        startDate: "",
+        endDate: "",
+        area: "",
+      });
+
     props.onHide();
   };
 

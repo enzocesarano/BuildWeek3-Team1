@@ -1,4 +1,4 @@
-import { POST_MY_EXPERIENCE, DELETE_MY_EXPERIENCE, EDIT_MY_EXPERIENCE } from "../action";
+import { POST_MY_EXPERIENCE, DELETE_MY_EXPERIENCE, EDIT_MY_EXPERIENCE, SET_IMG_EXPERIENCE } from "../action";
 
 
 const initialState = {
@@ -21,6 +21,12 @@ const myExperience = (state = initialState, action) => {
       }    
 
       case EDIT_MY_EXPERIENCE:
+        return {
+          ...state,
+          myExperienceSelected: action.payload
+        }
+
+      case SET_IMG_EXPERIENCE:
         return {
           ...state,
           myExperienceSelected: action.payload
