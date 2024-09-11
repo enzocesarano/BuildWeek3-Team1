@@ -5,6 +5,8 @@ import { FaStar, FaPlus, FaPencilAlt } from "react-icons/fa";
 import { BsListUl } from "react-icons/bs";
 import { getProfile, fetchSearchResults } from "../action";
 import MyFooter from "./MyFooter";
+import { fetchDefaultJobs } from "../reducers/searchResultsReducer";
+import { Link } from "react-router-dom";
 
 const SearchJob = ({ setModalShow }) => {
   const dispatch = useDispatch();
@@ -16,6 +18,10 @@ const SearchJob = ({ setModalShow }) => {
 
   useEffect(() => {
     dispatch(getProfile("me"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchDefaultJobs());
   }, [dispatch]);
 
   const handleShowFooter = (event) => {
@@ -105,7 +111,9 @@ const SearchJob = ({ setModalShow }) => {
             {searchResults.map((result) => (
               <ListGroup.Item key={result._id}>
                 <Card body className="my-2">
-                  <Card.Title>{result.title}</Card.Title>
+                  <Card.Title>
+                    <Link to={`/job/${result._id}`}>{result.title}</Link>
+                  </Card.Title>
                 </Card>
               </ListGroup.Item>
             ))}

@@ -22,6 +22,23 @@ export const fetchSearchResults = (query) => {
   };
 };
 
+export const fetchDefaultJobs = () => {
+  return async (dispatch) => {
+    const baseEndpoint = "https://strive-benchmark.herokuapp.com/api/jobs?limit=5";
+    try {
+      const response = await fetch(baseEndpoint);
+      if (response.ok) {
+        const { data } = await response.json();
+        dispatch(setSearchResults(data));
+      } else {
+        alert("Error fetching default jobs");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
 const searchResultsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_SEARCH_RESULTS":

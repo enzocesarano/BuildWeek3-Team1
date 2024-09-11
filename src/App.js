@@ -14,6 +14,7 @@ import Home from "./components/Home";
 import { getExperience, getProfile } from "./action";
 import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
+import JobDetails from "./components/JobDetails";
 
 function App() {
   return (
@@ -33,7 +34,6 @@ function AppContent() {
 
   const dispatch = useDispatch();
 
-  
   const [id, setId] = useState("66deab4f4d0def0015cef0f9");
 
   useEffect(() => {
@@ -45,7 +45,7 @@ function AppContent() {
   }, [id]);
 
   useEffect(() => {
-    dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
+    dispatch(getProfile("66deab4f4d0def0015cef0f9", ""));
   }, []);
 
   return (
@@ -69,6 +69,7 @@ function AppContent() {
                   <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
+                  <Route path="/job/:id" element={<JobDetails />} />
                 </Routes>
               </Col>
               {location.pathname === "/profile" ? (
@@ -79,7 +80,7 @@ function AppContent() {
             </>
           )}
 
-          {location.pathname !== "/search-job" && (
+          {location.pathname !== "/search-job" && location.pathname !== "/job/:id" && (
             <Col>
               <MessagingBox />
             </Col>
