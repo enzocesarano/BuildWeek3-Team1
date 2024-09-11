@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap"
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
-
+import { FaEllipsisV } from "react-icons/fa";
 const SearchJob = ({ setModalShow }) => {
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
@@ -76,37 +76,16 @@ const SearchJob = ({ setModalShow }) => {
               </Card.Body>
             </Card>
           )}
-
-          <Card className="mb-3">
-            <Card.Body className="text-nowrap">
-              <Card.Title className="secondary-title">Espandi la tua carriera o il tuo business con Premium</Card.Title>
-              <Card.Text>
-                <a href="#" className="premium-link">
-                  <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
-                </a>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-
           <Card className="mb-3">
             <Card.Body>
-              <Card.Title className="black-title">Collegamento</Card.Title>
-              <Card.Text className="secondary-text">Espandi la tua rete</Card.Text>
+              <div className="d-flex align-items-center">
+                <FaEllipsisV className="icon-style me-2" />
+                <Card.Text className="icon-style my-2">Preferenze</Card.Text>
+              </div>
+              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style  ">
+                <Card.Text className="icon-style ms-2">Le mie offerte</Card.Text>
+              </div>
             </Card.Body>
-          </Card>
-
-          <Card>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="list-item ">
-                <i className="bi bi-bookmark-fill icon-small "></i> Elementi salvati
-              </ListGroup.Item>
-              <ListGroup.Item className="list-item">
-                <i className="bi bi-people-fill icon-small"></i> Gruppi
-              </ListGroup.Item>
-              <ListGroup.Item className="list-item">
-                <i className="bi bi-calendar-event-fill icon-small"></i> Eventi
-              </ListGroup.Item>
-            </ListGroup>
           </Card>
         </Col>
 

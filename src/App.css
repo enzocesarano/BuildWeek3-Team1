@@ -512,3 +512,15 @@ a {
     transform: translateY(0);
   }
 }
+.icon-style {
+  font-size: 1.2rem;
+  color: #404040;
+}
+
+.black-title {
+  font-size: 1.25rem;
+}
+
+.secondary-text {
+  font-size: 1.25rem;
+}
