@@ -81,10 +81,10 @@ const SearchJob = ({ setModalShow }) => {
             <Card.Body className="mx-2 my-1 ">
               <div className="d-flex align-items-center ">
                 <BsListUl className="icon-style me-2" />
-                <Card.Text className="text fw-bold my-2 ">Preferenze</Card.Text>
+                <Card.Text className="text fw-bold my-2 pointer">Preferenze</Card.Text>
               </div>
-              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style ">
-                <Card.Text className="text fw-bold ms-2">Le mie offerte</Card.Text>
+              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style mt-3  ">
+                <Card.Text className="text fw-bold ms-2 pointer ">Le mie offerte di lavoro</Card.Text>
               </div>
             </Card.Body>
           </Card>

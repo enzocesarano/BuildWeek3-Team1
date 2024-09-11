@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Container, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi";
 import {
   FaNetworkWired,
@@ -25,6 +25,7 @@ function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
   const arrayAllProfiles = useSelector((state) => state.arrayAllProfiles.arrayAllProfiles);
+  const location = useLocation();
 
   const [value, setValue] = useState("");
   const [modalShow, setModalShow] = useState(false);
@@ -44,33 +45,46 @@ function NavScroll() {
       <Navbar expand="lg" className="bg-white position-fixed z-1" style={{ width: "100%" }}>
         <Container fluid style={{ maxWidth: "70%" }}>
           <Navbar.Brand href="#">
-            <img
-              src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
-              alt="Logo"
-              style={{ height: "35px" }}
-            />
+            {location.pathname !== "/search-job" && (
+              <img
+                src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
+                alt="Logo"
+                style={{ height: "35px" }}
+              />
+            )}
           </Navbar.Brand>
           <Form className="d-flex me-auto position-relative" style={{ flex: 1, maxWidth: "300px" }}>
-            <Form.Control
-              type="search"
-              placeholder="🔍 Cerca"
-              className="me-1 search-input"
-              aria-label="Search"
-              style={{ flex: 1 }}
-              onChange={(e) => setValue(e.target.value)}
-              value={value}
-              onFocus={() => setModalShow(true)}
-            />
-            {modalShow && value && (
-              <SearchModal
-                filteredProfiles={filteredProfiles}
-                onProfileSelect={handleProfileSelect} // Passare la funzione di reset
+            {location.pathname !== "/search-job" && (
+              <Form.Control
+                type="search"
+                placeholder="🔍 Cerca"
+                className="me-1 search-input"
+                aria-label="Search"
+                style={{ flex: 1 }}
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onFocus={() => setModalShow(true)}
               />
+            )}
+            {location.pathname === "/search-job" && (
+              <Form.Control
+                type="search"
+                placeholder="🔍 Cerca lavoro"
+                className="ms-5 search-input twoLabel"
+                aria-label="Search Job"
+                style={{ flex: 1 }}
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onFocus={() => setModalShow(true)}
+              />
+            )}
+            {modalShow && value && (
+              <SearchModal filteredProfiles={filteredProfiles} onProfileSelect={handleProfileSelect} />
             )}
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
+            <Nav className="ms-auto my-1 my-lg-0 " navbarScroll>
               <Link to="/" className="nav-link">
                 <HiHome className="nav-icon" />
                 <div className="nav-text">Home</div>
