@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap";
+import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
-
-const Home = ({ setModalShow }) => {
+import { BsListUl } from "react-icons/bs";
+import { FaPencilAlt } from "react-icons/fa";
+const SearchJob = ({ setModalShow }) => {
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const [showFooter, setShowFooter] = useState(false);
   const footerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(getProfile("66deab4f4d0def0015cef0f9", ""));
+    dispatch(getProfile("me"));
   }, [dispatch]);
 
   const handleShowFooter = (event) => {
@@ -47,12 +48,12 @@ const Home = ({ setModalShow }) => {
                 <Card.Img
                   variant="top"
                   src="https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq"
-                  className="mb-5"
+                  className="mb-5 "
                 />
                 <div className="position-absolute top-0 end-0 me-4 mt-4 pointer fs-4"></div>
                 <div className="w-100 position-absolute bottom-0 px-4 d-flex justify-content-between align-items-end">
                   <div className="rounded-circle border border-3 border-light sizeImg overflow-hidden search-job-img">
-                    <img src={myProfile.image} alt="" className=" w-100" />
+                    <img src={myProfile.image} alt="" className=" w-100 " />
                   </div>
                   <div className="pointer"></div>
                 </div>
@@ -63,108 +64,44 @@ const Home = ({ setModalShow }) => {
                     {myProfile.name} {myProfile.surname}
                   </Card.Title>
                 </div>
-                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">
-                  {myProfile.title}
-                </Card.Text>
+                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
                 <Card.Text className="text-secondary reduced-font">
-                  {myProfile.area} • <br />
-                  <a href="#" className="text-dark reduced-font-link">
-                    <FaStar className="icon icon-blue" /> Prova 1 mese di
-                    Premium per 0 EUR
-                  </a>
+                  {myProfile.area} • {""}
+                  <div>
+                    {" "}
+                    <a href="#" className="text-dark reduced-font-link">
+                      <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
+                    </a>
+                  </div>
                 </Card.Text>
               </Card.Body>
             </Card>
           )}
-
-          <Card className="mb-3">
-            <Card.Body className="text-nowrap">
-              <Card.Title className="secondary-title">
-                Espandi la tua carriera o il tuo business con Premium
-              </Card.Title>
-              <Card.Text>
-                <a href="#" className="premium-link">
-                  <FaStar className="icon icon-blue" /> Prova 1 mese di Premium
-                  per 0 EUR
-                </a>
-              </Card.Text>
+          <Card className="mb-3 ">
+            <Card.Body className="mx-2 my-1 ">
+              <div className="d-flex align-items-center ">
+                <BsListUl className="icon-style me-2" />
+                <Card.Text className="text fw-bold my-2 pointer">Preferenze</Card.Text>
+              </div>
+              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style mt-3  ">
+                <Card.Text className="text fw-bold ms-2 pointer ">Le mie offerte di lavoro</Card.Text>
+              </div>
             </Card.Body>
           </Card>
-
-          <Card className="mb-3">
-            <Card.Body>
-              <Card.Title className="black-title">Collegamento</Card.Title>
-              <Card.Text className="secondary-text">
-                Espandi la tua rete
-              </Card.Text>
-            </Card.Body>
-          </Card>
-
-          <Card>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="list-item ">
-                <i className="bi bi-bookmark-fill icon-small "></i> Elementi
-                salvati
-              </ListGroup.Item>
-              <ListGroup.Item className="list-item">
-                <i className="bi bi-people-fill icon-small"></i> Gruppi
-              </ListGroup.Item>
-              <ListGroup.Item className="list-item">
-                <i className="bi bi-calendar-event-fill icon-small"></i> Eventi
-              </ListGroup.Item>
-            </ListGroup>
-          </Card>
+          <button className="btnJob p-4 border border-primary text-primary fw-bold w-100">
+            <FaPencilAlt className="me-2" />
+            Pubblica offerta gratuita
+          </button>
         </Col>
 
         <Col xs={12} md={6} lg={6}>
           <Card body>
-            Serve solo a testare come suddividere le colonne , verra sostituita
-            poi con la creazione dei post
+            Serve solo a testare come suddividere le colonne , verra sostituita poi con la creazione dei post
           </Card>
         </Col>
 
         <Col xs={12} md={3} lg={3}>
-          <Card>
-            <Card.Body>
-              <Card.Title className="black-title fw-bold fs-5">
-                LinkedIn Notizie
-              </Card.Title>
-              <Card.Text className="secondary-text fw-bold fontStory">
-                Storie principali
-              </Card.Text>
-              <div className="news-item">
-                <span className="firstp fw-bold ">
-                  I migliori MBA per dare slancio alla tua carriera
-                </span>
-                <p className="text-secondary secP">
-                  5 giorni fa • 13.828 lettori
-                </p>
-              </div>
-              <div className="news-item">
-                <span className="firstp fw-bold">
-                  I lavori più richiesti nei prossimi 5 anni
-                </span>
-                <p className="text-secondary secP">1 giorno fa • 861 lettori</p>
-              </div>
-              <div className="news-item">
-                <span className="firstp fw-bold">
-                  Che si dice della Nutella vegana
-                </span>
-                <p className="text-secondary secP">22 ore fa • 599 lettori</p>
-              </div>
-              <div className="news-item">
-                <span className="firstp fw-bold">Fotogrammi dal Lido</span>
-                <p className="text-secondary secP">3 ore fa • 443 lettori</p>
-              </div>
-              <div className="news-item">
-                <span className="firstp fw-bold">
-                  Arriva il Voucher 3I per l'innovazione
-                </span>
-                <p className="text-secondary secP">3 giorni fa • 345 lettori</p>
-              </div>
-            </Card.Body>
-          </Card>
-          <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-5 align-items-center">
+          <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-2 align-items-center">
             <li className="mb-2  ">
               <a
                 href="https://about.linkedin.com/it-it  "
@@ -202,11 +139,21 @@ const Home = ({ setModalShow }) => {
                   Privacy e condizioni
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#">Informativa sulla privacy</Dropdown.Item>
-                  <Dropdown.Item href="#">Contratto di licenza</Dropdown.Item>
-                  <Dropdown.Item href="#">Termini e condizioni delle pagine</Dropdown.Item>
-                  <Dropdown.Item href="#">Informativa sui cookie</Dropdown.Item>
-                  <Dropdown.Item href="#">Informativa sul copyright</Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sulla privacy
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Contratto di licenza
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Termini e condizioni delle pagine
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sui cookie
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    Informativa sul copyright
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
@@ -214,7 +161,7 @@ const Home = ({ setModalShow }) => {
               <a
                 href="https://www.linkedin.com/help/linkedin/answer/a1342443/?lang=it&lipi=urn%3Ali%3Apage%3Ad_flagship3_job_home%3BiD0s3ALZTAStDxD03w08Wg%3D%3D"
                 target="_blank"
-                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+                className=" text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
                 Opzioni per gli annunci pubblicitari
               </a>
@@ -230,27 +177,31 @@ const Home = ({ setModalShow }) => {
               </a>
             </li>
             <li className="mb-2">
-              <Dropdown>
+              <Dropdown className="small-dropdown">
                 <Dropdown.Toggle
                   variant="link"
                   className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
                   id="dropdown-basic"
                 >
-                  Servizi alle aziende
+                  Privacy e condizioni
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Card className="mb-3">
-                    <Card.Body>
-                      <Card.Title className="black-title">Impara con LinkedIn</Card.Title>
-                      <Card.Text className="secondary-text">Assumi su LinkedIn</Card.Text>
-                      <Card.Title className="black-title">Admin Center</Card.Title>
-                      <Card.Text className="secondary-text">Gestisci i dettagli di fatturazione e account</Card.Text>
-                      <p>
-                        <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
-                        <FaPlus className="icon ms-3 iconPlus " />
-                      </p>
-                    </Card.Body>
-                  </Card>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="fs-6 fw-bold custom-hover">Impara con LinkedIn</p>
+                    <p className="text-secondary custom-hover small-text">Assumi su LinkedIn</p>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="fs-6 fw-bold custom-hover">Admin Center</p>
+                    <p className="text-secondary custom-hover small-text">
+                      Gestisci i dettagli di fatturazione e account
+                    </p>
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" className="horizontal-list">
+                    <p className="custom-hover small-text">
+                      <strong className="textPlus">Crea una pagina aziendale</strong>
+                      <FaPlus className="icon ms-2 iconPlus mb-2  " />
+                    </p>
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </li>
@@ -288,4 +239,4 @@ const Home = ({ setModalShow }) => {
   );
 };
 
-export default Home;
+export default SearchJob;

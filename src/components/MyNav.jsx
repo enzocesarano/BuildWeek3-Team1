@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Container, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi";
 import {
   FaNetworkWired,
@@ -23,12 +23,9 @@ import SearchModal from "./SearchModal";
 
 function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
-  const searchProfile = useSelector(
-    (state) => state.searchProfile.searchProfile
-  );
-  const arrayAllProfiles = useSelector(
-    (state) => state.arrayAllProfiles.arrayAllProfiles
-  );
+  const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
+  const arrayAllProfiles = useSelector((state) => state.arrayAllProfiles.arrayAllProfiles);
+  const location = useLocation();
 
   const [value, setValue] = useState("");
   const [modalShow, setModalShow] = useState(false);
@@ -45,43 +42,49 @@ function NavScroll() {
 
   return (
     <>
-      <Navbar
-        expand="lg"
-        className="bg-light position-fixed z-1"
-        style={{ width: "100%" }}
-      >
+      <Navbar expand="lg" className="bg-white position-fixed z-1" style={{ width: "100%" }}>
         <Container fluid style={{ maxWidth: "70%" }}>
           <Navbar.Brand href="#">
-            <img
-              src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
-              alt="Logo"
-              style={{ height: "35px" }}
-            />
-          </Navbar.Brand>
-          <Form
-            className="d-flex me-auto position-relative"
-            style={{ flex: 1, maxWidth: "300px" }}
-          >
-            <Form.Control
-              type="search"
-              placeholder="🔍 Cerca"
-              className="me-1 search-input"
-              aria-label="Search"
-              style={{ flex: 1 }}
-              onChange={(e) => setValue(e.target.value)}
-              value={value}
-              onFocus={() => setModalShow(true)}
-            />
-            {modalShow && value && (
-              <SearchModal
-                filteredProfiles={filteredProfiles}
-                onProfileSelect={handleProfileSelect} // Passare la funzione di reset
+            {location.pathname !== "/search-job" && (
+              <img
+                src="http://clipart-library.com/new_gallery/25-259122_icons-symbols-button-linkedin-png-image.png"
+                alt="Logo"
+                style={{ height: "35px" }}
               />
+            )}
+          </Navbar.Brand>
+          <Form className="d-flex me-auto position-relative" style={{ flex: 1, maxWidth: "300px" }}>
+            {location.pathname !== "/search-job" && (
+              <Form.Control
+                type="search"
+                placeholder="🔍 Cerca"
+                className="me-1 search-input"
+                aria-label="Search"
+                style={{ flex: 1 }}
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onFocus={() => setModalShow(true)}
+              />
+            )}
+            {location.pathname === "/search-job" && (
+              <Form.Control
+                type="search"
+                placeholder="🔍 Cerca lavoro"
+                className="ms-5 search-input twoLabel"
+                aria-label="Search Job"
+                style={{ flex: 1 }}
+                onChange={(e) => setValue(e.target.value)}
+                value={value}
+                onFocus={() => setModalShow(true)}
+              />
+            )}
+            {modalShow && value && (
+              <SearchModal filteredProfiles={filteredProfiles} onProfileSelect={handleProfileSelect} />
             )}
           </Form>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="ms-auto my-1 my-lg-0" navbarScroll>
+            <Nav className="ms-auto my-1 my-lg-0 " navbarScroll>
               <Link to="/" className="nav-link">
                 <HiHome className="nav-icon" />
                 <div className="nav-text">Home</div>
@@ -90,7 +93,7 @@ function NavScroll() {
                 <FaNetworkWired className="nav-icon" />
                 <div className="nav-text">Rete</div>
               </Nav.Link>
-              <Nav.Link href="#jobs" className="nav-item">
+              <Nav.Link as={Link} to="/search-job" className="nav-item">
                 <FaBriefcase className="nav-icon" />
                 <div className="nav-text">Lavoro</div>
               </Nav.Link>
@@ -104,24 +107,15 @@ function NavScroll() {
               </Nav.Link>
               <div className="icon-above-dropdown ">
                 <div className="icon-with-text">
-                  <img
-                    src={myProfile.image}
-                    alt="Profile"
-                    className="nav-profile-img"
-                  />
+                  <img src={myProfile.image} alt="Profile" className="nav-profile-img" />
                 </div>
-                <NavDropdown
-                  title="Tu"
-                  id="navbarScrollingDropdown"
-                  align="end"
-                >
+                <NavDropdown title="Tu" id="navbarScrollingDropdown" align="end">
                   <NavDropdown.Item href="#">
                     <div className="dropdown-profile">
                       <img src={myProfile.image} alt="Profile" />
                       <div>
                         <p>
-                          <span>{myProfile.name}</span>{" "}
-                          <span>{myProfile.surname}</span>
+                          <span>{myProfile.name}</span> <span>{myProfile.surname}</span>
                         </p>
                         <p>{myProfile.title}</p>
                       </div>
@@ -137,8 +131,7 @@ function NavScroll() {
                       <strong className="DropdownColortext ">Account</strong>
                     </a>
                     <a href="#" className="text-secondary fw-bold ">
-                      <FaStar className="icon" /> Prova 1 mese di Premium per 0
-                      EUR
+                      <FaStar className="icon" /> Prova 1 mese di Premium per 0 EUR
                     </a>
                   </div>
                   <NavDropdown.Divider />
@@ -178,11 +171,7 @@ function NavScroll() {
                   </div>
                 </a>
 
-                <NavDropdown
-                  title="Per le aziende"
-                  id="navbarScrollingDropdown"
-                  align="end"
-                >
+                <NavDropdown title="Per le aziende" id="navbarScrollingDropdown" align="end">
                   <div className="dropdown-columns mt-5">
                     <div className="column">
                       <p>
@@ -190,85 +179,58 @@ function NavScroll() {
                       </p>
                       <a href="#" className="mb-4 mt-5 fw-bold ms-3 ">
                         <FaCompass className="icon iconBlu me-3  " />{" "}
-                        <span className="DropdownColortext small-text">
-                          {" "}
-                          Trova lead{" "}
-                        </span>
+                        <span className="DropdownColortext small-text"> Trova lead </span>
                       </a>
                       <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
                         <FaUsers className="icon iconBlu me-3 " />{" "}
-                        <span className="DropdownColortext small-text">
-                          {" "}
-                          Gruppi{" "}
-                        </span>
+                        <span className="DropdownColortext small-text"> Gruppi </span>
                       </a>
                       <a href="#" className="text-secondary ">
                         Talent
                       </a>
                       <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
                         <FaChartLine className="icon iconBlu me-3 " />
-                        <span className="DropdownColortext small-text">
-                          {" "}
-                          Talent Insights
-                        </span>
+                        <span className="DropdownColortext small-text"> Talent Insights</span>
                       </a>
                       <a href="#" className="text-secondary ">
                         Vendite
                       </a>
                       <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
                         <FaInfoCircle className="icon iconBlu me-3 " />
-                        <span className="DropdownColortext small-text">
-                          {" "}
-                          Marketplace dei servizi
-                        </span>
+                        <span className="DropdownColortext small-text"> Marketplace dei servizi</span>
                       </a>
                       <a href="#" className="text-secondary ">
                         Marketing
                       </a>
                       <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
                         <FaBullseye className="icon iconBlu me-3 " />
-                        <span className="DropdownColortext small-text">
-                          {" "}
-                          Pubblicizza
-                        </span>
+                        <span className="DropdownColortext small-text"> Pubblicizza</span>
                       </a>
                       <a href="#" className="text-secondary ">
                         Learning
                       </a>
                       <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
                         <FaPlay className="icon iconBlu me-3 " />{" "}
-                        <span className="DropdownColortext small-text">
-                          Learning
-                        </span>
+                        <span className="DropdownColortext small-text">Learning</span>
                       </a>
                     </div>
                     <div className="column">
                       <p>
-                        <strong className="ms-3">
-                          Scopri altro per il business
-                        </strong>
+                        <strong className="ms-3">Scopri altro per il business</strong>
                       </p>
                       <div>
                         <a href="#">
                           <div className="mt-4">
-                            <strong className="fw-bold ms-3 DropdownColortext small-text">
-                              Assumi su LinkedIn
-                            </strong>
-                            <p className="ms-3 secSmalltext ">
-                              Trova, attrai e assumi
-                            </p>
+                            <strong className="fw-bold ms-3 DropdownColortext small-text">Assumi su LinkedIn</strong>
+                            <p className="ms-3 secSmalltext ">Trova, attrai e assumi</p>
                           </div>
                         </a>
                       </div>
                       <div>
                         <a href="#">
                           <div className="mt-4">
-                            <strong className="fw-bold ms-3 DropdownColortext small-text">
-                              Vendi con LinkedIn
-                            </strong>
-                            <p className="ms-3 secSmalltext">
-                              Sblocca nuove opportunità di vendita
-                            </p>
+                            <strong className="fw-bold ms-3 DropdownColortext small-text">Vendi con LinkedIn</strong>
+                            <p className="ms-3 secSmalltext">Sblocca nuove opportunità di vendita</p>
                           </div>
                         </a>
                       </div>
@@ -278,9 +240,7 @@ function NavScroll() {
                             <strong className="fw-bold ms-3 DropdownColortext small-text">
                               Offerta di lavoro gratuita
                             </strong>
-                            <p className="ms-3 secSmalltext">
-                              Ottieni rapidamente candidati qualificati
-                            </p>
+                            <p className="ms-3 secSmalltext">Ottieni rapidamente candidati qualificati</p>
                           </div>
                         </a>
                       </div>
@@ -290,42 +250,36 @@ function NavScroll() {
                             <strong className="fw-bold ms-3 DropdownColortext small-text">
                               Fai pubblicità su LinkedIn
                             </strong>
-                            <p className="ms-3 secSmalltext">
-                              Acquisisci clienti e fai crescere la tua azienda
-                            </p>
+                            <p className="ms-3 secSmalltext">Acquisisci clienti e fai crescere la tua azienda</p>
                           </div>
                         </a>
                       </div>
                       <div className="mt-4">
                         <a href="#">
                           <div>
-                            <strong className="fw-bold ms-3 DropdownColortext small-text">
-                              Impara con LinkedIn
-                            </strong>
-                            <p className="ms-3 secSmalltext">
-                              Assumi su LinkedIn
-                            </p>
+                            <strong className="fw-bold ms-3 DropdownColortext small-text">Impara con LinkedIn</strong>
+                            <p className="ms-3 secSmalltext">Assumi su LinkedIn</p>
                           </div>
                         </a>
                       </div>
                       <div className="mb-3 mt-4">
                         <a href="#">
                           <div>
-                            <strong className="fw-bold ms-3 DropdownColortext small-text">
-                              Admin Center
-                            </strong>
-                            <p className="ms-3 secSmalltext">
-                              Gestisci i dettagli di fatturazione e account
-                            </p>
+                            <strong className="fw-bold ms-3 DropdownColortext small-text">Admin Center</strong>
+                            <p className="ms-3 secSmalltext">Gestisci i dettagli di fatturazione e account</p>
                           </div>
                         </a>
                       </div>
                       <a href="#">
                         <div>
                           <p>
+<<<<<<< HEAD
                             <strong className="ms-3 DropdownColortext small-text">
                               Crea una pagina aziendale <i class="bi bi-plus ms-3 fw-bold fs-4"></i>
                             </strong>
+=======
+                            <strong className="ms-3 DropdownColortext small-text">Crea una pagina aziendale</strong>
+>>>>>>> origin/SearchJob
 
                             
                           </p>
@@ -340,9 +294,7 @@ function NavScroll() {
                 <a href="#">
                   <div className="icon-with-text workIconColor">
                     <FaTag className="icon" />
-                    <div className="nav-text">
-                      Pubblica Un'offerta di lavoro
-                    </div>
+                    <div className="nav-text">Pubblica Un'offerta di lavoro</div>
                   </div>
                 </a>
               </div>
