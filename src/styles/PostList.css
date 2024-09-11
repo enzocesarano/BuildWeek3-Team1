@@ -1,0 +1,28 @@
+.post-list-wrapper {
+    margin-top: 20px;
+  }
+  
+  .post {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .post-list-wrapper {
+    margin-top: 20px;
+  }
+  
+  .sizeImg {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .post {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+  
+  

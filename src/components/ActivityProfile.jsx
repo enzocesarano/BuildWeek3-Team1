@@ -1,10 +1,6 @@
 import React, { useState } from "react";
-import { PencilSquare, ArrowRight, Plus } from "react-bootstrap-icons";
-import { FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
-import { FaRegImage } from "react-icons/fa6";
-import { MdWork } from "react-icons/md";
-import { RiBarChart2Fill } from "react-icons/ri";
-import { IoIosDocument } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { PencilSquare, ArrowRight, Plus, EmojiSmile } from "react-bootstrap-icons";
 import { Button, Modal, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 import "../styles/CardProfile.css";
 
@@ -12,6 +8,7 @@ const ActivityProfile = ({ showButton = true }) => {
   const [showModal, setShowModal] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -26,18 +23,21 @@ const ActivityProfile = ({ showButton = true }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE"
+        Authorization: "Bearer YOUR_TOKEN"
       },
       body: JSON.stringify({ text: postContent })
     });
     if (response.ok) {
       setPostContent("");
       handleClose();
-      console.log(postContent)
     } else {
       console.error("Errore nella pubblicazione del post");
     }
     setIsPublishing(false);
+  };
+
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker(!showEmojiPicker);
   };
 
   return (
@@ -64,16 +64,16 @@ const ActivityProfile = ({ showButton = true }) => {
       </div>
       {showButton && (
         <div className="card-footer">
-          <div className="footer-content">Mostra tutti i post</div>
+          <Link to="/post-list" className="footer-content">Mostra tutte le attività</Link>
           <ArrowRight />
         </div>
       )}
 
-      <Modal show={showModal} onHide={handleClose} dialogClassName="custom-modal">
+      <Modal show={showModal} onHide={handleClose} size="lg" dialogClassName="custom-modal">
         <Modal.Header closeButton>
           <Modal.Title>placeholder nome utente</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
           <Form>
             <Form.Group controlId="postContent">
               <Form.Control
@@ -85,35 +85,41 @@ const ActivityProfile = ({ showButton = true }) => {
                 className="no-focus"
               />
             </Form.Group>
+            <div>
+            <OverlayTrigger placement="top" overlay={<Tooltip>Aggiungi emoji</Tooltip>}>
+                  <i className="bi bi-emoji-smile-fill me-4 icon-pointer" onClick={toggleEmojiPicker}></i>
+                </OverlayTrigger>
+            </div>
             <div className="d-flex justify-content-between mt-3">
               <div className="d-flex align-items-center">
-                <OverlayTrigger placement="top" overlay={<Tooltip>Immagine</Tooltip>}>
-                  <FaRegImage className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Aggiungi contenuto multimediale</Tooltip>}>
+                  <i className="bi bi-image me-4 icon-pointer"></i>
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Calendario</Tooltip>}>
-                  <FaRegCalendarAlt className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Crea un evento</Tooltip>}>
+                  <i className="bi bi-calendar4-week me-4 icon-pointer"></i>
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Certificato</Tooltip>}>
-                  <FaCertificate className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Festeggia un’occasione speciale</Tooltip>}>
+                  <i className="bi bi-patch-plus-fill me-4 icon-pointer"></i> 
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Lavoro</Tooltip>}>
-                  <MdWork className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Fai sapere che stai assumendo</Tooltip>}>
+                  <i className="bi bi-briefcase-fill me-4 icon-pointer"></i>
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Grafico</Tooltip>}>
-                  <RiBarChart2Fill className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Crea un sondaggio</Tooltip>}>
+                  <i className="bi bi-bar-chart-line-fill me-4 icon-pointer"></i>
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Documento</Tooltip>}>
-                  <IoIosDocument className="me-4 icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Aggiungi un documento</Tooltip>}>
+                  <i className="bi bi-file-earmark-text-fill me-4 icon-pointer"></i>
                 </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Utente</Tooltip>}>
-                  <FaUserTie className="icon-pointer" />
+                <OverlayTrigger placement="top" overlay={<Tooltip>Trova un esperto</Tooltip>}>
+                  <i className="bi bi-person-badge-fill icon-pointer"></i>
                 </OverlayTrigger>
+
               </div>
               <Button
                 variant="primary"
                 onClick={handlePublish}
                 disabled={!postContent || isPublishing}
-                className={!postContent ? "disabled-button" : ""}
+                className={!postContent ? "disabled-button" : "active-button"}
               >
                 Pubblica
               </Button>
@@ -126,5 +132,4 @@ const ActivityProfile = ({ showButton = true }) => {
 };
 
 export default ActivityProfile;
-
 
