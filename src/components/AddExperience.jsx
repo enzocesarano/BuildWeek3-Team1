@@ -62,7 +62,7 @@ const AddExperience = (props) => {
 
   useEffect(() => {
     dispatch(getExperience(id));
-  }, [myExperience, myExperienceSelecteduo]);
+  }, [myExperience, myExperienceSelected]);
 
   return (
     <Modal
