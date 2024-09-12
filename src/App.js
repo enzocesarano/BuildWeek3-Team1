@@ -32,6 +32,7 @@ function AppContent() {
 
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
+  
 
   const dispatch = useDispatch();
 
@@ -67,7 +68,7 @@ function AppContent() {
                   <Route path="/search-job" element={<SearchJob />} />
                   <Route path="/job/:id" element={<JobDetails />} />
                   <Route path="/job-details" element={<JobDetails />} />
-                  <Route path="/post-list" element={<PostList />} />
+                  <Route path="/post-list/:id" element={<PostList />} />
                 </Routes>
               </Col>
               {location.pathname === "/profile" ? (

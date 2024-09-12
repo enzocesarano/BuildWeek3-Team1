@@ -3,8 +3,9 @@ import { Button, ButtonGroup, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
 import ImageSet from "./ImageSet";
-import { useLocation } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 import { getExperience } from "../action";
+import PostList from "./PostList";
 
 const Profile = ({myProfile}) => {
 
@@ -87,6 +88,7 @@ const Profile = ({myProfile}) => {
 
       <EditProfile show={modalShow} onHide={() => setModalShow(false)} />
       <ImageSet show={modalShowImg} onHide={() => setModalShowImg(false)} />
+      
     </>
   );
 };

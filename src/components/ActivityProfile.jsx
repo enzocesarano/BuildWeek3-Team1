@@ -152,7 +152,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
 
       {showButton && (
         <div className="card-footer">
-          <Link to="/post-list" className="footer-content">
+          <Link to={`/post-list/${posts[0]?.user._id}`} className="footer-content">
             Mostra tutte le attività
           </Link>
           <ArrowRight />
