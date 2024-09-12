@@ -79,7 +79,7 @@ function NavScroll() {
             <SearchModal filteredProfiles={filteredProfiles} onProfileSelect={handleProfileSelect} />
           )}
         </Form>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle aria-controls="navbarScroll" className="d-md-none d-lg-none" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-1 my-lg-0 " navbarScroll>
             <Link to="/" className="nav-link">
