@@ -10,6 +10,7 @@ import {
   BsThreeDots,
 } from "react-icons/bs";
 import "../styles/PostList.css";
+import { ArrowRepeat, ChatLeftText, HandThumbsUp, Send, ThreeDots } from "react-bootstrap-icons";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -87,55 +88,54 @@ const PostList = () => {
               ) : (
                 // Layout per la lista dei post
                 posts.map((post) => (
-                  <Card key={post._id} className="mb-3">
-                    <Card.Body>
-                      <Row>
-                        <Col xs={2}>
-                          <img
-                            src={myProfile.image}
-                            alt="Profile"
-                            className="rounded-circle"
-                            style={{ width: "50px", height: "50px" }}
-                          />
-                        </Col>
-                        <Col xs={10}>
-                          <div className="d-flex justify-content-between align-items-center">
-                            <div>
-                              <strong>{myProfile.name}</strong> • Tu
-                              <p className="text-muted">
-                                (placeholder tempo dalla pubblicazione) • 🌍
-                              </p>
-                            </div>
-                            <div>
-                              <BsThreeDots />
-                            </div>
+                  <Card key={post._id} className="my-3 border-0 bg-transparent">
+                    <Card.Body className="card-container bg-light">
+                      <div className="card-home-header">
+                        <div className="card-title">
+                          {post.user.name} {post.user.surname}
+                          <div className="card-home-subtitle">
+                            @{post.username}
                           </div>
-                          <p>{post.text}</p>
-                        </Col>
-                      </Row>
-                      <hr />
-                      <Row>
-                        <Col className="text-center">
-                          <div>
-                            <BsHandThumbsUp /> Consiglia
-                          </div>
-                        </Col>
-                        <Col className="text-center">
-                          
-                            <BsChat /> Commenta
-                          
-                        </Col>
-                        <Col className="text-center">
-                          
-                            <BsShare /> Diffondi il post
-                          
-                        </Col>
-                        <Col className="text-center">
-                         
-                            <BsSend /> Invia
-                          
-                        </Col>
-                      </Row>
+                        </div>
+                        <div className="button-title">
+                          <button
+                            type="button"
+                            class="btn btn-light text-primary card-header-button"
+                          >
+                            Segui
+                          </button>
+                          <ThreeDots />
+                        </div>
+                      </div>
+
+                      <div className="card-text">
+                        <Card.Text>{post.text}</Card.Text>
+                      </div>
+                      <div className="img-card-post"></div>
+
+                      <Card.Footer className="text-muted card-home-footer">
+                        Pubblicato il{" "}
+                        {new Date(post.createdAt).toLocaleString()}
+                      </Card.Footer>
+                      <div className="card-home-button">
+                        <button type="button" class="btn fs-small text-dark">
+                          <HandThumbsUp className="m-2" />
+                          Consiglia
+                        </button>
+                        <button type="button" class="btn fs-small text-dark">
+                          {" "}
+                          <ChatLeftText className="m-2" />
+                          Commenta
+                        </button>
+                        <button type="button" class="btn fs-small text-dark">
+                          <ArrowRepeat className="m-2" />
+                          Diffondi il post
+                        </button>
+                        <button type="button" class="btn fs-small text-dark">
+                          <Send className="m-2" />
+                          Invia
+                        </button>
+                      </div>
                     </Card.Body>
                   </Card>
                 ))
