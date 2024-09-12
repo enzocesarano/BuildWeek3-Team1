@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Plus, Trash } from "react-bootstrap-icons";
 import {
-  PencilSquare,
-  ArrowRight,
-  Plus,
-  EmojiSmile,
-  Trash 
-} from "react-bootstrap-icons";
-import { Button, Modal, Form, OverlayTrigger, Tooltip, Card } from "react-bootstrap";
-import "../styles/CardProfile.css";
+  Button,
+  Modal,
+  Form,
+  OverlayTrigger,
+  Tooltip,
+  Card,
+} from "react-bootstrap";
 import { deleteMyPost } from "../action";
 import { useDispatch } from "react-redux";
+import "../styles/CardProfile.css";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   const dispatch = useDispatch();
-
-  const deletePost = (id) => {
-    dispatch(deleteMyPost(id));
-  };
 
   useEffect(() => {
     const savedPosts = localStorage.getItem("posts");
@@ -31,7 +29,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     } else {
       fetchPosts();
     }
-  }, []);
+  }, [userId]);
 
   const fetchPosts = async () => {
     try {
@@ -40,7 +38,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
           },
         }
       );
@@ -57,8 +55,20 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     }
   };
 
+  const handleDelete = async (postId) => {
+    try {
+      await dispatch(deleteMyPost(postId));
+      fetchPosts();
+    } catch (error) {
+      console.error("Errore nella cancellazione del post:", error);
+    }
+  };
+
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+
+  const handleSettingsShow = () => setShowSettingsModal(true);
+  const handleSettingsClose = () => setShowSettingsModal(false);
 
   const handlePostContentChange = (e) => {
     setPostContent(e.target.value);
@@ -113,18 +123,20 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           <small className="text-primary">{posts.length} post</small>
         </div>
         <div>
-          {showButton ? (
+          {showButton && (
             <Button
               variant="outline-primary"
               onClick={handleShow}
-              className="me-2"
+              className="me-2 rounded-5"
             >
               <Plus /> Crea un post
             </Button>
-          ) : (
-            <Plus />
           )}
-          <PencilSquare size={25} />
+          <i
+            className="bi bi-pencil fs-5 ms-3"
+            onClick={handleSettingsShow}
+            style={{ cursor: "pointer" }}
+          ></i>
         </div>
       </div>
 
@@ -146,10 +158,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 </div>
                 <Button
                   variant="outline-danger"
-                  onClick={() => {
-                    console.log(post._id);
-                    deletePost(post._id);
-                  }}
+                  onClick={() => handleDelete(post._id)}
                 >
                   <Trash />
                 </Button>
@@ -168,6 +177,45 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         </div>
       )}
 
+      {/* Modal for post filtering settings */}
+      <Modal show={showSettingsModal} onHide={handleSettingsClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Quali contenuti vuoi mostrare per primi?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <p>
+              La tua attività recente mostrerà solo i contenuti degli ultimi 360
+              giorni.
+            </p>
+            {[
+              "Post",
+              "Commenti",
+              "Video",
+              "Immagini",
+              "Articoli",
+              "Newsletter",
+              "Eventi",
+              "Documenti",
+            ].map((option) => (
+              <Form.Check
+                key={option}
+                type="radio"
+                name="contentOptions"
+                label={option}
+                id={`content-${option}`}
+              />
+            ))}
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSettingsClose}>
+            Salva
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for creating a new post */}
       <Modal
         show={showModal}
         onHide={handleClose}
@@ -175,7 +223,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         dialogClassName="custom-modal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>placeholder nome utente</Modal.Title>
+          <Modal.Title>Nuovo post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -193,10 +241,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 placement="top"
                 overlay={<Tooltip>Aggiungi emoji</Tooltip>}
               >
-                <i
-                  className="bi bi-emoji-smile-fill me-4 icon-pointer"
-                  
-                ></i>
+                <i className="bi bi-emoji-smile-fill me-4 icon-pointer"></i>
               </OverlayTrigger>
             </div>
             <div className="d-flex justify-content-between mt-3">
@@ -250,7 +295,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 disabled={!postContent || isPublishing}
                 className={!postContent ? "disabled-button" : "active-button"}
               >
-                Pubblica
+                {isPublishing ? "Pubblicando..." : "Pubblica"}
               </Button>
             </div>
           </Form>

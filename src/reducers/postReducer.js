@@ -29,7 +29,7 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         posts: action.payload,
       };
-      
+
     default:
       return state;
   }
