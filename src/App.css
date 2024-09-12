@@ -1,3 +1,9 @@
+.bgApp {
+  background-color: #f4f2ee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 .pointer {
   cursor: pointer;
@@ -242,7 +248,7 @@
   bottom: 0;
   right: 10px;
   width: 15vw;
-  background-color: white; 
+  background-color: white;
   border: 1px solid #ccc;
   border-radius: 10px;
   transition: height 0.3s ease-in-out;
@@ -282,10 +288,11 @@
 }
 
 .search-box:focus-within {
-  border-color: black; /* Bordo nero quando è selezionato */
+  border-color: black;
 }
 
-.search-icon, .filter-icon {
+.search-icon,
+.filter-icon {
   border: none;
   cursor: pointer;
   background-color: white;
@@ -306,10 +313,10 @@
   color: #888;
 }
 
-.messaging-box { 
+.messaging-box {
   min-width: 300px;
   max-width: 400px;
- } /* Questa regola è per far mantenere la larghezza del box messaggistica
+} /* Questa regola è per far mantenere la larghezza del box messaggistica
  anche rimpicciolendo la pagina, finchè non scompare */
 
 .no-messages {
@@ -317,7 +324,7 @@
 }
 
 .messaging-button {
-  background-color: white !important; /* Colore del pulsante messaggistica */
+  background-color: white !important;
   color: black !important;
   border: none;
 }
@@ -435,8 +442,104 @@ a {
   font-size: 0.6rem;
 }
 
-
-.imageSearch{
+.imageSearch {
   width: 30px !important;
   height: 30px !important;
+}
+.horizontal-list {
+  font-size: 0.9em;
+}
+
+.horizontal-list .footer-link {
+  font-weight: normal;
+}
+
+.horizontal-list .dot {
+  margin: 0 5px;
+}
+
+.horizontal-list li {
+  display: flex;
+  align-items: center;
+}
+
+.horizontal-list li:not(:last-child) {
+  margin-right: 10px;
+}
+.search-job-img {
+  width: 35%;
+  height: auto;
+}
+.logo-img {
+  height: 1.2em;
+}
+.custom-hover {
+  color: inherit;
+}
+
+.custom-hover:hover {
+  text-decoration: underline;
+  text-decoration-color: blue;
+}
+.small-dropdown .dropdown-menu {
+  font-size: 0.8rem;
+}
+
+.small-dropdown .dropdown-item p {
+  margin: 0;
+}
+
+.small-dropdown .small-text {
+  font-size: 0.7rem;
+}
+
+.small-dropdown .small-icon {
+  width: 2%;
+}
+.textPlus {
+  font-size: 1rem;
+}
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.icon-style {
+  font-size: 1.1rem;
+  color: #404040;
+}
+
+.text {
+  font-size: 0.8rem;
+  color: #404040;
+}
+.btnJob {
+  border-radius: 60px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btnJob:hover {
+  border-color: #004182;
+  background-color: #e1e8ee;
+}
+.twoLabel {
+  width: 300px;
+}
+
+
+.imageSet {
+  width: 50px !important;
+  height: 50px !important;
 }

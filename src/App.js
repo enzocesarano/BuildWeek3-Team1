@@ -12,8 +12,10 @@ import MessagingBox from "./components/MessagingBox";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
-import { getProfile } from "./action";
-import { useEffect } from "react";
+import { getExperience, getProfile } from "./action";
+import { useEffect, useState } from "react";
+import SearchJob from "./components/SearchJob";
+import JobDetails from "./components/JobDetails";
 
 function App() {
   return (
@@ -33,18 +35,31 @@ function AppContent() {
 
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
-    dispatch(getProfile('me',''));
-  }, [dispatch]);
+    dispatch(getProfile("66deab4f4d0def0015cef0f9"));
+  }, []);
+
+
 
   return (
-    <div className="bg-secondary-subtle">
+    <div className="bgApp">
       <NavScroll />
       <Container>
         <Row className="py-5">
           {location.pathname === "/" ? (
             <Col className="col-12 py-5">
               <Home />
+            </Col>
+          ) : location.pathname === "/search-job" ? (
+            <Col className="col-12 py-5">
+              <SearchJob />
+            </Col>
+          ) : location.pathname.startsWith("/job/") ? (
+            <Col className="col-12 mt-5">
+              <Routes>
+                <Route path="/job/:id" element={<JobDetails />} />
+              </Routes>
             </Col>
           ) : (
             <>
@@ -63,12 +78,16 @@ function AppContent() {
             </>
           )}
 
-          <Col>
-            <MessagingBox />
-          </Col>
+          {location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
+            <Col>
+              <MessagingBox />
+            </Col>
+          )}
         </Row>
       </Container>
-      {location.pathname !== "/" && <MyFooter />}
+      {location.pathname !== "/" && location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
+        <MyFooter />
+      )}
     </div>
   );
 }
