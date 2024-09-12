@@ -45,7 +45,7 @@ const Sidebar = ({ myProfile }) => {
             ))}
           </Form.Select>
           <Card.Title className="mt-3">Profilo pubblico e URL</Card.Title>
-          <p>www.linkedin.com/in/{myProfile.username}</p>
+          {myProfile.username ? (<p>www.linkedin.com/in/{myProfile.username}</p>): (<p>www.linkedin.com/in/enzo.cesarano</p>)}
         </Card.Body>
       </Card>
 
