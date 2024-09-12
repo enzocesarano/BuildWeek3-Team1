@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, Dropdown, ListGroup } from "react-bootstrap";
-import { FaStar, FaPlus, FaPencilAlt } from "react-icons/fa";
+import { Container, Row, Col, Card, Dropdown, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { FaStar, FaPlus, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { BsListUl, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { getProfile, fetchSearchResults } from "../action";
 import MyFooter from "./MyFooter";
@@ -18,6 +18,15 @@ const SearchJob = ({ setModalShow }) => {
   const [query, setQuery] = useState("");
   const footerRef = useRef(null);
 
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(savedFavorites);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   const handleSaveJob = (job) => {
     setFavorites((prevFavorites) => {
       if (prevFavorites.some((fav) => fav._id === job._id)) {
@@ -26,6 +35,10 @@ const SearchJob = ({ setModalShow }) => {
         return [...prevFavorites, job];
       }
     });
+  };
+
+  const handleRemoveFavorite = (jobId) => {
+    setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav._id !== jobId));
   };
 
   const handleToggleFavorites = () => {
@@ -105,14 +118,14 @@ const SearchJob = ({ setModalShow }) => {
           )}
           <Card className="mb-3 ">
             <Card.Body className="mx-2 my-1 ">
-              <div className="d-flex align-items-center ">
-                <Card.Text className="text fw-bold my-2 bi bi-bookmark-fill  pointer" onClick={handleToggleFavorites}>
+              <div className="d-flex align-items-center justify-content-between">
+                <Card.Text className="text fw-bold my-2 bi bi-bookmark-fill pointer" onClick={handleToggleFavorites}>
                   <span className="ms-3"> Preferenze</span>
                 </Card.Text>
               </div>
-              <div className="d-flex align-items-center  icon-style mt-3  ">
+              <div className="d-flex align-items-center icon-style mt-3">
                 <BsListUl className="icon-style me-2" />
-                <Card.Text className="text fw-bold ms-2 pointer ">Le mie offerte di lavoro</Card.Text>
+                <Card.Text className="text fw-bold ms-2 pointer">Le mie offerte di lavoro</Card.Text>
               </div>
             </Card.Body>
           </Card>
@@ -131,6 +144,7 @@ const SearchJob = ({ setModalShow }) => {
                         <Link className="text-danger fs-4" to={`/job/${job._id}`}>
                           {job.title}
                         </Link>
+                        <FaTrash className="text-danger pointer" onClick={() => handleRemoveFavorite(job._id)} />
                       </Card.Title>
                       <Card.Text>
                         <strong>Company:</strong> {job.company_name}
@@ -152,9 +166,17 @@ const SearchJob = ({ setModalShow }) => {
                           {result.title}
                         </Link>
                         {favorites.some((fav) => fav._id === result._id) ? (
-                          <BsBookmarkFill className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                          <BsBookmarkFill
+                            className="icon-style me-2 pointer text-primary"
+                            onClick={() => handleSaveJob(result)}
+                          />
                         ) : (
-                          <BsBookmark className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                          <OverlayTrigger
+                            placement="top"
+                            overlay={<Tooltip id={`tooltip-${result._id}`}>Salva nei preferiti</Tooltip>}
+                          >
+                            <BsBookmark className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                          </OverlayTrigger>
                         )}
                       </Card.Title>
                       <Card.Text>
