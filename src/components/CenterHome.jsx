@@ -111,7 +111,7 @@ const CenterHome = ({ loggedInUserId }) => {
                 <div className="card-home-subtitle">@{post.username}</div>
                 </div>
                 <div className="button-title">
-                  <button type="button" class="btn btn-light text-primary card-header-button" >Segui</button>
+                  <button type="button" className="btn btn-light text-primary card-header-button" >Segui</button>
                   <ThreeDots/>
                 </div>
                 </div>
@@ -126,10 +126,10 @@ const CenterHome = ({ loggedInUserId }) => {
                 Pubblicato il {new Date(post.createdAt).toLocaleString()}
               </Card.Footer>
               <div className="card-home-button">
-                <button type="button" class="btn  text-dark" ><HandThumbsUp className="m-2"/>Consiglia</button>
-               <button type="button" class="btn  text-dark" > <ChatLeftText className="m-2"/>Commenta</button>
-                <button type="button" class="btn  text-dark" ><ArrowRepeat className="m-2"/>Diffondi il post</button>
-                <button type="button" class="btn  text-dark" ><Send className="m-2"/>Invia</button>
+                <button type="button" className="btn  text-dark" ><HandThumbsUp className="m-2"/>Consiglia</button>
+               <button type="button" className="btn  text-dark" > <ChatLeftText className="m-2"/>Commenta</button>
+                <button type="button" className="btn  text-dark" ><ArrowRepeat className="m-2"/>Diffondi il post</button>
+                <button type="button" className="btn  text-dark" ><Send className="m-2"/>Invia</button>
               </div>
 
             </Card.Body>
