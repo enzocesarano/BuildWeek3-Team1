@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Image, Col, Row, Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import {
@@ -16,28 +16,55 @@ import {
   HandThumbsUp,
   Send,
   ThreeDots,
+  Trash,
 } from "react-bootstrap-icons";
+import { deleteMyPost } from "../action";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
+  const [click, setClick] = useState(false)
   const myProfile = useSelector((state) => state.myProfile.myProfile);
+  const dispatch = useDispatch();
+
+  const handleDelete = async (postId) => {
+    try {
+      await dispatch(deleteMyPost(postId));
+      setClick(!click)
+    } catch (error) {
+      console.error("Errore nella cancellazione del post:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-          },
-        }
-      );
-      const data = await response.json();
-      setPosts(data);
-    };
     fetchPosts();
-  }, []);
+  }, [click]);
+
+  const fetchPosts = () => {
+    const baseEndpoint = "https://striveschool-api.herokuapp.com/api/posts/";
+
+    fetch(baseEndpoint, {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((data) => {
+        const sortedPosts = data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setPosts(sortedPosts);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   return (
     <Container className="post-list-wrapper">
@@ -94,60 +121,76 @@ const PostList = () => {
               ) : (
                 // Layout per la lista dei post
                 posts.map((post) => {
-                  if (post.user._id === "66deab4f4d0def0015cef0f9") {
-                    <Card
-                      key={post._id}
-                      className="my-3 border-0 bg-transparent"
-                    >
-                      <Card.Body className="card-container bg-light">
-                        <div className="card-home-header">
-                          <div className="card-title">
-                            {post.user.name} {post.user.surname}
-                            <div className="card-home-subtitle">
-                              @{post.username}
+                  if (post?.user._id === "66deab4f4d0def0015cef0f9") {
+                    return (
+                      <Card
+                        key={post._id}
+                        className="my-3 border-0 bg-transparent"
+                      >
+                        <Card.Body className="card-container bg-light">
+                          <div className="card-home-header">
+                            <div className="card-title">
+                              {post.user.name} {post.user.surname}
+                              <div className="card-home-subtitle">
+                                @{post.username}
+                              </div>
+                            </div>
+                            <div className="button-title">
+                              <Button
+                                variant="outline-danger border-0 me-2"
+                                onClick={() => handleDelete(post._id)}
+                              >
+                                <Trash />
+                              </Button>
+                              <ThreeDots />
                             </div>
                           </div>
-                          <div className="button-title">
+
+                          <div className="card-text">
+                            <Card.Text>{post.text}</Card.Text>
+                          </div>
+                          <div className="img-card-post"></div>
+
+                          <Card.Footer className="text-muted card-home-footer">
+                            Pubblicato il{" "}
+                            {new Date(post.createdAt).toLocaleString()}
+                          </Card.Footer>
+                          <div className="card-home-button">
                             <button
                               type="button"
-                              class="btn btn-light text-primary card-header-button"
+                              className="btn fs-small text-dark"
                             >
-                              Segui
+                              <HandThumbsUp className="m-2" />
+                              Consiglia
                             </button>
-                            <ThreeDots />
+                            <button
+                              type="button"
+                              className="btn fs-small text-dark"
+                            >
+                              {" "}
+                              <ChatLeftText className="m-2" />
+                              Commenta
+                            </button>
+                            <button
+                              type="button"
+                              className="btn fs-small text-dark"
+                            >
+                              <ArrowRepeat className="m-2" />
+                              Diffondi il post
+                            </button>
+                            <button
+                              type="button"
+                              className="btn fs-small text-dark"
+                            >
+                              <Send className="m-2" />
+                              Invia
+                            </button>
                           </div>
-                        </div>
-
-                        <div className="card-text">
-                          <Card.Text>{post.text}</Card.Text>
-                        </div>
-                        <div className="img-card-post"></div>
-
-                        <Card.Footer className="text-muted card-home-footer">
-                          Pubblicato il{" "}
-                          {new Date(post.createdAt).toLocaleString()}
-                        </Card.Footer>
-                        <div className="card-home-button">
-                          <button type="button" class="btn fs-small text-dark">
-                            <HandThumbsUp className="m-2" />
-                            Consiglia
-                          </button>
-                          <button type="button" class="btn fs-small text-dark">
-                            {" "}
-                            <ChatLeftText className="m-2" />
-                            Commenta
-                          </button>
-                          <button type="button" class="btn fs-small text-dark">
-                            <ArrowRepeat className="m-2" />
-                            Diffondi il post
-                          </button>
-                          <button type="button" class="btn fs-small text-dark">
-                            <Send className="m-2" />
-                            Invia
-                          </button>
-                        </div>
-                      </Card.Body>
-                    </Card>;
+                        </Card.Body>
+                      </Card>
+                    );
+                  } else {
+                    <p>error</p>;
                   }
                 })
               )}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Form, Card } from "react-bootstrap";
+import { Button, Modal, Form, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
 import { FaRegImage, FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
@@ -8,6 +8,7 @@ import { IoIosDocument } from "react-icons/io";
 import { deleteMyPost } from "../action";
 import { useDispatch } from "react-redux";
 import "../styles/CardProfile.css";
+import { Link, useLocation } from "react-router-dom";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -16,16 +17,14 @@ const ActivityProfile = ({ showButton = true, userId }) => {
   const [posts, setPosts] = useState([]);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
 
+  const location = useLocation()
+  const idLocation = location.pathname.split("/").pop()
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const savedPosts = localStorage.getItem("posts");
-    if (savedPosts) {
-      setPosts(JSON.parse(savedPosts));
-    } else {
-      fetchPosts();
-    }
-  }, [userId]);
+    fetchPosts()
+  }, [idLocation])
 
   const fetchPosts = async () => {
     try {
@@ -34,15 +33,16 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         {
           headers: {
             Authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
           },
         }
       );
       if (response.ok) {
         const data = await response.json();
-        const userPosts = data.filter((post) => post.user._id === userId);
-        setPosts(userPosts);
-        localStorage.setItem("posts", JSON.stringify(userPosts));
+        const sortedPosts = data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setPosts(sortedPosts.filter((post) => post.user._id === idLocation));
       } else {
         console.error("Errore nel recupero dei post");
       }
@@ -51,14 +51,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     }
   };
 
-  const handleDelete = async (postId) => {
-    try {
-      await dispatch(deleteMyPost(postId));
-      fetchPosts();
-    } catch (error) {
-      console.error("Errore nella cancellazione del post:", error);
-    }
-  };
+  
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -143,19 +136,14 @@ const ActivityProfile = ({ showButton = true, userId }) => {
             <p>I post che condividi appariranno qui</p>
           </div>
         ) : (
-          posts.map((post) => (
+          posts.slice(0, 3).map((post) => (
             <Card className="mb-3" key={post._id}>
               <Card.Body className="d-flex justify-content-between align-items-start">
                 <div>
                   <Card.Text>{post.text}</Card.Text>
                   <Card.Subtitle className="text-muted">{formatDate(post.createdAt)}</Card.Subtitle>
                 </div>
-                <Button
-                  variant="outline-danger"
-                  onClick={() => handleDelete(post._id)}
-                >
-                  <Trash />
-                </Button>
+                
               </Card.Body>
             </Card>
           ))
