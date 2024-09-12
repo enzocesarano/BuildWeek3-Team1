@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Form, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
-import { FaRegImage, FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
-import { MdWork } from "react-icons/md";
-import { RiBarChart2Fill } from "react-icons/ri";
-import { IoIosDocument } from "react-icons/io";
-import { deleteMyPost } from "../action";
+import {
+  Button,
+  Modal,
+  Form,
+  Card,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
+import {
+  Plus,
+  ArrowRight,
+  HandThumbsUp,
+  ChatLeftText,
+  ArrowRepeat,
+  Send,
+} from "react-bootstrap-icons";
+
+
 import { useDispatch } from "react-redux";
-import "../styles/CardProfile.css";
+
 import { Link, useLocation } from "react-router-dom";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
@@ -16,15 +27,20 @@ const ActivityProfile = ({ showButton = true, userId }) => {
   const [isPublishing, setIsPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [click, setClick] = useState(true)
 
-  const location = useLocation()
-  const idLocation = location.pathname.split("/").pop()
+  const location = useLocation();
+  const idLocation = location.pathname.split("/").pop();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchPosts()
-  }, [idLocation])
+    fetchPosts();
+  }, [idLocation]);
+
+  useEffect(() => {
+    fetchPosts();
+  }, [click]);
 
   const fetchPosts = async () => {
     try {
@@ -50,8 +66,6 @@ const ActivityProfile = ({ showButton = true, userId }) => {
       console.error("Errore:", error);
     }
   };
-
-  
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -79,10 +93,6 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         }
       );
       if (response.ok) {
-        const newPost = await response.json();
-        const updatedPosts = [...posts, newPost];
-        setPosts(updatedPosts);
-        localStorage.setItem("posts", JSON.stringify(updatedPosts));
         setPostContent("");
         handleClose();
       } else {
@@ -91,17 +101,8 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     } catch (error) {
       console.error("Errore:", error);
     }
+    setClick(!click)
     setIsPublishing(false);
-  };
-
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
   };
 
   return (
@@ -111,7 +112,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           <h5 className="mb-0">Attività</h5>
           <small className="text-primary">{posts.length} post</small>
         </div>
-        <div>
+        <div className="d-flex align-items-center">
           {showButton && (
             <Button
               variant="outline-primary"
@@ -137,13 +138,42 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           </div>
         ) : (
           posts.slice(0, 3).map((post) => (
-            <Card className="mb-3" key={post._id}>
-              <Card.Body className="d-flex justify-content-between align-items-start">
-                <div>
-                  <Card.Text>{post.text}</Card.Text>
-                  <Card.Subtitle className="text-muted">{formatDate(post.createdAt)}</Card.Subtitle>
+            <Card key={post._id} className="my-3 border-0 bg-transparent">
+              <Card.Body className="card-container bg-light">
+                <div className="card-home-header">
+                  <div>
+                    <div className="card-title">{post.user.name} {post.user.surname}</div>
+                    <div className="card-home-subtitle">@{post.username}</div>
+                  </div>
                 </div>
-                
+
+                <div className="card-text">
+                  <Card.Text className="text-start mb-3">{post.text}</Card.Text>
+                </div>
+                <div className="img-card-post"></div>
+
+                <Card.Footer className="text-muted card-home-footer">
+                  Pubblicato il {new Date(post.createdAt).toLocaleString()}
+                </Card.Footer>
+                <div className="card-home-button">
+                  <button type="button" className="btn fs-small text-dark">
+                    <HandThumbsUp className="m-2" />
+                    Consiglia
+                  </button>
+                  <button type="button" className="btn fs-small text-dark">
+                    {" "}
+                    <ChatLeftText className="m-2" />
+                    Commenta
+                  </button>
+                  <button type="button" className="btn fs-small text-dark">
+                    <ArrowRepeat className="m-2" />
+                    Diffondi il post
+                  </button>
+                  <button type="button" className="btn fs-small text-dark">
+                    <Send className="m-2" />
+                    Invia
+                  </button>
+                </div>
               </Card.Body>
             </Card>
           ))
@@ -152,7 +182,10 @@ const ActivityProfile = ({ showButton = true, userId }) => {
 
       {showButton && (
         <div className="card-footer">
-          <Link to={`/post-list/${posts[0]?.user._id}`} className="footer-content">
+          <Link
+            to={`/post-list/${posts[0]?.user._id}`}
+            className="footer-content"
+          >
             Mostra tutte le attività
           </Link>
           <ArrowRight />

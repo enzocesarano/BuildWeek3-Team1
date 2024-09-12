@@ -3,23 +3,24 @@ import { Button, Form, Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { setMyPost } from "../action";
 
-const EditPost = (props) => {
+const EditPost = ({show, onHide, element, function1}) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    if (props.element) {
-      setValue(props.element.text);
+    if (element) {
+      setValue(element.text);
     }
-  }, [props.element]);
+  }, [element]);
 
   const handleSubmit = (id, post) => {
     dispatch(setMyPost(id, post));
-    props.onHide();
+    function1(() => function1)
+    onHide();
   };
 
   return (
-    <Modal {...props} size="lg" dialogClassName="custom-modal">
+    <Modal show={show} onHide={() => onHide} size="lg" dialogClassName="custom-modal">
       <Modal.Header closeButton>
         <Modal.Title>Modifica post</Modal.Title>
       </Modal.Header>
@@ -89,7 +90,7 @@ const EditPost = (props) => {
             </div>
             <Button
               variant="primary"
-              onClick={() => handleSubmit(props.element._id, value)}
+              onClick={() => handleSubmit(element._id, value)}
             >
               Modifica
             </Button>

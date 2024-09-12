@@ -80,7 +80,7 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body className="text-nowrap">
-              <Card.Title className="secondary-title">
+              <Card.Title className="secondary-title reduced-font">
                 Espandi la tua carriera o il tuo business con Premium
               </Card.Title>
               <Card.Text>

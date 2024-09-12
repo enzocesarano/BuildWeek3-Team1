@@ -12,7 +12,6 @@ import { IoIosDocument } from "react-icons/io";
 import postsReducer from "../reducers/postReducer";
 import { setPosts, addPost, DELETE_POST } from "../action";
 import {ThreeDots, HandThumbsUp, ChatLeftText, ArrowRepeat, Send} from "react-bootstrap-icons";
-import '../styles/CardHome.css'
 
 const CenterHome = ({ loggedInUserId }) => {
   const [state, dispatch] = useReducer(postsReducer, { posts: [] });

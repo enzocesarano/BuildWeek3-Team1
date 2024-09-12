@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
 import JobDetails from "./components/JobDetails";
 
+
 function App() {
   return (
     <Provider store={store}>
@@ -63,8 +64,7 @@ function AppContent() {
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
-                  <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
-                  <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
+                  <Route path="/profile/:id" element={<ProfileArea />} />
                   <Route path="/search-job" element={<SearchJob />} />
                   <Route path="/job/:id" element={<JobDetails />} />
                   <Route path="/job-details" element={<JobDetails />} />

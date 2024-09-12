@@ -51,7 +51,7 @@ function NavScroll() {
 
   return (
     <Navbar expand="lg" className="bg-white position-fixed z-1" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "80%" }}>
+      <Container fluid style={{ maxWidth: "70%" }}>
         <Navbar.Brand href="#">
           <img
             src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473"
