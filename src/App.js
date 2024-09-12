@@ -65,7 +65,7 @@ function AppContent() {
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
-                  <Route path="/profile" element={<ProfileArea myProfile={myProfile} />} />
+                  <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile}/>} />
                   <Route path="/post-list" element={<PostList />} />
                 </Routes>
