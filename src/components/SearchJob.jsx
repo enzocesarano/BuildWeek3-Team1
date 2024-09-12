@@ -79,13 +79,10 @@ const SearchJob = ({ setModalShow }) => {
                 </div>
                 <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
                 <Card.Text className="text-secondary reduced-font">
-                  {myProfile.area} • {""}
-                  <div>
-                    {" "}
-                    <a href="#" className="text-dark reduced-font-link">
-                      <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
-                    </a>
-                  </div>
+                  {myProfile.area} • {""}{" "}
+                  <a href="#" className="text-dark reduced-font-link">
+                    <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
+                  </a>
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -123,7 +120,7 @@ const SearchJob = ({ setModalShow }) => {
           <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-2 align-items-center">
             <li className="mb-2  ">
               <a
-                href="https://about.linkedin.com/it-it  "
+                href="https://about.linkedin.com/it-it"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none  horizontal-list "
               >
@@ -132,7 +129,7 @@ const SearchJob = ({ setModalShow }) => {
             </li>
             <li className="mb-2">
               <a
-                href="https://it.linkedin.com/accessibility? "
+                href="https://it.linkedin.com/accessibility?"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >

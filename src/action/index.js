@@ -29,10 +29,10 @@ export const deletePost = (postId) => ({
 
 
 
-export const getProfile = (id, experiences) => {
+export const getProfile = (id) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
 
-  const profilePromise = fetch(baseEndpoint + id + "/" + experiences, {
+  const profilePromise = fetch(baseEndpoint + id, {
     headers: {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
