@@ -20,7 +20,7 @@ const postsReducer = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        posts: action.payload
+        posts: state.posts.filter((post) => post._id !== action.payload),
       };
     default:
       return state;

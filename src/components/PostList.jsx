@@ -61,9 +61,8 @@ const PostList = () => {
                 </Button>
               </div>
 
+              {/* Layout per "Nessun post" */}
               {posts.length === 0 ? (
-
-                // Layout per "Nessun post"
                 <Container>
                   <Image
                     src="https://static.licdn.com/aero-v1/sc/h/eeol4w9o9de2j4gq699mzx79d"
@@ -95,7 +94,7 @@ const PostList = () => {
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
                               <strong>{myProfile.name}</strong> • Tu
-                              <p className="text-muted">14 ore • 🌍</p>
+                              <p className="text-muted">(placeholder tempo dalla pubblicazione) • 🌍</p>
                             </div>
                             <div>
                               <BsThreeDots />
@@ -140,7 +139,3 @@ const PostList = () => {
 };
 
 export default PostList;
-
-
-
-
