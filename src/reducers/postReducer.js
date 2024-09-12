@@ -1,9 +1,10 @@
-import { SET_POSTS,ADD_POST,DELETE_POST } from "../action";
+import { SET_POSTS, ADD_POST, DELETE_POST, SET_IMG_POST } from "../action";
 
 const initialState = {
-  state:{
-  posts:[], 
-}};
+  state: {
+    posts: [],
+  },
+};
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,13 +18,21 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         posts: [...state.posts, action.payload],
       };
-        case DELETE_POST:
-          return state.filter(post => post._id !== action.payload);
-        case "DELETE_POST_ERROR":
-          console.error("Errore Redux:", action.payload);
-          return state;
-        default:
-          return state;
-      }}
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
+    case SET_IMG_POST:
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
+    default:
+      return state;
+  }
+};
 
 export default postsReducer;

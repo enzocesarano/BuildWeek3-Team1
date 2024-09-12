@@ -1,14 +1,12 @@
 import { Button, Form, Image, Modal } from "react-bootstrap";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState, useRef, useEffect } from "react";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import { setImgExp, setMyImg } from "../action";
-import { useLocation } from "react-router-dom";
+import { setImgPost } from "../action";
 
-const ImageSetExperience = (props) => {
-  const location = useLocation();
-  const idLocation = location.pathname.split('/').pop()
+
+const ImageSetPost = (props) => {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [cropper, setCropper] = useState(null);
@@ -38,7 +36,7 @@ const ImageSetExperience = (props) => {
       if (canvas) {
         canvas.toBlob((blob) => {
           if (blob) {
-            dispatch(setImgExp(idLocation, "experiences", props.experiences._id, blob));
+            dispatch(setImgPost(props.post._id, blob));
           } else {
             console.error("Impossibile ottenere il blob dell'immagine");
           }
@@ -67,7 +65,7 @@ const ImageSetExperience = (props) => {
         className="bg-dark border-0 text-light px-4"
       >
         <Modal.Title id="contained-modal-title-vcenter">
-          {props.experiences?.company}
+          Immagine del post {props.post?._id}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="bg-dark border-0 text-light text-center">
@@ -80,7 +78,7 @@ const ImageSetExperience = (props) => {
             ref={cropperRef}
           />
         ) : (
-          <Image src={props.experiences ? props.experiences?.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"} />
+          <Image src={props.post ? props.post.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"} />
         )}
       </Modal.Body>
       <Modal.Footer className="bg-dark border-secondary text-light p-3 d-block">
@@ -100,4 +98,4 @@ const ImageSetExperience = (props) => {
   );
 };
 
-export default ImageSetExperience;
+export default ImageSetPost;

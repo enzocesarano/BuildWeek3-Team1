@@ -59,27 +59,39 @@
   box-shadow: none;
 }
 
-/* grandezza modale */
-.custom-modal .modal-dialog {
-    max-width: 50vw;
-    max-height: 80vh;
-  }
   
   /* Rimuove l'ombra/bordo azzurrina dal campo di input */
   .no-focus:focus {
     box-shadow: none;
     border-color: #ced4da;
   }
+
+  .custom-modal .modal-content {
+    height: 100%;
+  }
   
-  /* Cursore pointer per le icone */
   .icon-pointer {
     cursor: pointer;
     color: grey;
   }
   
-  /* Pulsante "Pubblica" disattivato */
-  .disabled-button {
-    background-color: #d3d3d3;
-    border-color: #d3d3d3;
-  }
+/* Pulsante "Pubblica" disattivato */
+.disabled-button {
+  background-color: #d3d3d3 !important;
+  border-color: #d3d3d3 !important;
+  color: grey !important;
+}
+
+/* Pulsante "Pubblica" attivato */
+.active-button {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+/* Cambia il cursore sul pulsante disabilitato */
+.disabled-button:hover {
+  cursor: not-allowed !important;
+}
+
   
