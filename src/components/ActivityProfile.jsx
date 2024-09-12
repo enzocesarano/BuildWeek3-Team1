@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal, Form, Card } from "react-bootstrap";
 import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
-import {
-  FaRegImage,
-  FaRegCalendarAlt,
-  FaCertificate,
-  FaUserTie,
-} from "react-icons/fa";
+import { FaRegImage, FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
@@ -18,12 +13,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
-
   const dispatch = useDispatch();
-
-  const deletePost = (id) => {
-    dispatch(deleteMyPost(id));
-  };
 
   useEffect(() => {
     const savedPosts = localStorage.getItem("posts");
@@ -55,6 +45,15 @@ const ActivityProfile = ({ showButton = true, userId }) => {
       }
     } catch (error) {
       console.error("Errore:", error);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      await dispatch(deleteMyPost(postId));
+      fetchPosts(); 
+    } catch (error) {
+      console.error("Errore nella cancellazione del post:", error);
     }
   };
 
@@ -115,11 +114,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         </div>
         <div>
           {showButton ? (
-            <Button
-              variant="outline-primary"
-              onClick={handleShow}
-              className="me-2"
-            >
+            <Button variant="outline-primary" onClick={handleShow} className="me-2">
               <Plus /> Crea un post
             </Button>
           ) : (
@@ -141,17 +136,9 @@ const ActivityProfile = ({ showButton = true, userId }) => {
               <Card.Body className="d-flex justify-content-between align-items-start">
                 <div>
                   <Card.Text>{post.text}</Card.Text>
-                  <Card.Subtitle className="text-muted">
-                    {formatDate(post.createdAt)}
-                  </Card.Subtitle>
+                  <Card.Subtitle className="text-muted">{formatDate(post.createdAt)}</Card.Subtitle>
                 </div>
-                <Button
-                  variant="outline-danger"
-                  onClick={() => {
-                    console.log(post._id)
-                    deletePost(post._id);
-                  }}
-                >
+                <Button variant="outline-danger" onClick={() => handleDelete(post._id)}>
                   <Trash />
                 </Button>
               </Card.Body>
@@ -167,11 +154,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         </div>
       )}
 
-      <Modal
-        show={showModal}
-        onHide={handleClose}
-        dialogClassName="custom-modal"
-      >
+      <Modal show={showModal} onHide={handleClose} dialogClassName="custom-modal">
         <Modal.Header closeButton>
           <Modal.Title>placeholder nome utente</Modal.Title>
         </Modal.Header>
@@ -196,11 +179,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 <IoIosDocument className="me-3" />
                 <FaUserTie />
               </div>
-              <Button
-                variant="primary"
-                onClick={handlePublish}
-                disabled={!postContent || isPublishing}
-              >
+              <Button variant="primary" onClick={handlePublish} disabled={!postContent || isPublishing}>
                 Pubblica
               </Button>
             </div>

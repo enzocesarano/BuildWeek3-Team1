@@ -17,14 +17,13 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         posts: [...state.posts, action.payload],
       };
-    case DELETE_POST:
-      return {
-        ...state,
-        posts: action.payload
-      };
-    default:
-      return state;
-  }
-};
+        case DELETE_POST:
+          return state.filter(post => post._id !== action.payload);
+        case "DELETE_POST_ERROR":
+          console.error("Errore Redux:", action.payload);
+          return state;
+        default:
+          return state;
+      }}
 
 export default postsReducer;

@@ -301,38 +301,52 @@ export const deleteMyExperience = (idExperience) => {
   };
 };
 
-export const deleteMyPost = (idPost) => {
+export const deleteMyPost = (postId) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/posts/";
-  return (dispatch) => {
-    fetch(baseEndpoint + idPost, {
-      method: "DELETE",
-      headers: {
-        Authorization:
+  return async (dispatch) => {
+    try {
+      console.log("Tentativo di eliminare il post con ID:", postId);
+      
+      const response = await fetch(baseEndpoint + postId, {
+        method: "DELETE",
+        headers: {
+          Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
       },
-    })
-    .then((response) => {
-      if (response.ok) {
-        return response.text(); 
-      } else {
-        throw new Error("Errore nell'aggiornamento del profilo");
+      });
+      
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        console.error("Errore API:", errorDetails);
+
+        if (errorDetails.message.includes("id non valido")) {
+          throw new Error("ID non valido. Non è possibile eliminare questo post.");
+        } else {
+          throw new Error("Errore durante l'eliminazione del post.");
+        }
       }
-    })
-    .then((text) => {
+
+      const text = await response.text();
+      
       if (text === "Deleted") {
         dispatch({
           type: DELETE_POST,
-          payload: idPost,
+          payload: postId,
         });
       } else {
-        console.error("Risposta inaspettata:", text);
+        console.log()
       }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+      
+    } catch (err) {
+      console.error("Errore:", err.message);
+      dispatch({
+        type: "DELETE_POST_ERROR",
+        payload: err.message,
+      });
+    }
   };
 };
+
 
 
 export const setMyExperience = (editExperience, id) => {
