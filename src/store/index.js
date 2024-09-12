@@ -5,6 +5,7 @@ import searchProfile from "../reducers/getSearchProfile";
 import experiences from "../reducers/getExperiences";
 import myExperience from "../reducers/postMyExperience";
 import searchResultsReducer from "../reducers/searchResultsReducer";
+import favoritesReducer from "../reducers/favoritesReducer";
 
 const bigReducer = combineReducers({
   myProfile: myProfile,
@@ -13,6 +14,7 @@ const bigReducer = combineReducers({
   experiences: experiences,
   myExperience: myExperience,
   searchResults: searchResultsReducer,
+  favorites: favoritesReducer,
 });
 
 const store = configureStore({
