@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { Button, Modal, Form, Card } from "react-bootstrap";
-import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Plus, Trash } from "react-bootstrap-icons";
 import {
-  FaRegImage,
-  FaRegCalendarAlt,
-  FaCertificate,
-  FaUserTie,
-} from "react-icons/fa";
-import { MdWork } from "react-icons/md";
-import { RiBarChart2Fill } from "react-icons/ri";
-import { IoIosDocument } from "react-icons/io";
+  Button,
+  Modal,
+  Form,
+  OverlayTrigger,
+  Tooltip,
+  Card,
+} from "react-bootstrap";
 import { deleteMyPost } from "../action";
 import { useDispatch } from "react-redux";
+import "../styles/CardProfile.css";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [showSettingsModal, setShowSettingsModal] = useState(false);
 
   const dispatch = useDispatch();
-
-  const deletePost = (id) => {
-    dispatch(deleteMyPost(id));
-  };
 
   useEffect(() => {
     const savedPosts = localStorage.getItem("posts");
@@ -32,7 +29,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     } else {
       fetchPosts();
     }
-  }, []);
+  }, [userId]);
 
   const fetchPosts = async () => {
     try {
@@ -41,7 +38,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
           },
         }
       );
@@ -58,8 +55,20 @@ const ActivityProfile = ({ showButton = true, userId }) => {
     }
   };
 
+  const handleDelete = async (postId) => {
+    try {
+      await dispatch(deleteMyPost(postId));
+      fetchPosts();
+    } catch (error) {
+      console.error("Errore nella cancellazione del post:", error);
+    }
+  };
+
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+
+  const handleSettingsShow = () => setShowSettingsModal(true);
+  const handleSettingsClose = () => setShowSettingsModal(false);
 
   const handlePostContentChange = (e) => {
     setPostContent(e.target.value);
@@ -114,18 +123,20 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           <small className="text-primary">{posts.length} post</small>
         </div>
         <div>
-          {showButton ? (
+          {showButton && (
             <Button
               variant="outline-primary"
               onClick={handleShow}
-              className="me-2"
+              className="me-2 rounded-5"
             >
               <Plus /> Crea un post
             </Button>
-          ) : (
-            <Plus />
           )}
-          <PencilSquare size={25} />
+          <i
+            className="bi bi-pencil fs-5 ms-3"
+            onClick={handleSettingsShow}
+            style={{ cursor: "pointer" }}
+          ></i>
         </div>
       </div>
 
@@ -147,10 +158,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 </div>
                 <Button
                   variant="outline-danger"
-                  onClick={() => {
-                    console.log(post._id)
-                    deletePost(post._id);
-                  }}
+                  onClick={() => handleDelete(post._id)}
                 >
                   <Trash />
                 </Button>
@@ -161,19 +169,61 @@ const ActivityProfile = ({ showButton = true, userId }) => {
       </div>
 
       {showButton && (
-        <div className="card-footer d-flex justify-content-between align-items-center">
-          <div className="footer-content">Mostra tutti i post</div>
+        <div className="card-footer">
+          <Link to="/post-list" className="footer-content">
+            Mostra tutte le attività
+          </Link>
           <ArrowRight />
         </div>
       )}
 
+      {/* Modal for post filtering settings */}
+      <Modal show={showSettingsModal} onHide={handleSettingsClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Quali contenuti vuoi mostrare per primi?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <p>
+              La tua attività recente mostrerà solo i contenuti degli ultimi 360
+              giorni.
+            </p>
+            {[
+              "Post",
+              "Commenti",
+              "Video",
+              "Immagini",
+              "Articoli",
+              "Newsletter",
+              "Eventi",
+              "Documenti",
+            ].map((option) => (
+              <Form.Check
+                key={option}
+                type="radio"
+                name="contentOptions"
+                label={option}
+                id={`content-${option}`}
+              />
+            ))}
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleSettingsClose}>
+            Salva
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for creating a new post */}
       <Modal
         show={showModal}
         onHide={handleClose}
+        size="lg"
         dialogClassName="custom-modal"
       >
         <Modal.Header closeButton>
-          <Modal.Title>placeholder nome utente</Modal.Title>
+          <Modal.Title>Nuovo post</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -186,22 +236,66 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 onChange={handlePostContentChange}
               />
             </Form.Group>
+            <div>
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Aggiungi emoji</Tooltip>}
+              >
+                <i className="bi bi-emoji-smile-fill me-4 icon-pointer"></i>
+              </OverlayTrigger>
+            </div>
             <div className="d-flex justify-content-between mt-3">
               <div className="d-flex align-items-center">
-                <FaRegImage className="me-3" />
-                <FaRegCalendarAlt className="me-3" />
-                <FaCertificate className="me-3" />
-                <MdWork className="me-3" />
-                <RiBarChart2Fill className="me-3" />
-                <IoIosDocument className="me-3" />
-                <FaUserTie />
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Aggiungi contenuto multimediale</Tooltip>}
+                >
+                  <i className="bi bi-image me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Crea un evento</Tooltip>}
+                >
+                  <i className="bi bi-calendar4-week me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Festeggia un’occasione speciale</Tooltip>}
+                >
+                  <i className="bi bi-patch-plus-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Fai sapere che stai assumendo</Tooltip>}
+                >
+                  <i className="bi bi-briefcase-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Crea un sondaggio</Tooltip>}
+                >
+                  <i className="bi bi-bar-chart-line-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Aggiungi un documento</Tooltip>}
+                >
+                  <i className="bi bi-file-earmark-text-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Trova un esperto</Tooltip>}
+                >
+                  <i className="bi bi-person-badge-fill icon-pointer"></i>
+                </OverlayTrigger>
               </div>
               <Button
                 variant="primary"
                 onClick={handlePublish}
                 disabled={!postContent || isPublishing}
+                className={!postContent ? "disabled-button" : "active-button"}
               >
-                Pubblica
+                {isPublishing ? "Pubblicando..." : "Pubblica"}
               </Button>
             </div>
           </Form>
