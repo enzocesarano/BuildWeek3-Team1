@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { ArrowRight, Plus, Trash } from "react-bootstrap-icons";
-import {
-  Button,
-  Modal,
-  Form,
-  OverlayTrigger,
-  Tooltip,
-  Card,
-} from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Button, Modal, Form, Card } from "react-bootstrap";
+import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
+import { FaRegImage, FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
+import { MdWork } from "react-icons/md";
+import { RiBarChart2Fill } from "react-icons/ri";
+import { IoIosDocument } from "react-icons/io";
 import { deleteMyPost } from "../action";
 import { useDispatch } from "react-redux";
 import "../styles/CardProfile.css";
@@ -152,9 +148,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
               <Card.Body className="d-flex justify-content-between align-items-start">
                 <div>
                   <Card.Text>{post.text}</Card.Text>
-                  <Card.Subtitle className="text-muted">
-                    {formatDate(post.createdAt)}
-                  </Card.Subtitle>
+                  <Card.Subtitle className="text-muted">{formatDate(post.createdAt)}</Card.Subtitle>
                 </div>
                 <Button
                   variant="outline-danger"
