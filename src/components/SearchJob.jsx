@@ -2,19 +2,35 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Card, Dropdown, ListGroup } from "react-bootstrap";
 import { FaStar, FaPlus, FaPencilAlt } from "react-icons/fa";
-import { BsListUl } from "react-icons/bs";
+import { BsListUl, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { getProfile, fetchSearchResults } from "../action";
 import MyFooter from "./MyFooter";
 import { fetchDefaultJobs } from "../reducers/searchResultsReducer";
 import { Link } from "react-router-dom";
 
 const SearchJob = ({ setModalShow }) => {
+  const [favorites, setFavorites] = useState([]);
+  const [showFavorites, setShowFavorites] = useState(false);
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchResults = useSelector((state) => state.searchResults);
   const [showFooter, setShowFooter] = useState(false);
   const [query, setQuery] = useState("");
   const footerRef = useRef(null);
+
+  const handleSaveJob = (job) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.some((fav) => fav._id === job._id)) {
+        return prevFavorites.filter((fav) => fav._id !== job._id);
+      } else {
+        return [...prevFavorites, job];
+      }
+    });
+  };
+
+  const handleToggleFavorites = () => {
+    setShowFavorites(!showFavorites);
+  };
 
   useEffect(() => {
     dispatch(getProfile("me"));
@@ -90,10 +106,12 @@ const SearchJob = ({ setModalShow }) => {
           <Card className="mb-3 ">
             <Card.Body className="mx-2 my-1 ">
               <div className="d-flex align-items-center ">
-                <BsListUl className="icon-style me-2" />
-                <Card.Text className="text fw-bold my-2 pointer">Preferenze</Card.Text>
+                <Card.Text className="text fw-bold my-2 bi bi-bookmark-fill  pointer" onClick={handleToggleFavorites}>
+                  <span className="ms-3"> Preferenze</span>
+                </Card.Text>
               </div>
-              <div className="d-flex align-items-center bi bi-bookmark-fill icon-style mt-3  ">
+              <div className="d-flex align-items-center  icon-style mt-3  ">
+                <BsListUl className="icon-style me-2" />
                 <Card.Text className="text fw-bold ms-2 pointer ">Le mie offerte di lavoro</Card.Text>
               </div>
             </Card.Body>
@@ -105,26 +123,52 @@ const SearchJob = ({ setModalShow }) => {
         </Col>
         <Col xs={12} md={6} lg={6}>
           <ListGroup>
-            {searchResults.map((result) => (
-              <ListGroup.Item className="mb-3 border rounded-5" key={result._id}>
-                <Card body className="my-2">
-                  <Card.Title>
-                    <Link className="text-danger fs-4 " to={`/job/${result._id}`}>
-                      {result.title}
-                    </Link>
-                  </Card.Title>
-                  <Card.Text>
-                    <strong>Company:</strong> {result.company_name}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Publication Date:</strong> {new Date(result.publication_date).toLocaleDateString()}
-                  </Card.Text>
-                  <Card.Text>
-                    <strong>Location:</strong> {result.candidate_required_location}
-                  </Card.Text>
-                </Card>
-              </ListGroup.Item>
-            ))}
+            {showFavorites
+              ? favorites.map((job) => (
+                  <ListGroup.Item className="mb-3 border rounded-5" key={job._id}>
+                    <Card body className="my-2">
+                      <Card.Title className="d-flex justify-content-between align-items-center">
+                        <Link className="text-danger fs-4" to={`/job/${job._id}`}>
+                          {job.title}
+                        </Link>
+                      </Card.Title>
+                      <Card.Text>
+                        <strong>Company:</strong> {job.company_name}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Publication Date:</strong> {new Date(job.publication_date).toLocaleDateString()}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Location:</strong> {job.candidate_required_location}
+                      </Card.Text>
+                    </Card>
+                  </ListGroup.Item>
+                ))
+              : searchResults.map((result) => (
+                  <ListGroup.Item className="mb-3 border rounded-5" key={result._id}>
+                    <Card body className="my-2">
+                      <Card.Title className="d-flex justify-content-between align-items-center">
+                        <Link className="text-danger fs-4" to={`/job/${result._id}`}>
+                          {result.title}
+                        </Link>
+                        {favorites.some((fav) => fav._id === result._id) ? (
+                          <BsBookmarkFill className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                        ) : (
+                          <BsBookmark className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                        )}
+                      </Card.Title>
+                      <Card.Text>
+                        <strong>Company:</strong> {result.company_name}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Publication Date:</strong> {new Date(result.publication_date).toLocaleDateString()}
+                      </Card.Text>
+                      <Card.Text>
+                        <strong>Location:</strong> {result.candidate_required_location}
+                      </Card.Text>
+                    </Card>
+                  </ListGroup.Item>
+                ))}
           </ListGroup>
         </Col>
         <Col xs={12} md={3} lg={3}>
