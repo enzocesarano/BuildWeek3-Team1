@@ -12,9 +12,10 @@ const JobDetails = () => {
         console.log(`Fetching job details for ID: ${id}`);
         const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs/${id}`);
         if (response.ok) {
-          const data = await response.json();
-          console.log("Job data:", data);
-          setJob(data);
+          const { data } = await response.json();
+          const jobData = data.find((job) => job._id === id); // Trova il lavoro specifico nell'array
+          console.log("Job data:", jobData);
+          setJob(jobData);
         } else {
           alert("Errore nel recupero dei dettagli del lavoro");
         }

@@ -34,12 +34,9 @@ function AppContent() {
 
   const dispatch = useDispatch();
 
-  
   useEffect(() => {
     dispatch(getProfile("66deab4f4d0def0015cef0f9"));
   }, []);
-
-
 
   return (
     <div className="bgApp">
@@ -68,6 +65,7 @@ function AppContent() {
                   <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
+                  <Route path="/job/:id" element={<JobDetails />} />
                 </Routes>
               </Col>
               {location.pathname.startsWith("/profile") && (
