@@ -14,6 +14,7 @@ import Home from "./components/Home";
 import { getExperience, getProfile } from "./action";
 import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
+import JobDetails from "./components/JobDetails";
 
 function App() {
   return (
@@ -34,19 +35,11 @@ function AppContent() {
   const dispatch = useDispatch();
 
   
-  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
-
   useEffect(() => {
-    setId(location.pathname.split("/").pop());
-  }, [location]);
-
-  useEffect(() => {
-    dispatch(getExperience(id));
-  }, [id]);
-
-  useEffect(() => {
-    dispatch(getProfile('66deab4f4d0def0015cef0f9',''));
+    dispatch(getProfile("66deab4f4d0def0015cef0f9"));
   }, []);
+
+
 
   return (
     <div className="bgApp">
@@ -61,6 +54,12 @@ function AppContent() {
             <Col className="col-12 py-5">
               <SearchJob />
             </Col>
+          ) : location.pathname.startsWith("/job/") ? (
+            <Col className="col-12 mt-5">
+              <Routes>
+                <Route path="/job/:id" element={<JobDetails />} />
+              </Routes>
+            </Col>
           ) : (
             <>
               <Col className="col-12 col-md-8 mt-5">
@@ -71,23 +70,24 @@ function AppContent() {
                   <Route path="/search-job" element={<SearchJob />} />
                 </Routes>
               </Col>
-              {location.pathname === "/profile" ? (
-                <LinkedInSidebar myProfile={myProfile} />
-              ) : (
-                <LinkedInSidebar myProfile={searchProfile} />
+              {location.pathname.startsWith("/profile") && (
+                <LinkedInSidebar myProfile={location.pathname === "/profile" ? myProfile : searchProfile} />
               )}
             </>
           )}
 
-          {location.pathname !== "/search-job" && (
+          {location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
             <Col>
               <MessagingBox />
             </Col>
           )}
         </Row>
       </Container>
-      {location.pathname !== "/" && location.pathname !== "/search-job" && <MyFooter />}
+      {location.pathname !== "/" && location.pathname !== "/search-job" && !location.pathname.startsWith("/job/") && (
+        <MyFooter />
+      )}
     </div>
   );
 }
+
 export default App;

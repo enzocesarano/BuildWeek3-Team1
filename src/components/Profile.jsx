@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button, ButtonGroup, Card } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EditProfile from "./EditProfile";
 import ImageSet from "./ImageSet";
 import { useLocation } from "react-router-dom";
+import { getExperience } from "../action";
 
 const Profile = ({myProfile}) => {
 
@@ -11,6 +12,21 @@ const Profile = ({myProfile}) => {
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShowImg, setModalShowImg] = useState(false);
+  const dispatch = useDispatch();
+  const [id, setId] = useState("66deab4f4d0def0015cef0f9");
+
+  useEffect(() => {
+    setId(location.pathname.split("/").pop());
+  }, [location]);
+
+  useEffect(() => {
+    if(location.pathname !== '/search-job' ){
+      dispatch(getExperience(id));
+    } else if (location.pathname !== '/'){
+      dispatch(getExperience(id));
+    }
+  }, [id]);
+
 
   return (
     <>

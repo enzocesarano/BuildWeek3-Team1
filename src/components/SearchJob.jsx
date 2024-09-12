@@ -1,19 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, Dropdown } from "react-bootstrap";
-import { FaStar, FaPlus } from "react-icons/fa";
-import { getProfile } from "../action";
-import MyFooter from "./MyFooter";
+import { Container, Row, Col, Card, Dropdown, ListGroup } from "react-bootstrap";
+import { FaStar, FaPlus, FaPencilAlt } from "react-icons/fa";
 import { BsListUl } from "react-icons/bs";
-import { FaPencilAlt } from "react-icons/fa";
+import { getProfile, fetchSearchResults } from "../action";
+import MyFooter from "./MyFooter";
+import { fetchDefaultJobs } from "../reducers/searchResultsReducer";
+import { Link } from "react-router-dom";
+
 const SearchJob = ({ setModalShow }) => {
   const dispatch = useDispatch();
   const myProfile = useSelector((state) => state.myProfile.myProfile);
+  const searchResults = useSelector((state) => state.searchResults);
   const [showFooter, setShowFooter] = useState(false);
+  const [query, setQuery] = useState("");
   const footerRef = useRef(null);
 
   useEffect(() => {
     dispatch(getProfile("me"));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchDefaultJobs());
   }, [dispatch]);
 
   const handleShowFooter = (event) => {
@@ -37,6 +45,11 @@ const SearchJob = ({ setModalShow }) => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [showFooter]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearchResults(query));
+  };
 
   return (
     <Container fluid>
@@ -67,12 +80,11 @@ const SearchJob = ({ setModalShow }) => {
                 <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
                 <Card.Text className="text-secondary reduced-font">
                   {myProfile.area} • {""}
-                  <div>
                     {" "}
                     <a href="#" className="text-dark reduced-font-link">
                       <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
                     </a>
-                  </div>
+
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -93,18 +105,24 @@ const SearchJob = ({ setModalShow }) => {
             Pubblica offerta gratuita
           </button>
         </Col>
-
         <Col xs={12} md={6} lg={6}>
-          <Card body>
-            Serve solo a testare come suddividere le colonne , verra sostituita poi con la creazione dei post
-          </Card>
+          <ListGroup>
+                {searchResults.map((result) => (
+                  <ListGroup.Item key={result._id}>
+                    <Card body className="my-2">
+                      <Card.Title>
+                        <Link to={`/job/${result._id}`}>{result.title}</Link>
+                      </Card.Title>
+                    </Card>
+                  </ListGroup.Item>
+                ))}
+          </ListGroup>
         </Col>
-
         <Col xs={12} md={3} lg={3}>
           <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-2 align-items-center">
             <li className="mb-2  ">
               <a
-                href="https://about.linkedin.com/it-it  "
+                href="https://about.linkedin.com/it-it"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none  horizontal-list "
               >
@@ -113,7 +131,7 @@ const SearchJob = ({ setModalShow }) => {
             </li>
             <li className="mb-2">
               <a
-                href="https://it.linkedin.com/accessibility? "
+                href="https://it.linkedin.com/accessibility?"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
@@ -169,7 +187,6 @@ const SearchJob = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://business.linkedin.com/marketing-solutions/ads?trk=n_nav_ads_rr_b&src=li-nav&veh=ad%2Fstart"
-                _
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
