@@ -48,6 +48,8 @@ function AppContent() {
     dispatch(getProfile("66deab4f4d0def0015cef0f9", ""));
   }, []);
 
+
+
   return (
     <div className="bgApp">
       <NavScroll />

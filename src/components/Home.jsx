@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap"
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
+import CenterHome from "./CenterHome";
 
 const Home = ({ setModalShow }) => {
   const dispatch = useDispatch();
@@ -117,10 +118,7 @@ const Home = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={6} lg={6}>
-          <Card body>
-            Serve solo a testare come suddividere le colonne , verra sostituita
-            poi con la creazione dei post
-          </Card>
+        <CenterHome/>
         </Col>
 
         <Col xs={12} md={3} lg={3}>
@@ -168,6 +166,7 @@ const Home = ({ setModalShow }) => {
             <li className="mb-2  ">
               <a
                 href="https://about.linkedin.com/it-it  "
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none  horizontal-list "
               >
@@ -177,6 +176,7 @@ const Home = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://it.linkedin.com/accessibility? "
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
@@ -186,6 +186,7 @@ const Home = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://www.linkedin.com/help/linkedin?trk=footer_d_flagship3_job_home&lipi=urn%3Ali%3Apage%3Ad_flagship3_job_home%3BiD0s3ALZTAStDxD03w08Wg%3D%3D"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
@@ -213,6 +214,7 @@ const Home = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://www.linkedin.com/help/linkedin/answer/a1342443/?lang=it&lipi=urn%3Ali%3Apage%3Ad_flagship3_job_home%3BiD0s3ALZTAStDxD03w08Wg%3D%3D"
+                rel="noopener noreferrer"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
@@ -222,8 +224,8 @@ const Home = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://business.linkedin.com/marketing-solutions/ads?trk=n_nav_ads_rr_b&src=li-nav&veh=ad%2Fstart"
-                _
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
                 Pubblicità

@@ -88,4 +88,3 @@ const MessagingBox = () => {
 };
 
 export default MessagingBox;
-

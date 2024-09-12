@@ -1,17 +1,62 @@
-import React, { useState } from "react";
-import { PencilSquare, ArrowRight, Plus } from "react-bootstrap-icons";
-import { FaRegCalendarAlt, FaCertificate, FaUserTie } from "react-icons/fa";
-import { FaRegImage } from "react-icons/fa6";
+import React, { useEffect, useState } from "react";
+import { Button, Modal, Form, Card } from "react-bootstrap";
+import { Plus, PencilSquare, ArrowRight, Trash } from "react-bootstrap-icons";
+import {
+  FaRegImage,
+  FaRegCalendarAlt,
+  FaCertificate,
+  FaUserTie,
+} from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
-import { Button, Modal, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
-import "../styles/CardProfile.css";
+import { DELETE_POST, deleteMyPost } from "../action";
+import { useDispatch } from "react-redux";
 
-const ActivityProfile = ({ showButton = true }) => {
+const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
+  const [posts, setPosts] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const deletePost = (id) => {
+    dispatch(deleteMyPost(id));
+  };
+
+  useEffect(() => {
+    const savedPosts = localStorage.getItem("posts");
+    if (savedPosts) {
+      setPosts(JSON.parse(savedPosts));
+    } else {
+      fetchPosts();
+    }
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        const userPosts = data.filter((post) => post.user._id === userId);
+        setPosts(userPosts);
+        localStorage.setItem("posts", JSON.stringify(userPosts));
+      } else {
+        console.error("Errore nel recupero dei post");
+      }
+    } catch (error) {
+      console.error("Errore:", error);
+    }
+  };
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
@@ -22,54 +67,111 @@ const ActivityProfile = ({ showButton = true }) => {
 
   const handlePublish = async () => {
     setIsPublishing(true);
-    const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE"
-      },
-      body: JSON.stringify({ text: postContent })
-    });
-    if (response.ok) {
-      setPostContent("");
-      handleClose();
-      console.log(postContent)
-    } else {
-      console.error("Errore nella pubblicazione del post");
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+          body: JSON.stringify({ text: postContent }),
+        }
+      );
+      if (response.ok) {
+        const newPost = await response.json();
+        const updatedPosts = [...posts, newPost];
+        setPosts(updatedPosts);
+        localStorage.setItem("posts", JSON.stringify(updatedPosts));
+        setPostContent("");
+        handleClose();
+      } else {
+        console.error("Errore nella pubblicazione del post");
+      }
+    } catch (error) {
+      console.error("Errore:", error);
     }
     setIsPublishing(false);
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  };
+
   return (
     <div className="card-profile-wrapper bg-light">
-      <div className="card-header">
-        <div className="left-section">
-          <div className="title">Attività</div>
-          <div className="caption text-primary">0 follower</div>
+      <div className="card-header d-flex justify-content-between align-items-center">
+        <div>
+          <h5 className="mb-0">Attività</h5>
+          <small className="text-primary">{posts.length} post</small>
         </div>
-        <div className="right-section">
+        <div>
           {showButton ? (
-            <button type="button" className="btn btn-outline-primary card-button" onClick={handleShow}>
-              Crea un post
-            </button>
+            <Button
+              variant="outline-primary"
+              onClick={handleShow}
+              className="me-2"
+            >
+              <Plus /> Crea un post
+            </Button>
           ) : (
             <Plus />
           )}
           <PencilSquare size={25} />
         </div>
       </div>
+
       <div className="card-content">
-        <div className="content-title">Non hai ancora pubblicato nulla</div>
-        <div className="content-subtitle">I post che condividi appariranno qui</div>
+        {posts.length === 0 ? (
+          <div className="text-center">
+            <h6>Non hai ancora pubblicato nulla</h6>
+            <p>I post che condividi appariranno qui</p>
+          </div>
+        ) : (
+          posts.map((post) => (
+            <Card className="mb-3" key={post._id}>
+              <Card.Body className="d-flex justify-content-between align-items-start">
+                <div>
+                  <Card.Text>{post.text}</Card.Text>
+                  <Card.Subtitle className="text-muted">
+                    {formatDate(post.createdAt)}
+                  </Card.Subtitle>
+                </div>
+                <Button
+                  variant="outline-danger"
+                  onClick={() => {
+                    console.log(post._id)
+                    deletePost(post._id);
+                  }}
+                >
+                  <Trash />
+                </Button>
+              </Card.Body>
+            </Card>
+          ))
+        )}
       </div>
+
       {showButton && (
-        <div className="card-footer">
+        <div className="card-footer d-flex justify-content-between align-items-center">
           <div className="footer-content">Mostra tutti i post</div>
           <ArrowRight />
         </div>
       )}
 
-      <Modal show={showModal} onHide={handleClose} dialogClassName="custom-modal">
+      <Modal
+        show={showModal}
+        onHide={handleClose}
+        dialogClassName="custom-modal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>placeholder nome utente</Modal.Title>
         </Modal.Header>
@@ -82,38 +184,22 @@ const ActivityProfile = ({ showButton = true }) => {
                 placeholder="Di cosa vuoi parlare?"
                 value={postContent}
                 onChange={handlePostContentChange}
-                className="no-focus"
               />
             </Form.Group>
             <div className="d-flex justify-content-between mt-3">
               <div className="d-flex align-items-center">
-                <OverlayTrigger placement="top" overlay={<Tooltip>Immagine</Tooltip>}>
-                  <FaRegImage className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Calendario</Tooltip>}>
-                  <FaRegCalendarAlt className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Certificato</Tooltip>}>
-                  <FaCertificate className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Lavoro</Tooltip>}>
-                  <MdWork className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Grafico</Tooltip>}>
-                  <RiBarChart2Fill className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Documento</Tooltip>}>
-                  <IoIosDocument className="me-4 icon-pointer" />
-                </OverlayTrigger>
-                <OverlayTrigger placement="top" overlay={<Tooltip>Utente</Tooltip>}>
-                  <FaUserTie className="icon-pointer" />
-                </OverlayTrigger>
+                <FaRegImage className="me-3" />
+                <FaRegCalendarAlt className="me-3" />
+                <FaCertificate className="me-3" />
+                <MdWork className="me-3" />
+                <RiBarChart2Fill className="me-3" />
+                <IoIosDocument className="me-3" />
+                <FaUserTie />
               </div>
               <Button
                 variant="primary"
                 onClick={handlePublish}
                 disabled={!postContent || isPublishing}
-                className={!postContent ? "disabled-button" : ""}
               >
                 Pubblica
               </Button>
@@ -126,5 +212,3 @@ const ActivityProfile = ({ showButton = true }) => {
 };
 
 export default ActivityProfile;
-
-
