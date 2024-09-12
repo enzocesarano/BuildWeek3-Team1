@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 const JobDetails = () => {
   const { id } = useParams();
@@ -28,32 +29,35 @@ const JobDetails = () => {
   }, [id]);
 
   return (
-    <Container>
-      {job ? (
-        <Card>
-          <Card.Body>
-            <Card.Title>{job.title}</Card.Title>
-            <Card.Text>
-              <strong>Company:</strong> {job.company_name}
-              <br />
-              <strong>Category:</strong> {job.category}
-              <br />
-              <strong>Job Type:</strong> {job.job_type}
-              <br />
-              <strong>Publication Date:</strong> {new Date(job.publication_date).toLocaleDateString()}
-              <br />
-              <strong>Location:</strong> {job.candidate_required_location}
-              <br />
-              <strong>Salary:</strong> {job.salary || "Not specified"}
-              <br />
-              <strong>Description:</strong> <span dangerouslySetInnerHTML={{ __html: job.description }} />
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      ) : (
-        <p>Loading...</p>
-      )}
-    </Container>
+    <>
+      <h1 className="text-center mb-4"> Qui troverete tutta la descrizione compelta del lavoro</h1>
+      <Container>
+        {job ? (
+          <Card>
+            <Card.Body>
+              <Card.Title>{job.title}</Card.Title>
+              <Card.Text>
+                <strong>Company:</strong> {job.company_name}
+                <br />
+                <strong>Category:</strong> {job.category}
+                <br />
+                <strong>Job Type:</strong> {job.job_type}
+                <br />
+                <strong>Publication Date:</strong> {new Date(job.publication_date).toLocaleDateString()}
+                <br />
+                <strong>Location:</strong> {job.candidate_required_location}
+                <br />
+                <strong>Salary:</strong> {job.salary || "Not specified"}
+                <br />
+                <strong>Description:</strong> <span dangerouslySetInnerHTML={{ __html: job.description }} />
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        ) : (
+          <Spinner animation="border" variant="primary" />
+        )}
+      </Container>
+    </>
   );
 };
 
