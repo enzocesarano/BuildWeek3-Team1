@@ -80,12 +80,11 @@ const SearchJob = ({ setModalShow }) => {
                 <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
                 <Card.Text className="text-secondary reduced-font">
                   {myProfile.area} • {""}
-                  <div>
                     {" "}
                     <a href="#" className="text-dark reduced-font-link">
                       <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
                     </a>
-                  </div>
+
                 </Card.Text>
               </Card.Body>
             </Card>
@@ -108,8 +107,6 @@ const SearchJob = ({ setModalShow }) => {
         </Col>
         <Col xs={12} md={6} lg={6}>
           <ListGroup>
-            {searchResults.map((result) => (
-              <ListGroup>
                 {searchResults.map((result) => (
                   <ListGroup.Item key={result._id}>
                     <Card body className="my-2">
@@ -119,15 +116,13 @@ const SearchJob = ({ setModalShow }) => {
                     </Card>
                   </ListGroup.Item>
                 ))}
-              </ListGroup>
-            ))}
           </ListGroup>
         </Col>
         <Col xs={12} md={3} lg={3}>
           <ul className="list-unstyled d-flex flex-wrap horizontal-list mx-4 my-2 align-items-center">
             <li className="mb-2  ">
               <a
-                href="https://about.linkedin.com/it-it  "
+                href="https://about.linkedin.com/it-it"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none  horizontal-list "
               >
@@ -136,7 +131,7 @@ const SearchJob = ({ setModalShow }) => {
             </li>
             <li className="mb-2">
               <a
-                href="https://it.linkedin.com/accessibility? "
+                href="https://it.linkedin.com/accessibility?"
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
@@ -192,7 +187,6 @@ const SearchJob = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://business.linkedin.com/marketing-solutions/ads?trk=n_nav_ads_rr_b&src=li-nav&veh=ad%2Fstart"
-                _
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >

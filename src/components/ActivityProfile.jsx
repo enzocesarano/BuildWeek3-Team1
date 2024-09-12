@@ -10,7 +10,7 @@ import {
 import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
-import { DELETE_POST, deleteMyPost } from "../action";
+import { deleteMyPost } from "../action";
 import { useDispatch } from "react-redux";
 
 const ActivityProfile = ({ showButton = true, userId }) => {

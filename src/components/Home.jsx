@@ -13,7 +13,7 @@ const Home = ({ setModalShow }) => {
   const footerRef = useRef(null);
 
   useEffect(() => {
-    dispatch(getProfile("66deab4f4d0def0015cef0f9", ""));
+    dispatch(getProfile("66deab4f4d0def0015cef0f9"));
   }, [dispatch]);
 
   const handleShowFooter = (event) => {

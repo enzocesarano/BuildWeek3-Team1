@@ -45,7 +45,7 @@ const JobDetails = () => {
               <br />
               <strong>Salary:</strong> {job.salary || "Not specified"}
               <br />
-              <strong>Description:</strong> <div dangerouslySetInnerHTML={{ __html: job.description }} />
+              <strong>Description:</strong> <span dangerouslySetInnerHTML={{ __html: job.description }} />
             </Card.Text>
           </Card.Body>
         </Card>
