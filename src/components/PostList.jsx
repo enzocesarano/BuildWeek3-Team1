@@ -8,6 +8,7 @@ import {
   BsShare,
   BsSend,
   BsThreeDots,
+  BsPencilSquare,
 } from "react-icons/bs";
 import "../styles/PostList.css";
 import {
@@ -19,12 +20,15 @@ import {
   Trash,
 } from "react-bootstrap-icons";
 import { deleteMyPost } from "../action";
+import EditPost from "./editPost";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [click, setClick] = useState(false)
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const dispatch = useDispatch();
+  const [modalShow, setModalShow] = useState(false);
+  const [postSelect, setPostSelect] = useState()
 
   const handleDelete = async (postId) => {
     try {
@@ -34,6 +38,11 @@ const PostList = () => {
       console.error("Errore nella cancellazione del post:", error);
     }
   };
+
+  const handleClick = (post) => {
+    setPostSelect(post)
+    setModalShow(true)
+  }
 
   useEffect(() => {
     fetchPosts();
@@ -137,12 +146,17 @@ const PostList = () => {
                             </div>
                             <div className="button-title">
                               <Button
-                                variant="outline-danger border-0 me-2"
+                                variant="outline-danger me-2"
                                 onClick={() => handleDelete(post._id)}
                               >
-                                <Trash />
+                                <Trash className="text-danger"/>
                               </Button>
-                              <ThreeDots />
+                              <Button
+                                variant="outline-info"
+                                onClick={() => handleClick(post)}
+                              >
+                                <BsPencilSquare className="text-info" />
+                              </Button>
                             </div>
                           </div>
 
@@ -198,6 +212,8 @@ const PostList = () => {
           </Card>
         </Col>
       </Row>
+      <EditPost show={modalShow} onHide={() => setModalShow(false)} element={postSelect}/>
+        
     </Container>
   );
 };

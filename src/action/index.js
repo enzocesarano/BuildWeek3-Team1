@@ -3,15 +3,16 @@ export const SET_PROFILE = "SET_PROFILE";
 export const GET_ALL_PROFILES = "GET_ALL_PROFILES";
 export const GET_SEARCH_PROFILE = "GET_SEARCH_PROFILE";
 export const GET_EXPERIENCES = "GET_EXPERIENCES";
-export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE"
-export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE"
-export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE"
-export const SET_POSTS = 'SET_POSTS';
-export const ADD_POST = 'ADD_POST';
-export const DELETE_POST = 'DELETE_POST';
-export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE"
+export const POST_MY_EXPERIENCE = "POST_MY_EXPERIENCE";
+export const DELETE_MY_EXPERIENCE = "DELETE_MY_EXPERIENCE";
+export const EDIT_MY_EXPERIENCE = "EDIT_MY_EXPERIENCE";
+export const SET_POSTS = "SET_POSTS";
+export const ADD_POST = "ADD_POST";
+export const DELETE_POST = "DELETE_POST";
+export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
-export const SET_IMG_POST = "SET_IMG_POST"
+export const SET_IMG_POST = "SET_IMG_POST";
+export const EDIT_POST = "EDIT_POST"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -27,8 +28,6 @@ export const deletePost = (postId) => ({
   type: DELETE_POST,
   payload: postId,
 });
-
-
 
 export const getProfile = (id) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -171,7 +170,6 @@ export const setMyImg = (id, endpoint, imageFile) => {
   };
 };
 
-
 export const setImgExp = (id, endpoint, idExp, imageFile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/`;
 
@@ -179,7 +177,7 @@ export const setImgExp = (id, endpoint, idExp, imageFile) => {
   formData.append("experience", imageFile);
 
   return (dispatch) => {
-    fetch(baseEndpoint + id + "/" + endpoint + "/" + idExp + "/picture" , {
+    fetch(baseEndpoint + id + "/" + endpoint + "/" + idExp + "/picture", {
       method: "POST",
       body: formData,
       headers: {
@@ -206,7 +204,6 @@ export const setImgExp = (id, endpoint, idExp, imageFile) => {
   };
 };
 
-
 export const setImgPost = (id, imageFile) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/`;
 
@@ -214,7 +211,7 @@ export const setImgPost = (id, imageFile) => {
   formData.append("post", imageFile);
 
   return (dispatch) => {
-    fetch(baseEndpoint + id , {
+    fetch(baseEndpoint + id, {
       method: "POST",
       body: formData,
       headers: {
@@ -241,8 +238,36 @@ export const setImgPost = (id, imageFile) => {
   };
 };
 
-
-
+export const setMyPost = (idPost, editPost) => {
+  const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/`;
+  return (dispatch) => {
+    fetch(baseEndpoint + idPost, {
+      method: "PUT",
+      body: JSON.stringify({ text: editPost }),
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((updatedPost) => {
+       dispatch({
+        type: EDIT_POST,
+        payload: updatedPost
+       })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
 
 export const getExperience = (id) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
@@ -274,7 +299,8 @@ export const getExperience = (id) => {
 };
 
 export const postMyExperience = (experience) => {
-  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences";
+  const baseEndpoint =
+    "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences";
   return (dispatch) => {
     fetch(baseEndpoint, {
       method: "POST",
@@ -305,7 +331,8 @@ export const postMyExperience = (experience) => {
 };
 
 export const deleteMyExperience = (idExperience) => {
-  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/";
+  const baseEndpoint =
+    "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/";
   return (dispatch) => {
     fetch(baseEndpoint + idExperience, {
       method: "DELETE",
@@ -342,37 +369,38 @@ export const deleteMyPost = (postId) => {
   return async (dispatch) => {
     try {
       console.log("Tentativo di eliminare il post con ID:", postId);
-      
+
       const response = await fetch(baseEndpoint + postId, {
         method: "DELETE",
         headers: {
           Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-      },
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+        },
       });
-      
+
       if (!response.ok) {
         const errorDetails = await response.json();
         console.error("Errore API:", errorDetails);
 
         if (errorDetails.message.includes("id non valido")) {
-          throw new Error("ID non valido. Non è possibile eliminare questo post.");
+          throw new Error(
+            "ID non valido. Non è possibile eliminare questo post."
+          );
         } else {
           throw new Error("Errore durante l'eliminazione del post.");
         }
       }
 
       const text = await response.text();
-      
+
       if (text === "Deleted") {
         dispatch({
           type: DELETE_POST,
           payload: postId,
         });
       } else {
-        console.log()
+        console.log();
       }
-      
     } catch (err) {
       console.error("Errore:", err.message);
       dispatch({
@@ -382,8 +410,6 @@ export const deleteMyPost = (postId) => {
     }
   };
 };
-
-
 
 export const setMyExperience = (editExperience, id) => {
   const baseEndpoint = `https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/`;
@@ -424,7 +450,9 @@ export const setSearchResults = (results) => ({
 
 export const fetchSearchResults = (query) => async (dispatch) => {
   try {
-    const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`);
+    const response = await fetch(
+      `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+    );
     const data = await response.json();
     dispatch({
       type: "SET_SEARCH_RESULTS",
