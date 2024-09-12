@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Image, Col, Row, Container, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BsHandThumbsUp, BsChat, BsShare, BsSend, BsThreeDots } from "react-icons/bs";
+import {
+  BsHandThumbsUp,
+  BsChat,
+  BsShare,
+  BsSend,
+  BsThreeDots,
+} from "react-icons/bs";
 import "../styles/PostList.css";
 
 const PostList = () => {
@@ -11,15 +17,18 @@ const PostList = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch("https://striveschool-api.herokuapp.com/api/posts/", {
-        headers: {
-          Authorization: "Bearer YOUR_TOKEN",
-        },
-      });
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+        }
+      );
       const data = await response.json();
       setPosts(data);
     };
-
     fetchPosts();
   }, []);
 
@@ -71,12 +80,11 @@ const PostList = () => {
                   />
                   <p className="mt-3">Niente da vedere per ora</p>
                   <p>
-                    I contenuti a cui aggiungi reazioni, che pubblichi, condividi
-                    o commenti appariranno qui.
+                    I contenuti a cui aggiungi reazioni, che pubblichi,
+                    condividi o commenti appariranno qui.
                   </p>
                 </Container>
               ) : (
-
                 // Layout per la lista dei post
                 posts.map((post) => (
                   <Card key={post._id} className="mb-3">
@@ -94,7 +102,9 @@ const PostList = () => {
                           <div className="d-flex justify-content-between align-items-center">
                             <div>
                               <strong>{myProfile.name}</strong> • Tu
-                              <p className="text-muted">(placeholder tempo dalla pubblicazione) • 🌍</p>
+                              <p className="text-muted">
+                                (placeholder tempo dalla pubblicazione) • 🌍
+                              </p>
                             </div>
                             <div>
                               <BsThreeDots />
