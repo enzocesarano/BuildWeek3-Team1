@@ -11,6 +11,8 @@ export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
+export const SET_IMG_POST = "SET_IMG_POST";
+export const EDIT_POST = "EDIT_POST"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -208,6 +210,71 @@ export const setImgExp = (id, endpoint, idExp, imageFile) => {
   };
 };
 
+export const setImgPost = (id, imageFile) => {
+  const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/`;
+
+  const formData = new FormData();
+  formData.append("post", imageFile);
+
+  return (dispatch) => {
+    fetch(baseEndpoint + id, {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((updatedProfile) => {
+        dispatch({
+          type: SET_IMG_POST,
+          payload: updatedProfile,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
+export const setMyPost = (idPost, editPost) => {
+  const baseEndpoint = `https://striveschool-api.herokuapp.com/api/posts/`;
+  return (dispatch) => {
+    fetch(baseEndpoint + idPost, {
+      method: "PUT",
+      body: JSON.stringify({ text: editPost }),
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nell'aggiornamento del profilo");
+        }
+      })
+      .then((updatedPost) => {
+       dispatch({
+        type: EDIT_POST,
+        payload: updatedPost
+       })
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
 export const getExperience = (id) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/";
   return (dispatch) => {
@@ -238,7 +305,8 @@ export const getExperience = (id) => {
 };
 
 export const postMyExperience = (experience) => {
-  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences";
+  const baseEndpoint =
+    "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences";
   return (dispatch) => {
     fetch(baseEndpoint, {
       method: "POST",
@@ -269,7 +337,8 @@ export const postMyExperience = (experience) => {
 };
 
 export const deleteMyExperience = (idExperience) => {
-  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/";
+  const baseEndpoint =
+    "https://striveschool-api.herokuapp.com/api/profile/66deab4f4d0def0015cef0f9/experiences/";
   return (dispatch) => {
     fetch(baseEndpoint + idExperience, {
       method: "DELETE",
@@ -301,36 +370,50 @@ export const deleteMyExperience = (idExperience) => {
   };
 };
 
-export const deleteMyPost = (idPost) => {
+export const deleteMyPost = (postId) => {
   const baseEndpoint = "https://striveschool-api.herokuapp.com/api/posts/";
-  return (dispatch) => {
-    fetch(baseEndpoint + idPost, {
-      method: "DELETE",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error("Errore nell'aggiornamento del profilo");
-        }
-      })
-      .then((text) => {
-        if (text === "Deleted") {
-          dispatch({
-            type: DELETE_POST,
-            payload: idPost,
-          });
-        } else {
-          console.error("Risposta inaspettata:", text);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
+  return async (dispatch) => {
+    try {
+      console.log("Tentativo di eliminare il post con ID:", postId);
+
+      const response = await fetch(baseEndpoint + postId, {
+        method: "DELETE",
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+        },
       });
+
+      if (!response.ok) {
+        const errorDetails = await response.json();
+        console.error("Errore API:", errorDetails);
+
+        if (errorDetails.message.includes("id non valido")) {
+          throw new Error(
+            "ID non valido. Non è possibile eliminare questo post."
+          );
+        } else {
+          throw new Error("Errore durante l'eliminazione del post.");
+        }
+      }
+
+      const text = await response.text();
+
+      if (text === "Deleted") {
+        dispatch({
+          type: DELETE_POST,
+          payload: postId,
+        });
+      } else {
+        console.log();
+      }
+    } catch (err) {
+      console.error("Errore:", err.message);
+      dispatch({
+        type: "DELETE_POST_ERROR",
+        payload: err.message,
+      });
+    }
   };
 };
 
@@ -373,7 +456,9 @@ export const setSearchResults = (results) => ({
 
 export const fetchSearchResults = (query) => async (dispatch) => {
   try {
-    const response = await fetch(`https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`);
+    const response = await fetch(
+      `https://strive-benchmark.herokuapp.com/api/jobs?search=${query}`
+    );
     const data = await response.json();
     dispatch({
       type: "SET_SEARCH_RESULTS",

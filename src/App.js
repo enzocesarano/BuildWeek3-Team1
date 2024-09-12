@@ -2,10 +2,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ProfileArea from "./components/ProfileArea";
+import PostList from "./components/PostList";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "./store";
 import { Col, Container, Row } from "react-bootstrap";
-import LinkedInSidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar";
 import MyFooter from "./components/MyFooter";
 import MessagingBox from "./components/MessagingBox";
 import NavScroll from "./components/MyNav";
@@ -61,7 +62,6 @@ function AppContent() {
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
-                  <Route path="/" element={<Home />} />
                   <Route path="/profile/66deab4f4d0def0015cef0f9" element={<ProfileArea myProfile={myProfile} />} />
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
@@ -69,8 +69,10 @@ function AppContent() {
                   <Route path="/job-details" element={<JobDetails />} />
                 </Routes>
               </Col>
-              {location.pathname.startsWith("/profile") && (
-                <LinkedInSidebar myProfile={location.pathname === "/profile" ? myProfile : searchProfile} />
+              {location.pathname === "/profile" ? (
+                myProfile && <Sidebar myProfile={myProfile} />
+              ) : (
+                searchProfile && <Sidebar myProfile={searchProfile} />
               )}
             </>
           )}
@@ -88,5 +90,6 @@ function AppContent() {
     </div>
   );
 }
+
 
 export default App;

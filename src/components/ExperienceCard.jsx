@@ -17,7 +17,7 @@ const ExperienceCard = ({ showButton = true }) => {
   const [modalShowEdit, setModalShowEdit] = useState(false);
   const [modalShowImg, setModalShowImg] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState(null);
-  const [selectedImg, setSelectedImg] = useState(null)
+  const [selectedImg, setSelectedImg] = useState(null);
 
   const formatDate = (format) => {
     const date = new Date(format);
@@ -65,16 +65,32 @@ const ExperienceCard = ({ showButton = true }) => {
               >
                 <div className="d-flex">
                   <div className="imageSet me-3">
-                    {location.pathname === "/profile/66deab4f4d0def0015cef0f9" ? (<Image
-                      src={element.image ? element.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"}
-                      className="w-100 pointer"
-                      alt={element.company}
-                      onClick={() => {setModalShowImg(true); setSelectedImg(element)}}
-                    />) : (<Image
-                      src={element.image ? element.image : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"}
-                      className="w-100"
-                      alt={element.company}
-                    />)}
+                    {location.pathname ===
+                    "/profile/66deab4f4d0def0015cef0f9" ? (
+                      <Image
+                        src={
+                          element.image
+                            ? element.image
+                            : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"
+                        }
+                        className="w-100 pointer"
+                        alt={element.company}
+                        onClick={() => {
+                          setModalShowImg(true);
+                          setSelectedImg(element);
+                        }}
+                      />
+                    ) : (
+                      <Image
+                        src={
+                          element.image
+                            ? element.image
+                            : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"
+                        }
+                        className="w-100"
+                        alt={element.company}
+                      />
+                    )}
                   </div>
                   <div>
                     <h4 className="text-dark">{element.role}</h4>
