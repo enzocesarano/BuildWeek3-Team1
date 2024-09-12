@@ -109,17 +109,13 @@ const SearchJob = ({ setModalShow }) => {
         <Col xs={12} md={6} lg={6}>
           <ListGroup>
             {searchResults.map((result) => (
-              <ListGroup>
-                {searchResults.map((result) => (
-                  <ListGroup.Item key={result._id}>
-                    <Card body className="my-2">
-                      <Card.Title>
-                        <Link to={`/job/${result._id}`}>{result.title}</Link>
-                      </Card.Title>
-                    </Card>
-                  </ListGroup.Item>
-                ))}
-              </ListGroup>
+              <ListGroup.Item key={result._id}>
+                <Card body className="my-2">
+                  <Card.Title>
+                    <Link to={`/job/${result._id}`}>{result.title}</Link>
+                  </Card.Title>
+                </Card>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         </Col>
@@ -192,7 +188,6 @@ const SearchJob = ({ setModalShow }) => {
             <li className="mb-2">
               <a
                 href="https://business.linkedin.com/marketing-solutions/ads?trk=n_nav_ads_rr_b&src=li-nav&veh=ad%2Fstart"
-                _
                 target="_blank"
                 className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
               >
