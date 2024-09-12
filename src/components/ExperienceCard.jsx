@@ -70,13 +70,13 @@ const ExperienceCard = ({ showButton = true }) => {
                 <i
                   className="bi bi-trash3-fill fs-4 me-3 pointer"
                   title="Elimina"
-                  onClick={() => handleDeleteExperience(element._id)}
+                  onClick={() => handleDeleteExperience(element._id)} //questa è la funzione che permette di eliminare la card creata
                 ></i>
                 <i
                   className="bi bi-pencil-square fs-4 pointer"
                   title="Modifica"
                   onClick={() => {
-                    setSelectedExperience(element);
+                    setSelectedExperience(element); //questa è la funzione che permette la modifica
                     setModalShowEdit(true);
                   }}
                 ></i>
