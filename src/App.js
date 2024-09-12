@@ -66,6 +66,7 @@ function AppContent() {
                   <Route path="/profile/:id" element={<ProfileArea myProfile={searchProfile} />} />
                   <Route path="/search-job" element={<SearchJob />} />
                   <Route path="/job/:id" element={<JobDetails />} />
+                  <Route path="/job-details" element={<JobDetails />} />
                 </Routes>
               </Col>
               {location.pathname.startsWith("/profile") && (
