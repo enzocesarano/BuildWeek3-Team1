@@ -51,7 +51,7 @@ function NavScroll() {
 
   return (
     <Navbar expand="lg" className="bg-white position-fixed z-1" style={{ width: "100%" }}>
-      <Container fluid style={{ maxWidth: "70%" }}>
+      <Container fluid style={{ maxWidth: "80%" }}>
         <Navbar.Brand href="#">
           <img
             src="https://store-images.s-microsoft.com/image/apps.31120.9007199266245564.44dc7699-748d-4c34-ba5e-d04eb48f7960.bc4172bd-63f0-455a-9acd-5457f44e4473"
@@ -79,7 +79,7 @@ function NavScroll() {
             <SearchModal filteredProfiles={filteredProfiles} onProfileSelect={handleProfileSelect} />
           )}
         </Form>
-        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Toggle className="d-md-none d-lg-none" aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav className="ms-auto my-1 my-lg-0 " navbarScroll>
             <Link to="/" className="nav-link">

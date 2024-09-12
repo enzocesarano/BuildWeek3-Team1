@@ -67,6 +67,7 @@ function AppContent() {
                   <Route path="/search-job" element={<SearchJob />} />
                   <Route path="/job/:id" element={<JobDetails />} />
                   <Route path="/job-details" element={<JobDetails />} />
+                  <Route path="/post-list" element={<PostList />} />
                 </Routes>
               </Col>
               {location.pathname === "/profile" ? (
