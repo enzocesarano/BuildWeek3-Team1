@@ -44,7 +44,48 @@ const EditPost = (props) => {
           </div>
           <div className="d-flex justify-content-between mt-3">
             <div className="d-flex align-items-center">
-              {/* Bottoni e altre icone */}
+            <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Aggiungi contenuto multimediale</Tooltip>}
+                >
+                  <i className="bi bi-image me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Crea un evento</Tooltip>}
+                >
+                  <i className="bi bi-calendar4-week me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Festeggia un’occasione speciale</Tooltip>}
+                >
+                  <i className="bi bi-patch-plus-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Fai sapere che stai assumendo</Tooltip>}
+                >
+                  <i className="bi bi-briefcase-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Crea un sondaggio</Tooltip>}
+                >
+                  <i className="bi bi-bar-chart-line-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Aggiungi un documento</Tooltip>}
+                >
+                  <i className="bi bi-file-earmark-text-fill me-4 icon-pointer"></i>
+                </OverlayTrigger>
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Trova un esperto</Tooltip>}
+                >
+                  <i className="bi bi-person-badge-fill icon-pointer"></i>
+                </OverlayTrigger>
             </div>
             <Button
               variant="primary"
