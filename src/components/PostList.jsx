@@ -116,24 +116,24 @@ const PostList = () => {
                       <hr />
                       <Row>
                         <Col className="text-center">
-                          <Button variant="link">
+                          <div>
                             <BsHandThumbsUp /> Consiglia
-                          </Button>
+                          </div>
                         </Col>
                         <Col className="text-center">
-                          <Button variant="link">
+                          
                             <BsChat /> Commenta
-                          </Button>
+                          
                         </Col>
                         <Col className="text-center">
-                          <Button variant="link">
+                          
                             <BsShare /> Diffondi il post
-                          </Button>
+                          
                         </Col>
                         <Col className="text-center">
-                          <Button variant="link">
+                         
                             <BsSend /> Invia
-                          </Button>
+                          
                         </Col>
                       </Row>
                     </Card.Body>
