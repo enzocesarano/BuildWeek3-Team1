@@ -64,14 +64,11 @@ const Home = ({ setModalShow }) => {
                     {myProfile.name} {myProfile.surname}
                   </Card.Title>
                 </div>
-                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">
-                  {myProfile.title}
-                </Card.Text>
+                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
                 <Card.Text className="text-secondary reduced-font">
                   {myProfile.area} • <br />
                   <a href="#" className="text-dark reduced-font-link">
-                    <FaStar className="icon icon-blue" /> Prova 1 mese di
-                    Premium per 0 EUR
+                    <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
                   </a>
                 </Card.Text>
               </Card.Body>
@@ -85,8 +82,7 @@ const Home = ({ setModalShow }) => {
               </Card.Title>
               <Card.Text>
                 <a href="#" className="premium-link">
-                  <FaStar className="icon icon-blue" /> Prova 1 mese di Premium
-                  per 0 EUR
+                  <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
                 </a>
               </Card.Text>
             </Card.Body>
@@ -95,17 +91,14 @@ const Home = ({ setModalShow }) => {
           <Card className="mb-3">
             <Card.Body>
               <Card.Title className="black-title">Collegamento</Card.Title>
-              <Card.Text className="secondary-text">
-                Espandi la tua rete
-              </Card.Text>
+              <Card.Text className="secondary-text">Espandi la tua rete</Card.Text>
             </Card.Body>
           </Card>
 
           <Card>
             <ListGroup variant="flush">
               <ListGroup.Item className="list-item cursor-pointer-pop">
-                <i className="bi bi-bookmark-fill icon-small"></i> Elementi
-                salvati
+                <i className="bi bi-bookmark-fill icon-small"></i> Elementi salvati
               </ListGroup.Item>
               <ListGroup.Item className="list-item cursor-pointer-pop">
                 <i className="bi bi-people-fill icon-small"></i> Gruppi
@@ -118,36 +111,24 @@ const Home = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={6} lg={6}>
-        <CenterHomeTest />
+          <CenterHomeTest />
         </Col>
 
         <Col xs={12} md={3} lg={3}>
           <Card>
             <Card.Body>
-              <Card.Title className="black-title fw-bold fs-5">
-                LinkedIn Notizie
-              </Card.Title>
-              <Card.Text className="secondary-text fw-bold fontStory">
-                Storie principali
-              </Card.Text>
+              <Card.Title className="black-title fw-bold fs-5">LinkedIn Notizie</Card.Title>
+              <Card.Text className="secondary-text fw-bold fontStory">Storie principali</Card.Text>
               <div className="news-item">
-                <span className="firstp fw-bold ">
-                  I migliori MBA per dare slancio alla tua carriera
-                </span>
-                <p className="text-secondary secP">
-                  5 giorni fa • 13.828 lettori
-                </p>
+                <span className="firstp fw-bold ">I migliori MBA per dare slancio alla tua carriera</span>
+                <p className="text-secondary secP">5 giorni fa • 13.828 lettori</p>
               </div>
               <div className="news-item">
-                <span className="firstp fw-bold">
-                  I lavori più richiesti nei prossimi 5 anni
-                </span>
+                <span className="firstp fw-bold">I lavori più richiesti nei prossimi 5 anni</span>
                 <p className="text-secondary secP">1 giorno fa • 861 lettori</p>
               </div>
               <div className="news-item">
-                <span className="firstp fw-bold">
-                  Che si dice della Nutella vegana
-                </span>
+                <span className="firstp fw-bold">Che si dice della Nutella vegana</span>
                 <p className="text-secondary secP">22 ore fa • 599 lettori</p>
               </div>
               <div className="news-item">
@@ -155,9 +136,7 @@ const Home = ({ setModalShow }) => {
                 <p className="text-secondary secP">3 ore fa • 443 lettori</p>
               </div>
               <div className="news-item">
-                <span className="firstp fw-bold">
-                  Arriva il Voucher 3I per l'innovazione
-                </span>
+                <span className="firstp fw-bold">Arriva il Voucher 3I per l'innovazione</span>
                 <p className="text-secondary secP">3 giorni fa • 345 lettori</p>
               </div>
             </Card.Body>
