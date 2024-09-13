@@ -8,75 +8,42 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { setImgPost, setMyPost } from "../action";
-import { Cropper } from "react-cropper";
 
-const EditPost2 = ({ show, onHide, element, function1 }) => {
-  const [image, setImage] = useState(null);
-  const [cropper, setCropper] = useState(null);
-  const fileInputRef = useRef(null);
-  const cropperRef = useRef(null);
+const SendPost = ({ show, onHide, function1}) => {
 
-  useEffect(() => {
-    if (cropperRef.current) {
-      setCropper(cropperRef.current.cropper);
-    }
-  }, [image]);
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
-  const [modalShow, setModalShow] = useState(false);
-  const [postSelect, setPostSelect] = useState();
-
-  const handleClick = (post) => {
-    setPostSelect(post);
-    setModalShow(true);
-  };
-
-  useEffect(() => {
-    if (element) {
-      setValue(element.text);
-    }
-  }, [element]);
-
-  const handleSubmit = (id, post) => {
-    dispatch(setMyPost(id, post));
-    if (cropper) {
-      const canvas = cropper.getCroppedCanvas();
-      if (canvas) {
-        canvas.toBlob((blob) => {
-          if (blob) {
-            dispatch(setImgPost(element._id, blob));
-          } else {
-            console.error("Impossibile ottenere il blob dell'immagine");
-          }
-        }, "image/jpeg");
+  const handleSubmit = async (postContent) => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmRlYWI0ZjRkMGRlZjAwMTVjZWYwZjkiLCJpYXQiOjE3MjU4Njg5NzgsImV4cCI6MTcyNzA3ODU3OH0.vpenBJjVmYH1g5nrjB1BJV-hd86LkH7gLC7uZYGlZiE",
+          },
+          body: JSON.stringify({ text: postContent }),
+        }
+      );
+      if (response.ok) {
+        setValue("");
+        onHide()
+        function1(() => function1);
+        console.log(function1)
       } else {
-        console.error("Impossibile ottenere il canvas ritagliato");
+        console.error("Errore nella pubblicazione del post");
       }
-    } else {
-      console.error("Cropper non è stato inizializzato");
+    } catch (error) {
+      console.error("Errore:", error);
     }
-    function1(() => function1)
-    onHide();
   };
 
   return (
     <Modal show={show} onHide={onHide} size="lg" dialogClassName="custom-modal">
       <Modal.Header closeButton>
-        <Modal.Title>Modifica post</Modal.Title>
+        <Modal.Title>Crea un nuovo post</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -102,7 +69,6 @@ const EditPost2 = ({ show, onHide, element, function1 }) => {
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>Aggiungi contenuto multimediale</Tooltip>}
-                onClick={() => handleClick(element._id)}
               >
                 <i className="bi bi-image me-4 icon-pointer"></i>
               </OverlayTrigger>
@@ -143,43 +109,17 @@ const EditPost2 = ({ show, onHide, element, function1 }) => {
                 <i className="bi bi-person-badge-fill icon-pointer"></i>
               </OverlayTrigger>
             </div>
-            <Form.Control
-              type="file"
-              className="w-50 inputImg"
-              ref={fileInputRef}
-              onChange={handleImageChange}
-            />
             <Button
-              variant="primary"
-              onClick={() =>{handleSubmit(element._id, value); function1()}}
+              variant="success"
+              onClick={() => handleSubmit(value)}
             >
-              Modifica
+              Crea
             </Button>
           </div>
         </Form>
-        <div className="text-light text-center w-100 mt-4">
-          {image ? (
-            <Cropper
-              src={image}
-              style={{ height: 400, width: "100%" }}
-              aspectRatio={16/9}
-              guides={false}
-              ref={cropperRef}
-            />
-          ) : (
-            <Image className="w-100 mt-4"
-              src={
-                element
-                  ? element.image
-                  : "https://www.bbcpump.com/wp-content/uploads/manufacturer/industrial-salesperson/bbc-sales-career-icon.png"
-              }
-            />
-          )}
-        </div>
       </Modal.Body>
     </Modal>
   );
 };
 
-export default EditPost2;
-
+export default SendPost;

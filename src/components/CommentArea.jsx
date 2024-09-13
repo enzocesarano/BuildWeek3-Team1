@@ -2,11 +2,26 @@ import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaAngleRight } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, getComments, postComments } from "../action";
+import {
+  deleteComment,
+  editComment,
+  getComments,
+  postComments,
+} from "../action";
+import ModalEditPost from "./ModalEditPost";
 
 const CommentArea = ({ post }) => {
   const comments = useSelector((state) => state.comments.comments);
   const dispatch = useDispatch();
+
+  const [commentSelect, setCommentSelect] = useState();
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleClick = (comment) => {
+    setCommentSelect(comment); // Imposta il commento selezionato
+    setModalShow(true);
+  };
+
   const arrayAllProfiles2 = useSelector(
     (state) => state.arrayAllProfiles.arrayAllProfiles
   );
@@ -34,7 +49,7 @@ const CommentArea = ({ post }) => {
       elementId: post._id,
     });
     dispatch(getComments());
-    setClick(!click)
+    setClick(!click);
   };
 
   useEffect(() => {
@@ -94,7 +109,7 @@ const CommentArea = ({ post }) => {
             >
               <div>
                 <p className="m-0 fs-small text-secondary">{element.author}</p>
-                <h6>{element.comment}</h6>
+                <h6 className="text-start">{element.comment}</h6>
               </div>
 
               <div className="d-flex justify-content-between align-items-center">
@@ -104,16 +119,43 @@ const CommentArea = ({ post }) => {
                   </p>
                   <h6 className="text-end">Rate: {element.rate}</h6>
                 </div>
-                <div>
+                <div className="d-flex align-items-center">
                   {arrayAllProfiles2.find(
                     (profile) => profile.email === element.author
-                  ) && (
+                  ) ? (
                     <Button
                       variant="outline-danger"
                       className="border-0"
                       onClick={() => handleDeleteComment(element._id)}
                     >
-                      <i className="bi bi-trash3 text-danger"></i>
+                      <i className="bi bi-trash3"></i>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline-secondary"
+                      className="border-0"
+                      disabled
+                    >
+                      <i className="bi bi-trash3 text-secondary"></i>
+                    </Button>
+                  )}
+                  {arrayAllProfiles2.find(
+                    (profile) => profile.email === element.author
+                  ) ? (
+                    <Button
+                      variant="outline-warning"
+                      className="border-0"
+                      onClick={() => handleClick(element)}
+                    >
+                      <i className="bi bi-pencil-square text-dark"></i>
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="outline-secondary"
+                      className="border-0"
+                      disabled
+                    >
+                      <i className="bi bi-pencil-square text-secondary"></i>
                     </Button>
                   )}
                 </div>
@@ -122,6 +164,15 @@ const CommentArea = ({ post }) => {
           );
         }
       })}
+
+      {commentSelect && (
+        <ModalEditPost
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          post={post}
+          commentElement={commentSelect}
+        />
+      )}
     </>
   );
 };

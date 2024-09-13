@@ -47,8 +47,6 @@ const ImageSetPost = (props) => {
     } else {
       console.error("Cropper non è stato inizializzato");
     }
-
-    setImage(null);
     props.onHide();
   };
 

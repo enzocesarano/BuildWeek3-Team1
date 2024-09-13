@@ -1,6 +1,4 @@
-import "bootstrap-icons/font/bootstrap-icons.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+
 import ProfileArea from "./components/ProfileArea";
 import PostList from "./components/PostList";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -16,6 +14,9 @@ import { getComments, getExperience, getProfile } from "./action";
 import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
 import JobDetails from "./components/JobDetails";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (
