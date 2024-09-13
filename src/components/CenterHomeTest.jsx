@@ -176,9 +176,6 @@ const CenterHomeTest = ({ loggedInUserId }) => {
             >
               Crea un nuovo post...{" "}
             </Button>
-            <Button type="submit" variant="outline-success">
-              <FaAngleRight className="fs-4" />
-            </Button>
           </Card.Body>
         </Card>
         <SendPost
