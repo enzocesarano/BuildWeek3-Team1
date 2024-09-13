@@ -68,7 +68,7 @@ const MessagingBox = () => {
               className="w-75"
             />
           </div>
-          <div className="no-messages">
+          <div className="no-messages d-flex flex-column align-items-center">
             <h5 className="fs-3 fw-normal mb-3">Ancora nessun messaggio</h5>
             <p>
               Entra in contatto e dai il via a una conversazione per far
