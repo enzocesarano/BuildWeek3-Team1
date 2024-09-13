@@ -13,6 +13,7 @@ export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export const SET_IMG_POST = "SET_IMG_POST";
 export const EDIT_POST = "EDIT_POST"
+export const GET_COMMENTS = "GET_COMMENTS"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -468,6 +469,36 @@ export const fetchSearchResults = (query) => async (dispatch) => {
     console.error(error);
   }
 };
+
+
+export const getComments = (id) => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+  return (dispatch) => {
+    fetch(baseEndpoint + id, {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((comments) => {
+        dispatch({
+          type: GET_COMMENTS,
+          payload: comments,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+}
 
 
 

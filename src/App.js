@@ -12,7 +12,7 @@ import MessagingBox from "./components/MessagingBox";
 import NavScroll from "./components/MyNav";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./components/Home";
-import { getExperience, getProfile } from "./action";
+import { getComments, getExperience, getProfile } from "./action";
 import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
 import JobDetails from "./components/JobDetails";
@@ -30,15 +30,14 @@ function App() {
 
 function AppContent() {
   const location = useLocation();
-
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
-  
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProfile("66deab4f4d0def0015cef0f9"));
+    dispatch(getComments(''))
   }, []);
 
   return (

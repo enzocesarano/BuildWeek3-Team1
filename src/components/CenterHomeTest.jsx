@@ -19,6 +19,7 @@ import {
   Send,
 } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import CommentArea from "./CommentArea";
 
 const CenterHomeTest = ({ loggedInUserId }) => {
   const [state, dispatch] = useReducer(postsReducer, { posts: [] });
@@ -28,6 +29,15 @@ const CenterHomeTest = ({ loggedInUserId }) => {
   const arrayAllProfiles2 = useSelector(
     (state) => state.arrayAllProfiles.arrayAllProfiles
   );
+
+  const comments = useSelector((state) => state.comments.comments);
+
+  const [visibleComments, setVisibleComments] = useState(null);
+
+  const handleComment = (postId) => {
+    setVisibleComments((prevPostId) => (prevPostId === postId ? null : postId));
+  };
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -50,7 +60,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
       const sortedPosts = userPosts.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-      const latestPosts = sortedPosts.slice(0, 10);
+      const latestPosts = sortedPosts.slice(0, 40);
 
       dispatch(setPosts(latestPosts));
     } catch (error) {
@@ -162,16 +172,30 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                       </div>
                     )}
 
-                    <Card.Footer className="text-muted card-home-footer">
-                      Pubblicato il {new Date(post.createdAt).toLocaleString()}
+                    <Card.Footer className="text-muted card-home-footer d-flex justify-content-between">
+                      <p>
+                        Pubblicato il{" "}
+                        {new Date(post.createdAt).toLocaleString()}
+                      </p>
+                      <p>
+                        Commenti:{" "}
+                        {
+                          comments.filter(
+                            (comment) => comment.elementId === post._id
+                          ).length
+                        }
+                      </p>
                     </Card.Footer>
                     <div className="card-home-button">
                       <button type="button" className="btn  text-dark">
                         <HandThumbsUp className="m-2" />
                         Consiglia
                       </button>
-                      <button type="button" className="btn  text-dark">
-                        {" "}
+                      <button
+                        type="button"
+                        className="btn  text-dark"
+                        onClick={() => handleComment(post._id)}
+                      >
                         <ChatLeftText className="m-2" />
                         Commenta
                       </button>
@@ -184,9 +208,12 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         Invia
                       </button>
                     </div>
-                    <div className="d-none">
-                      <h6 className="text-dark">COMMENTI</h6>
-                    </div>
+                    {visibleComments === post._id &&
+                      comments.map((element, i) => {
+                        if (element.elementId === post._id) {
+                          return <CommentArea key={i} commenti={element} />;
+                        }
+                      })}
                   </Card.Body>
                 </Card>
               );
