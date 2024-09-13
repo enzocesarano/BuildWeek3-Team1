@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { Container, Form, Navbar, NavDropdown, Nav, Button } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi";
 import {
@@ -124,7 +124,7 @@ function NavScroll() {
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item className="visualizProfile-button" as={Link} to="/profile/66deab4f4d0def0015cef0f9">
-                  <button >Visualizza profilo</button>
+                  <Button className="justify-content-center" >Visualizza profilo</Button>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4">
