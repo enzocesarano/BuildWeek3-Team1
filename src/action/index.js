@@ -468,3 +468,12 @@ export const fetchSearchResults = (query) => async (dispatch) => {
     console.error(error);
   }
 };
+
+
+
+/* 
+fetch("https://striveschool-api.herokuapp.com/api/put-your-endpoint-here/", {
+headers: {
+"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg"
+}
+}) */
