@@ -9,18 +9,33 @@ const MessagingBox = () => {
     setIsOpen(!isOpen);
   };
 
-  const popover = (
+  const popoverDot = (
     <Popover id="popover-basic">
       <Popover.Body>
         <div>
-          <div>Gestisci conversazioni</div>
-          <div>Impostazioni messaggistica</div>
-          <div>Posta in arrivo di richieste messaggi</div>
-          <div>Imposta messaggio di assenza</div>
+          <div className="cursor-pointer-pop mb-2">Gestisci conversazioni</div>
+          <div className="cursor-pointer-pop mb-2">Impostazioni messaggistica</div>
+          <div className="cursor-pointer-pop mb-2">Posta in arrivo di richieste messaggi</div>
+          <div className="cursor-pointer-pop mb-2">Imposta messaggio di assenza</div>
         </div>
       </Popover.Body>
     </Popover>
   );
+  const popoverFilt = (
+    <Popover id="popover-basic">
+      <Popover.Body>
+        <div>
+          <div className="cursor-pointer-pop mb-2">Da leggere</div>
+          <div className="cursor-pointer-pop mb-2">Contrassegnati con una stella</div>
+          <div className="cursor-pointer-pop mb-2">Messaggi in mail</div>
+          <div className="cursor-pointer-pop mb-2">I miei collegamenti</div>
+          <div className="cursor-pointer-pop mb-2">Archiviati</div>
+          <div className="cursor-pointer-pop mb-2">Posta indesiderata</div>
+        </div>
+      </Popover.Body>
+    </Popover>
+  );
+
   const myProfile = useSelector((state) => state.myProfile.myProfile);
 
   return (
@@ -33,7 +48,7 @@ const MessagingBox = () => {
           Messaggistica
         </Button>
         <div className="icons d-flex">
-          <OverlayTrigger trigger="click" placement={isOpen ? "bottom" : "top"} overlay={popover}>
+          <OverlayTrigger trigger="click" placement={isOpen ? "bottom" : "top"} overlay={popoverDot}>
             <i className="bi bi-three-dots cursor-pointer"></i>
           </OverlayTrigger>
 
@@ -55,7 +70,7 @@ const MessagingBox = () => {
               placeholder="Cerca messaggi"
               className="search-input"
             />
-            <OverlayTrigger trigger="click" placement={isOpen ? "bottom" : "top"} overlay={popover}>
+            <OverlayTrigger trigger="click" placement={isOpen ? "bottom" : "top"} overlay={popoverFilt}>
               <InputGroup.Text className="filter-icon cursor-pointer">
                 <i className="bi bi-sliders"></i>
               </InputGroup.Text>
