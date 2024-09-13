@@ -109,7 +109,7 @@ const Sidebar = ({ myProfile }) => {
                   <small className="text-muted">{profile.connections}</small>
                 </div>
                 <div className="text-end ms-auto">
-                  <Button variant="outline-primary" size="sm">
+                  <Button className="lightButton" variant="outline-primary" size="sm">
                     Messaggio
                   </Button>
                 </div>
@@ -134,7 +134,7 @@ const Sidebar = ({ myProfile }) => {
                   <small className="text-muted">{company.followers}</small>
                 </div>
                 <div className="text-end ms-auto">
-                  <Button variant="outline-primary" size="sm">
+                  <Button className="lightButton" variant="outline-primary" size="sm">
                     Segui
                   </Button>
                 </div>
