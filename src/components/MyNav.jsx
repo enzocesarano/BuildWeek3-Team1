@@ -64,7 +64,7 @@ function NavScroll() {
   };
 
   const handleProfileClick = () => {
-    navigate(`/profile/${myProfile.id}`);
+    navigate(`/profile/${myProfile._id}`);
   };
 
   const filteredProfiles = arrayAllProfiles.filter((profile) => {
