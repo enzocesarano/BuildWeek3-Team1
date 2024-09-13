@@ -117,7 +117,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
   return (
     <div className="home-page">
       <div className="header">
-        <h1 className="text-center ">Elenco dei post</h1>
+        <h1 className="text-center mb-4 ">Elenco dei post</h1>
         {loggedInUserId && (
           <button type="button" className="btn btn-outline-primary" onClick={handleShow}>
             Crea un post
@@ -127,8 +127,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
 
       <div className="posts-list">
         {loading
-          ? // Placeholder mentre i dati vengono caricati
-            placeholders.map((_, index) => (
+          ? placeholders.map((_, index) => (
               <Card key={index} className="my-1 border-0 bg-transparent">
                 <Card.Body className="card-container bg-light">
                   <Placeholder as={Card.Title} animation="glow">
