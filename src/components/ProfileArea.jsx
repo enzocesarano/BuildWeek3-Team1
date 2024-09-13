@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { getExperience } from "../action";
 import { useDispatch } from "react-redux";
 
-const ProfileArea = ({ myProfile }) => {
+const ProfileArea = () => {
   const location = useLocation();
   const idLocation = location.pathname.split("/").pop();
 
@@ -18,7 +18,7 @@ const ProfileArea = ({ myProfile }) => {
 
   return (
     <>
-      <Profile myProfile={myProfile} />
+      <Profile />
       <ActivityProfile/>
       <ExperienceCard />
     </>

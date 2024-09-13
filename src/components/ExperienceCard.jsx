@@ -1,4 +1,4 @@
-import "../styles/CardProfile.css";
+
 import { Plus } from "react-bootstrap-icons";
 import { useLocation } from "react-router-dom";
 import { deleteMyExperience } from "../action";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Container, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { Container, Form, Navbar, NavDropdown, Nav, Button } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { HiHome } from "react-icons/hi";
 import {
@@ -18,6 +18,7 @@ import {
   FaCompass,
   FaTh,
 } from "react-icons/fa";
+import { MdBadge } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 import SearchModal from "./SearchModal";
 import { fetchSearchResults } from "../reducers/searchResultsReducer";
@@ -119,8 +120,8 @@ function NavScroll() {
                   </div>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/profile/66deab4f4d0def0015cef0f9">
-                  <button>Visualizza profilo</button>
+                <NavDropdown.Item className="visualizProfile-button" as={Link} to="/profile/66deab4f4d0def0015cef0f9">
+                  <Button className="justify-content-center">Visualizza profilo</Button>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4">
@@ -184,9 +185,13 @@ function NavScroll() {
                     <a href="#" className="text-secondary ">
                       Talent
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                    <a href="#" className="mb-4 mt-3 fw-bold ms-3 ">
                       <FaChartLine className="icon iconBlu me-3 " />
                       <span className="DropdownColortext small-text"> Talent Insights</span>
+                    </a>
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <MdBadge className="icon iconBlu me-3 " />
+                      <span className="DropdownColortext small-text"> Pubblica un’offerta di lavoro</span>
                     </a>
                     <a href="#" className="text-secondary ">
                       Vendite

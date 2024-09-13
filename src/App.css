@@ -146,6 +146,10 @@
   margin-left: 5px;
 }
 
+.visualizProfile-button:active {
+  background-color: white !important;
+}
+
 .search-input {
   background-color: #edf3f8;
   height: 35px;
@@ -425,7 +429,7 @@ a {
   font-size: 0.7rem;
 }
 .reduced-font {
-  font-size: 0.7rem;
+  font-size: 0.7rem !important;
 }
 
 .reduced-font-link {
@@ -542,4 +546,216 @@ a {
 .imageSet {
   width: 50px !important;
   height: 50px !important;
+}
+
+
+.post-list-wrapper {
+  margin-top: 20px;
+}
+
+.post {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.post-list-wrapper {
+  margin-top: 20px;
+}
+
+.sizeImg {
+  width: 100px;
+  height: 100px;
+}
+
+.post {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.fs-small {
+  font-size: 0.8em;
+}
+
+
+.card-profile-wrapper {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  overflow: hidden;
+  margin-bottom: 20px;
+  .card-header {
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    .title {
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+    .card-button {
+      border-radius: 37px;
+      margin-right: 20px;
+      padding: 5px 20px;
+      font-weight: 500;
+    }
+    .caption {
+      font-weight: 500;
+    }
+  }
+
+  .content-title {
+    margin-top: 10px;
+    font-weight: 500;
+  }
+  .card-content {
+    margin: 0 20px 20px 20px;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid lightgray;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+    font-weight: 500;
+  }
+  .card-footer:hover {
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
+  }
+}
+
+.plus-button {
+  width: 3em;
+  height: 35px;
+}
+
+.plus-button:hover {
+  cursor: pointer;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.cursor-pointer-pop {
+  cursor: pointer;
+}
+
+.cursor-pointer-pop:hover{
+  background-color: rgb(237, 237, 237);
+}
+
+/* Rimuove l'ombra/bordo azzurrino dalla "X" del modale */
+.modal-header .btn-close:focus {
+  box-shadow: none;
+}
+
+  
+  /* Rimuove l'ombra/bordo azzurrina dal campo di input */
+  .no-focus:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+  }
+
+  .custom-modal .modal-content {
+    height: 100%;
+  }
+  
+  .icon-pointer {
+    cursor: pointer;
+    color: grey;
+  }
+  
+/* Pulsante "Pubblica" disattivato */
+.disabled-button {
+  background-color: #d3d3d3 !important;
+  border-color: #d3d3d3 !important;
+  color: grey !important;
+}
+
+/* Pulsante "Pubblica" attivato */
+.active-button {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+/* Cambia il cursore sul pulsante disabilitato */
+.disabled-button:hover {
+  cursor: not-allowed !important;
+}
+
+  
+.card-container {
+  position: relative;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  overflow: hidden;
+  margin-bottom: 20px;
+  .card-home-header {
+    display: flex;
+    justify-content: space-between;
+    .card-home-subtitle {
+      font-size: 0.7em;
+      color: rgb(150, 150, 150)
+    }
+    .button-title{
+      display: flex;
+      align-items: center;
+  }
+    }
+    .card-title {
+      font-weight: 600;
+    }
+    .card-header-button {
+      margin-right: 1.5em;
+    }
+  }
+
+.card-home-footer {
+  font-size: 0.8em;
+}
+
+.card-home-button {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Avvicina l'icona al bottone */
+}
+
+button {
+  display: flex !important;
+  align-items: center !important;
+  font-weight: 600 !important; /* Imposta il font-weight per rendere il testo più marcato */
+  border: none;
+  background-color: transparent;
+  padding: 20px; /* Se desideri che i pulsanti abbiano uno sfondo trasparente */
+}
+
+.lightButton:hover {
+  background-color: #EBF4FD !important;
+  color: #0A66C2 !important;
+}
+
+i {
+  font-size: 18px;
+}
+
+
+.sizePers {
+  width: 7% !important;
+}
+
+.w-15 {
+  width: 10% !important;
 }

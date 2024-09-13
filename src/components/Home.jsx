@@ -4,7 +4,7 @@ import { Container, Row, Col, Card, ListGroup, Dropdown } from "react-bootstrap"
 import { FaStar, FaPlus } from "react-icons/fa";
 import { getProfile } from "../action";
 import MyFooter from "./MyFooter";
-import CenterHome from "./CenterHome";
+import CenterHomeTest from "./CenterHomeTest";
 
 const Home = ({ setModalShow }) => {
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ const Home = ({ setModalShow }) => {
 
           <Card className="mb-3">
             <Card.Body className="text-nowrap">
-              <Card.Title className="secondary-title">
+              <Card.Title className="secondary-title reduced-font">
                 Espandi la tua carriera o il tuo business con Premium
               </Card.Title>
               <Card.Text>
@@ -103,14 +103,14 @@ const Home = ({ setModalShow }) => {
 
           <Card>
             <ListGroup variant="flush">
-              <ListGroup.Item className="list-item ">
-                <i className="bi bi-bookmark-fill icon-small "></i> Elementi
+              <ListGroup.Item className="list-item cursor-pointer-pop">
+                <i className="bi bi-bookmark-fill icon-small"></i> Elementi
                 salvati
               </ListGroup.Item>
-              <ListGroup.Item className="list-item">
+              <ListGroup.Item className="list-item cursor-pointer-pop">
                 <i className="bi bi-people-fill icon-small"></i> Gruppi
               </ListGroup.Item>
-              <ListGroup.Item className="list-item">
+              <ListGroup.Item className="list-item cursor-pointer-pop">
                 <i className="bi bi-calendar-event-fill icon-small"></i> Eventi
               </ListGroup.Item>
             </ListGroup>
@@ -118,7 +118,7 @@ const Home = ({ setModalShow }) => {
         </Col>
 
         <Col xs={12} md={6} lg={6}>
-        <CenterHome/>
+        <CenterHomeTest />
         </Col>
 
         <Col xs={12} md={3} lg={3}>

@@ -1,6 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Row, Col, Card, Dropdown, ListGroup, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Dropdown,
+  ListGroup,
+  Tooltip,
+  OverlayTrigger,
+} from "react-bootstrap";
 import { FaStar, FaPlus, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { BsListUl, BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { getProfile, fetchSearchResults } from "../action";
@@ -38,7 +47,9 @@ const SearchJob = ({ setModalShow }) => {
   };
 
   const handleRemoveFavorite = (jobId) => {
-    setFavorites((prevFavorites) => prevFavorites.filter((fav) => fav._id !== jobId));
+    setFavorites((prevFavorites) =>
+      prevFavorites.filter((fav) => fav._id !== jobId)
+    );
   };
 
   const handleToggleFavorites = () => {
@@ -106,11 +117,14 @@ const SearchJob = ({ setModalShow }) => {
                     {myProfile.name} {myProfile.surname}
                   </Card.Title>
                 </div>
-                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">{myProfile.title}</Card.Text>
+                <Card.Text className="mb-2 text-secondary-emphasis reduced-font">
+                  {myProfile.title}
+                </Card.Text>
                 <Card.Text className="text-secondary reduced-font">
                   {myProfile.area} • {""}{" "}
                   <a href="#" className="text-dark reduced-font-link">
-                    <FaStar className="icon icon-blue" /> Prova 1 mese di Premium per 0 EUR
+                    <FaStar className="icon icon-blue" /> Prova 1 mese di
+                    Premium per 0 EUR
                   </a>
                 </Card.Text>
               </Card.Body>
@@ -119,13 +133,18 @@ const SearchJob = ({ setModalShow }) => {
           <Card className="mb-3 ">
             <Card.Body className="mx-2 my-1 ">
               <div className="d-flex align-items-center justify-content-between">
-                <Card.Text className="text fw-bold my-2 bi bi-bookmark-fill pointer" onClick={handleToggleFavorites}>
+                <Card.Text
+                  className="text fw-bold my-2 bi bi-bookmark-fill pointer"
+                  onClick={handleToggleFavorites}
+                >
                   <span className="ms-3"> Preferenze</span>
                 </Card.Text>
               </div>
               <div className="d-flex align-items-center icon-style mt-3">
                 <BsListUl className="icon-style me-2" />
-                <Card.Text className="text fw-bold ms-2 pointer">Le mie offerte di lavoro</Card.Text>
+                <Card.Text className="text fw-bold ms-2 pointer">
+                  Le mie offerte di lavoro
+                </Card.Text>
               </div>
             </Card.Body>
           </Card>
@@ -138,31 +157,45 @@ const SearchJob = ({ setModalShow }) => {
           <ListGroup>
             {showFavorites
               ? favorites.map((job) => (
-                  <ListGroup.Item className="mb-3 border rounded-5" key={job._id}>
-                    <Card body className="my-2">
+                  <ListGroup.Item className="mb-3" key={job._id}>
+                    <Card body className="my-2 border-0">
                       <Card.Title className="d-flex justify-content-between align-items-center">
-                        <Link className="text-danger fs-4" to={`/job/${job._id}`}>
+                        <Link
+                          className="text-danger fs-4"
+                          to={`/job/${job._id}`}
+                        >
                           {job.title}
                         </Link>
-                        <FaTrash className="text-danger pointer" onClick={() => handleRemoveFavorite(job._id)} />
+                        <FaTrash
+                          className="text-danger pointer"
+                          onClick={() => handleRemoveFavorite(job._id)}
+                        />
                       </Card.Title>
                       <Card.Text>
                         <strong>Company:</strong> {job.company_name}
                       </Card.Text>
                       <Card.Text>
-                        <strong>Publication Date:</strong> {new Date(job.publication_date).toLocaleDateString()}
+                        <strong>Publication Date:</strong>{" "}
+                        {new Date(job.publication_date).toLocaleDateString()}
                       </Card.Text>
                       <Card.Text>
-                        <strong>Location:</strong> {job.candidate_required_location}
+                        <strong>Location:</strong>{" "}
+                        {job.candidate_required_location}
                       </Card.Text>
                     </Card>
                   </ListGroup.Item>
                 ))
               : searchResults.map((result) => (
-                  <ListGroup.Item className="mb-3 border rounded-5" key={result._id}>
-                    <Card body className="my-2">
+                  <ListGroup.Item
+                    className="mb-3 border rounded-3"
+                    key={result._id}
+                  >
+                    <Card body className="my-2 border-0">
                       <Card.Title className="d-flex justify-content-between align-items-center">
-                        <Link className="text-danger fs-4" to={`/job/${result._id}`}>
+                        <Link
+                          className="text-danger fs-4"
+                          to={`/job/${result._id}`}
+                        >
                           {result.title}
                         </Link>
                         {favorites.some((fav) => fav._id === result._id) ? (
@@ -173,9 +206,18 @@ const SearchJob = ({ setModalShow }) => {
                         ) : (
                           <OverlayTrigger
                             placement="top"
-                            overlay={<Tooltip id={`tooltip-${result._id}`}>Salva nei preferiti</Tooltip>}
+                            overlay={
+                              <Tooltip id={`tooltip-${result._id}`}>
+                                Salva nei preferiti
+                              </Tooltip>
+                            }
                           >
-                            <BsBookmark className="icon-style me-2 pointer" onClick={() => handleSaveJob(result)} />
+                            <span
+                              className="icon-style me-2 pointer"
+                              onClick={() => handleSaveJob(result)}
+                            >
+                              <BsBookmark />
+                            </span>
                           </OverlayTrigger>
                         )}
                       </Card.Title>
@@ -183,10 +225,12 @@ const SearchJob = ({ setModalShow }) => {
                         <strong>Company:</strong> {result.company_name}
                       </Card.Text>
                       <Card.Text>
-                        <strong>Publication Date:</strong> {new Date(result.publication_date).toLocaleDateString()}
+                        <strong>Publication Date:</strong>{" "}
+                        {new Date(result.publication_date).toLocaleDateString()}
                       </Card.Text>
                       <Card.Text>
-                        <strong>Location:</strong> {result.candidate_required_location}
+                        <strong>Location:</strong>{" "}
+                        {result.candidate_required_location}
                       </Card.Text>
                     </Card>
                   </ListGroup.Item>
@@ -279,8 +323,12 @@ const SearchJob = ({ setModalShow }) => {
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item href="#" className="horizontal-list">
-                    <p className="fs-6 fw-bold custom-hover">Impara con LinkedIn</p>
-                    <p className="text-secondary custom-hover small-text">Assumi su LinkedIn</p>
+                    <p className="fs-6 fw-bold custom-hover">
+                      Impara con LinkedIn
+                    </p>
+                    <p className="text-secondary custom-hover small-text">
+                      Assumi su LinkedIn
+                    </p>
                   </Dropdown.Item>
                   <Dropdown.Item href="#" className="horizontal-list">
                     <p className="fs-6 fw-bold custom-hover">Admin Center</p>
@@ -290,7 +338,9 @@ const SearchJob = ({ setModalShow }) => {
                   </Dropdown.Item>
                   <Dropdown.Item href="#" className="horizontal-list">
                     <p className="custom-hover small-text">
-                      <strong className="textPlus">Crea una pagina aziendale</strong>
+                      <strong className="textPlus">
+                        Crea una pagina aziendale
+                      </strong>
                       <FaPlus className="icon ms-2 iconPlus mb-2  " />
                     </p>
                   </Dropdown.Item>
@@ -298,7 +348,10 @@ const SearchJob = ({ setModalShow }) => {
               </Dropdown>
             </li>
             <li className="mb-2">
-              <a href="#" className="text-secondary footer-link text-decoration-none p-0 horizontal-list">
+              <a
+                href="#"
+                className="text-secondary footer-link text-decoration-none p-0 horizontal-list"
+              >
                 Scarica l’app LinkedIn
               </a>
             </li>
