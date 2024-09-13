@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { Button, Modal, Form, Card, Tooltip, Image } from "react-bootstrap";
+import { Button, Modal, Form, Card, Tooltip, Image, Popover, OverlayTrigger } from "react-bootstrap";
 import {
   FaRegImage,
   FaRegCalendarAlt,
@@ -94,6 +94,22 @@ const CenterHomeTest = ({ loggedInUserId }) => {
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
+  const popoverDot = (
+    <Popover id="popover-basic">
+      <Popover.Body>
+        <div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-bookmark me-2"></i>Salva</div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-copy me-2"></i>Copia link al post</div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-code-slash me-2"></i>Incorpora questo post</div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-eye-slash-fill me-2"></i>Non mi interessa</div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-x-circle-fill me-2"></i>Smetti di seguire</div>
+          <div className="cursor-pointer-pop mb-2"><i class="bi bi-flag-fill me-2"></i>Segnala post</div>
+
+        </div>
+      </Popover.Body>
+    </Popover>
+  );
+
   return (
     <div className="home-page">
       <div className="header">
@@ -145,7 +161,9 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         >
                           Segui
                         </button>
-                        <ThreeDots />
+                        <OverlayTrigger trigger="click" placement={ "bottom" } overlay={popoverDot}>
+            <i className="bi bi-three-dots cursor-pointer"></i>
+          </OverlayTrigger>
                       </div>
                     </div>
 
