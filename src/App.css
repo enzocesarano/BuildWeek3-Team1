@@ -74,6 +74,7 @@
   padding-bottom: 0;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid gray;
 }
 
 .navbar .form-control {
@@ -751,4 +752,37 @@ i {
 
 .w-15 {
   width: 10% !important;
+}
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.popup-nav {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.popup-nav.show {
+  opacity: 1;
+  animation: slideDown 0.5s ease-in-out forwards;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.btn-popuNav:hover {
+  background-color: #004182;
+}
+
+.btn-AddSection:hover {
+  background-color: #ebf4fd;
+  border: 2px solid #004182;
 }
