@@ -20,6 +20,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useLocation } from "react-router-dom";
+import CommentArea from "./CommentArea";
 
 const ActivityProfile = ({ showButton = true, userId }) => {
   const [showModal, setShowModal] = useState(false);
@@ -33,6 +34,14 @@ const ActivityProfile = ({ showButton = true, userId }) => {
   );
   const location = useLocation();
   const idLocation = location.pathname.split("/").pop();
+
+  const comments = useSelector((state) => state.comments.comments);
+
+  const [visibleComments, setVisibleComments] = useState(null);
+
+  const handleComment = (postId) => {
+    setVisibleComments((prevPostId) => (prevPostId === postId ? null : postId));
+  };
 
   const dispatch = useDispatch();
 
@@ -114,14 +123,16 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           <div className="card-header d-flex justify-content-between align-items-center">
             <div>
               <h5 className="mb-0">Attività</h5>
-              <small className="text-primary cursor-pointer">{posts.length} post</small>
+              <small className="text-primary cursor-pointer">
+                {posts.length} post
+              </small>
             </div>
             <div className="d-flex align-items-center">
               {showButton && (
                 <Button
                   variant="outline-primary"
                   onClick={handleShow}
-                  className="me-2 rounded-5 lightButton" 
+                  className="me-2 rounded-5 lightButton"
                 >
                   <Plus /> Crea un post
                 </Button>
@@ -170,26 +181,33 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                         {post.text}
                       </Card.Text>
                     </div>
-                    {post.image && <div className="mb-4 w-100">
-                      <Image
-                        src={post.image}
-                        className="w-100 rounded-2"
-                        alt={post._id}
-                      />
-                    </div>}
+                    {post.image && (
+                      <div className="mb-4 w-100">
+                        <Image
+                          src={post.image}
+                          className="w-100 rounded-2"
+                          alt={post._id}
+                        />
+                      </div>
+                    )}
 
                     <Card.Footer className="text-muted card-home-footer">
                       Pubblicato il {new Date(post.createdAt).toLocaleString()}
                     </Card.Footer>
-                    <div className="card-home-button">
+                    <div className="card-home-button border border-0 border-bottom border-1 rounded-2  border-secondary-subtle mb-3">
                       <button type="button" className="btn fs-small text-dark">
                         <HandThumbsUp className="m-2" />
                         Consiglia
                       </button>
-                      <button type="button" className="btn fs-small text-dark">
+                      <button type="button" className="btn fs-small text-dark" onClick={() => handleComment(post._id)}>
                         {" "}
                         <ChatLeftText className="m-2" />
-                        Commenta
+                        Commenti {""}{" "}
+                        {
+                          comments.filter(
+                            (comment) => comment.elementId === post._id
+                          ).length
+                        }
                       </button>
                       <button type="button" className="btn fs-small text-dark">
                         <ArrowRepeat className="m-2" />
@@ -200,6 +218,9 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                         Invia
                       </button>
                     </div>
+                    {visibleComments === post._id && (
+                      <CommentArea key={i} post={post} />
+                    )}
                   </Card.Body>
                 </Card>
               ))

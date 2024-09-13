@@ -1,5 +1,14 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { Button, Modal, Form, Card, Tooltip, Image, Popover, OverlayTrigger } from "react-bootstrap";
+import {
+  Button,
+  Modal,
+  Form,
+  Card,
+  Tooltip,
+  Image,
+  Popover,
+  OverlayTrigger,
+} from "react-bootstrap";
 import {
   FaRegImage,
   FaRegCalendarAlt,
@@ -109,13 +118,24 @@ const CenterHomeTest = ({ loggedInUserId }) => {
     <Popover id="popover-basic">
       <Popover.Body>
         <div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-bookmark me-2"></i>Salva</div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-copy me-2"></i>Copia link al post</div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-code-slash me-2"></i>Incorpora questo post</div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-eye-slash-fill me-2"></i>Non mi interessa</div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-x-circle-fill me-2"></i>Smetti di seguire</div>
-          <div className="cursor-pointer-pop mb-2"><i class="bi bi-flag-fill me-2"></i>Segnala post</div>
-
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-bookmark me-2"></i>Salva
+          </div>
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-copy me-2"></i>Copia link al post
+          </div>
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-code-slash me-2"></i>Incorpora questo post
+          </div>
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-eye-slash-fill me-2"></i>Non mi interessa
+          </div>
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-x-circle-fill me-2"></i>Smetti di seguire
+          </div>
+          <div className="cursor-pointer-pop mb-2">
+            <i class="bi bi-flag-fill me-2"></i>Segnala post
+          </div>
         </div>
       </Popover.Body>
     </Popover>
@@ -172,9 +192,13 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         >
                           Segui
                         </button>
-                        <OverlayTrigger trigger="click" placement={ "bottom" } overlay={popoverDot}>
-            <i className="bi bi-three-dots cursor-pointer"></i>
-          </OverlayTrigger>
+                        <OverlayTrigger
+                          trigger="click"
+                          placement={"bottom"}
+                          overlay={popoverDot}
+                        >
+                          <i className="bi bi-three-dots cursor-pointer"></i>
+                        </OverlayTrigger>
                       </div>
                     </div>
 
@@ -191,13 +215,13 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                       </div>
                     )}
 
-                    <Card.Footer className="text-muted card-home-footer text-end">
+                    <Card.Footer className="text-muted text-end card-home-footer text-end">
                       <p className="mb-0">
                         Pubblicato il{" "}
                         {new Date(post.createdAt).toLocaleString()}
                       </p>
                     </Card.Footer>
-                    <div className="card-home-button border border-0 border-bottom border-1 border-secondary-subtle mb-3">
+                    <div className="card-home-button border border-0 border-bottom  rounded-2 border-1 border-secondary-subtle mb-3">
                       <button type="button" className="btn  text-dark">
                         <HandThumbsUp className="m-2" />
                         Consiglia
@@ -208,7 +232,8 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         onClick={() => handleComment(post._id)}
                       >
                         <ChatLeftText className="m-2" />
-                        Commenti {''} {
+                        Commenti {""}{" "}
+                        {
                           comments.filter(
                             (comment) => comment.elementId === post._id
                           ).length
@@ -225,10 +250,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                     </div>
 
                     {visibleComments === post._id && (
-                      <CommentArea
-                        key={i}
-                        post={post}
-                      />
+                      <CommentArea key={i} post={post} />
                     )}
                   </Card.Body>
                 </Card>

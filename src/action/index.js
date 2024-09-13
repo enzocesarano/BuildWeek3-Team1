@@ -16,6 +16,7 @@ export const EDIT_POST = "EDIT_POST";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const POST_COMMENTS = "POST_COMMENTS";
 export const DELETE_COMMENT = "DELETE_COMMENT"
+export const EDIT_COMMENT = "EDIT_COMMENT"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -552,6 +553,37 @@ export const deleteComment = (id, comment) => {
       .then((comments) => {
         dispatch({
           type: DELETE_COMMENT,
+          payload: comments,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
+export const editComment = (id, comment) => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+  return (dispatch) => {
+    fetch(baseEndpoint + id, {
+      method: "PUT",
+      body: JSON.stringify(comment),
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((comments) => {
+        dispatch({
+          type: EDIT_COMMENT,
           payload: comments,
         });
       })

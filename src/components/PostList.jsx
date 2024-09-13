@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap-icons";
 import { deleteMyPost } from "../action";
 import EditPost2 from "./EditPost2";
+import CommentArea from "./CommentArea";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -34,6 +35,14 @@ const PostList = () => {
     } catch (error) {
       console.error("Errore nella cancellazione del post:", error);
     }
+  };
+
+  const comments = useSelector((state) => state.comments.comments);
+
+  const [visibleComments, setVisibleComments] = useState(null);
+
+  const handleComment = (postId) => {
+    setVisibleComments((prevPostId) => (prevPostId === postId ? null : postId));
   };
 
   const handleSet = () => {
@@ -197,7 +206,7 @@ const PostList = () => {
                                 Pubblicato il{" "}
                                 {new Date(post.createdAt).toLocaleString()}
                               </Card.Footer>
-                              <div className="card-home-button">
+                              <div className="card-home-button border border-0 border-bottom  rounded-2  border-1 border-secondary-subtle mb-3">
                                 <button
                                   type="button"
                                   className="btn fs-small text-dark"
@@ -208,10 +217,17 @@ const PostList = () => {
                                 <button
                                   type="button"
                                   className="btn fs-small text-dark"
+                                  onClick={() => handleComment(post._id)}
                                 >
                                   {" "}
                                   <ChatLeftText className="m-2" />
-                                  Commenta
+                                  Commenti {""}{" "}
+                                  {
+                                    comments.filter(
+                                      (comment) =>
+                                        comment.elementId === post._id
+                                    ).length
+                                  }
                                 </button>
                                 <button
                                   type="button"
@@ -228,6 +244,9 @@ const PostList = () => {
                                   Invia
                                 </button>
                               </div>
+                              {visibleComments === post._id && (
+                                <CommentArea key={i} post={post} />
+                              )}
                             </Card.Body>
                           </Card>
                         );

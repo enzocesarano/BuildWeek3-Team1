@@ -1,5 +1,6 @@
 import {
   DELETE_COMMENT,
+  EDIT_COMMENT,
   GET_COMMENTS,
   POST_COMMENTS,
 } from "../action";
@@ -28,6 +29,13 @@ const comments = (state = initialState, action) => {
         ...state,
         postComment: action.payload,
       };
+
+    case EDIT_COMMENT:
+      return {
+        ...state,
+        postComment: action.payload,
+      };
+      
     default:
       return state;
   }
