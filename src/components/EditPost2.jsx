@@ -184,3 +184,6 @@ const EditPost2 = ({ show, onHide, element, function1 }) => {
 };
 
 export default EditPost2;
+
+
+/* cazz */
