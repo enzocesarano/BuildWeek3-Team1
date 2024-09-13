@@ -138,8 +138,8 @@ const SearchJob = ({ setModalShow }) => {
           <ListGroup>
             {showFavorites
               ? favorites.map((job) => (
-                  <ListGroup.Item className="mb-3 border rounded-5" key={job._id}>
-                    <Card body className="my-2">
+                  <ListGroup.Item className="mb-3" key={job._id}>
+                    <Card body className="my-2 border-0">
                       <Card.Title className="d-flex justify-content-between align-items-center">
                         <Link className="text-danger fs-4" to={`/job/${job._id}`}>
                           {job.title}
@@ -159,8 +159,8 @@ const SearchJob = ({ setModalShow }) => {
                   </ListGroup.Item>
                 ))
               : searchResults.map((result) => (
-                  <ListGroup.Item className="mb-3 border rounded-5" key={result._id}>
-                    <Card body className="my-2">
+                  <ListGroup.Item className="mb-3 border rounded-3" key={result._id}>
+                    <Card body className="my-2 border-0">
                       <Card.Title className="d-flex justify-content-between align-items-center">
                         <Link className="text-danger fs-4" to={`/job/${result._id}`}>
                           {result.title}
