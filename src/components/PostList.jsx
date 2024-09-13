@@ -183,13 +183,15 @@ const PostList = () => {
                                   {post.text}
                                 </Card.Text>
                               </div>
-                              <div className="mb-4 w-100">
-                                <Image
-                                  src={post.image}
-                                  className="w-100 rounded-2"
-                                  alt={post._id}
-                                />
-                              </div>
+                              {post.image && (
+                                <div className="mb-4 w-100">
+                                  <Image
+                                    src={post.image}
+                                    className="w-100 rounded-2"
+                                    alt={post._id}
+                                  />
+                                </div>
+                              )}
 
                               <Card.Footer className="text-muted card-home-footer">
                                 Pubblicato il{" "}
