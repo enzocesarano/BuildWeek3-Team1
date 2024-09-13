@@ -288,7 +288,7 @@ function NavScroll() {
             </div>
             <div className="separator-bar"></div>
             <div className="icon-above-dropdown ">
-              <a href="#">
+              <a href="https://www.linkedin.com/job-posting/?trk=nav_spotlight_post_job&" target="_blank">
                 <div className="icon-with-text workIconColor">
                   <FaTag className="icon" />
                   <div className="nav-text">Pubblica Un'offerta di lavoro</div>
