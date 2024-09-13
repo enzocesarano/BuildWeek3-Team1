@@ -116,7 +116,7 @@ const Sidebar = ({ myProfile }) => {
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <p className="text-primary text-center mt-2">Mostra tutto</p>
+          <p className="text-primary text-center mt-2 cursor-pointer">Mostra tutto</p>
         </Card.Body>
       </Card>
 
@@ -141,7 +141,7 @@ const Sidebar = ({ myProfile }) => {
               </ListGroup.Item>
             ))}
           </ListGroup>
-          <p className="text-primary text-center mt-2">Mostra tutto</p>
+          <p className="text-primary text-center mt-2 cursor-pointer">Mostra tutto</p>
         </Card.Body>
       </Card>
     </Col>

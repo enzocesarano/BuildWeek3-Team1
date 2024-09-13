@@ -114,7 +114,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
           <div className="card-header d-flex justify-content-between align-items-center">
             <div>
               <h5 className="mb-0">Attività</h5>
-              <small className="text-primary">{posts.length} post</small>
+              <small className="text-primary cursor-pointer">{posts.length} post</small>
             </div>
             <div className="d-flex align-items-center">
               {showButton && (
