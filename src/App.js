@@ -17,7 +17,6 @@ import { useEffect, useState } from "react";
 import SearchJob from "./components/SearchJob";
 import JobDetails from "./components/JobDetails";
 
-
 function App() {
   return (
     <Provider store={store}>
@@ -37,7 +36,7 @@ function AppContent() {
 
   useEffect(() => {
     dispatch(getProfile("66deab4f4d0def0015cef0f9"));
-    dispatch(getComments(''))
+    dispatch(getComments(""));
   }, []);
 
   return (
@@ -63,6 +62,7 @@ function AppContent() {
             <>
               <Col className="col-12 col-md-8 mt-5">
                 <Routes>
+                  <Route path="/" element={<Home />} />
                   <Route path="/profile/:id" element={<ProfileArea />} />
                   <Route path="/search-job" element={<SearchJob />} />
                   <Route path="/job/:id" element={<JobDetails />} />
@@ -70,11 +70,9 @@ function AppContent() {
                   <Route path="/post-list/:id" element={<PostList />} />
                 </Routes>
               </Col>
-              {location.pathname === "/profile" ? (
-                myProfile && <Sidebar myProfile={myProfile} />
-              ) : (
-                searchProfile && <Sidebar myProfile={searchProfile} />
-              )}
+              {location.pathname === "/profile"
+                ? myProfile && <Sidebar myProfile={myProfile} />
+                : searchProfile && <Sidebar myProfile={searchProfile} />}
             </>
           )}
 
@@ -91,6 +89,5 @@ function AppContent() {
     </div>
   );
 }
-
 
 export default App;
