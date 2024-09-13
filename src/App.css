@@ -146,6 +146,10 @@
   margin-left: 5px;
 }
 
+.visualizProfile-button:active {
+  background-color: white !important;
+}
+
 .search-input {
   background-color: #edf3f8;
   height: 35px;

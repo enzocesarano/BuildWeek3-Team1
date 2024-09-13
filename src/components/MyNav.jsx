@@ -22,6 +22,8 @@ import { BsChatDotsFill } from "react-icons/bs";
 import SearchModal from "./SearchModal";
 import { fetchSearchResults } from "../reducers/searchResultsReducer";
 
+
+
 function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
   const searchProfile = useSelector((state) => state.searchProfile.searchProfile);
@@ -30,6 +32,7 @@ function NavScroll() {
   const [modalShow, setModalShow] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
+  
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -119,8 +122,8 @@ function NavScroll() {
                   </div>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/profile/66deab4f4d0def0015cef0f9">
-                  <button>Visualizza profilo</button>
+                <NavDropdown.Item className="visualizProfile-button" as={Link} to="/profile/66deab4f4d0def0015cef0f9">
+                  <button >Visualizza profilo</button>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <div className="dropdown-section ms-4">
