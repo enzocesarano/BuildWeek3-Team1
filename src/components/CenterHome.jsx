@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect, useState } from "react";
-import { Button, Modal, Form, Card, Tooltip } from "react-bootstrap";
+import { Button, Modal, Form, Card, Tooltip, Image } from "react-bootstrap";
 import {
   FaRegImage,
   FaRegCalendarAlt,
@@ -11,14 +11,23 @@ import { RiBarChart2Fill } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
 import postsReducer from "../reducers/postReducer";
 import { setPosts, addPost, DELETE_POST } from "../action";
-import {ThreeDots, HandThumbsUp, ChatLeftText, ArrowRepeat, Send} from "react-bootstrap-icons";
+import {
+  ThreeDots,
+  HandThumbsUp,
+  ChatLeftText,
+  ArrowRepeat,
+  Send,
+} from "react-bootstrap-icons";
+import { useSelector } from "react-redux";
 
 const CenterHome = ({ loggedInUserId }) => {
   const [state, dispatch] = useReducer(postsReducer, { posts: [] });
   const [showModal, setShowModal] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [isPublishing, setIsPublishing] = useState(false);
-
+  const arrayAllProfiles2 = useSelector(
+    (state) => state.arrayAllProfiles.arrayAllProfiles
+  );
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -101,39 +110,84 @@ const CenterHome = ({ loggedInUserId }) => {
       </div>
 
       <div className="posts-list">
-        {state.posts.map((post) => (
-          <Card key={post._id} className="my-3 border-0 bg-transparent">
-            <Card.Body className="card-container bg-light">
-              <div className="card-home-header">
-              <div className="card-title">
-                {post.user.name} {post.user.surname}
-                <div className="card-home-subtitle">@{post.username}</div>
-                </div>
-                <div className="button-title">
-                  <button type="button" className="btn btn-light text-primary card-header-button" >Segui</button>
-                  <ThreeDots/>
-                </div>
-                </div>
+        {state.posts.map((post) => {
+          return arrayAllProfiles2.map((element, i) => {
+            if (element._id === post.user._id) {
+              return (
+                <Card key={post._id} className="my-3 border-0 bg-transparent">
+                  <Card.Body className="card-container bg-light">
+                    <div className="card-home-header mb-3 align-items-center">
+                      <div className="d-flex align-items-center">
+                        <div
+                          className="me-3 overflow-hidden rounded-circle"
+                          style={{ width: "50px", height: "50px" }}
+                        >
+                          <Image
+                            src={element.image}
+                            alt=""
+                            className="w-100 object-fit-cover"
+                          />
+                        </div>
 
-                <div className="card-text">
-                  <Card.Text>{post.text}</Card.Text>
-                </div>
-                <div className="img-card-post">
-                </div>
-              
-              <Card.Footer className="text-muted card-home-footer">
-                Pubblicato il {new Date(post.createdAt).toLocaleString()}
-              </Card.Footer>
-              <div className="card-home-button">
-                <button type="button" className="btn  text-dark" ><HandThumbsUp className="m-2"/>Consiglia</button>
-               <button type="button" className="btn  text-dark" > <ChatLeftText className="m-2"/>Commenta</button>
-                <button type="button" className="btn  text-dark" ><ArrowRepeat className="m-2"/>Diffondi il post</button>
-                <button type="button" className="btn  text-dark" ><Send className="m-2"/>Invia</button>
-              </div>
+                        <div>
+                          <div className="card-title text-start mb-0">
+                            {post.user.name} {post.user.surname}
+                          </div>
+                          <div className="card-home-subtitle text-start">
+                            @{post.username}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="button-title">
+                        <button
+                          type="button"
+                          className="btn btn-light text-primary card-header-button"
+                        >
+                          Segui
+                        </button>
+                        <ThreeDots />
+                      </div>
+                    </div>
 
-            </Card.Body>
-          </Card>
-        ))}
+                    <div className="card-text mb-3">
+                      <Card.Text>{post.text}</Card.Text>
+                    </div>
+                    <div className="mb-4 w-100">
+                      <Image
+                        src={post.image}
+                        className="w-100 rounded-2"
+                        alt={post._id}
+                      />
+                    </div>
+
+                    <Card.Footer className="text-muted card-home-footer">
+                      Pubblicato il {new Date(post.createdAt).toLocaleString()}
+                    </Card.Footer>
+                    <div className="card-home-button">
+                      <button type="button" className="btn  text-dark">
+                        <HandThumbsUp className="m-2" />
+                        Consiglia
+                      </button>
+                      <button type="button" className="btn  text-dark">
+                        {" "}
+                        <ChatLeftText className="m-2" />
+                        Commenta
+                      </button>
+                      <button type="button" className="btn  text-dark">
+                        <ArrowRepeat className="m-2" />
+                        Diffondi il post
+                      </button>
+                      <button type="button" className="btn  text-dark">
+                        <Send className="m-2" />
+                        Invia
+                      </button>
+                    </div>
+                  </Card.Body>
+                </Card>
+              );
+            }
+          });
+        })}
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ import {
   Trash,
 } from "react-bootstrap-icons";
 import { deleteMyPost } from "../action";
-import EditPost from "./editPost";
+import EditPost2 from "./EditPost2";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -37,8 +37,8 @@ const PostList = () => {
   };
 
   const handleSet = () => {
-    setClick(!click)
-  }
+    setClick(!click);
+  };
 
   const handleClick = (post) => {
     setPostSelect(post);
@@ -76,10 +76,10 @@ const PostList = () => {
       });
   };
 
-  return arrayAllProfiles2.map((element) => {
+  return arrayAllProfiles2.map((element, i) => {
     if (element._id === idLocation) {
       return (
-        <Container className="post-list-wrapper" key={element._id}>
+        <Container className="post-list-wrapper" key={i}>
           <Row>
             <Col xs={12} md={4}>
               <Card className="bg-light mb-3 text-center">
@@ -110,7 +110,7 @@ const PostList = () => {
               <Card className="text-center mb-4">
                 <Card.Body>
                   <div className="text-start">
-                    <h2 className="fs-5">Tutte le attività</h2>                   
+                    <h2 className="fs-5">Tutte le attività</h2>
                   </div>
                   {posts.length === 0 ? (
                     <Container>
@@ -135,13 +135,27 @@ const PostList = () => {
                             className="my-3 border-0 bg-transparent"
                           >
                             <Card.Body className="card-container bg-light">
-                              <div className="card-home-header">
-                                <div className="card-title">
-                                  {post.user.name} {post.user.surname}
-                                  <div className="card-home-subtitle">
-                                    @{post.username}
+                              <div className="card-home-header mb-3 align-items-center">
+                                <div className="d-flex align-items-center">
+                                  <div className="sizePers me-3">
+                                    <Image
+                                      src={element.image}
+                                      alt=""
+                                      roundedCircle
+                                      className="w-100"
+                                    />
+                                  </div>
+
+                                  <div>
+                                    <div className="card-title text-start mb-0">
+                                      {post.user.name} {post.user.surname}
+                                    </div>
+                                    <div className="card-home-subtitle text-start">
+                                      @{post.username}
+                                    </div>
                                   </div>
                                 </div>
+
                                 <div className="button-title">
                                   {idLocation === "66deab4f4d0def0015cef0f9" ? (
                                     <>
@@ -164,12 +178,18 @@ const PostList = () => {
                                 </div>
                               </div>
 
-                              <div className="card-text">
-                                <Card.Text className="text-start mb-3">
+                              <div className="card-text mb-3">
+                                <Card.Text className="text-start">
                                   {post.text}
                                 </Card.Text>
                               </div>
-                              <div className="img-card-post"></div>
+                              <div className="mb-4 w-100">
+                                <Image
+                                  src={post.image}
+                                  className="w-100 rounded-2"
+                                  alt={post._id}
+                                />
+                              </div>
 
                               <Card.Footer className="text-muted card-home-footer">
                                 Pubblicato il{" "}
@@ -218,7 +238,7 @@ const PostList = () => {
               </Card>
             </Col>
           </Row>
-          <EditPost
+          <EditPost2
             show={modalShow}
             onHide={() => setModalShow(false)}
             element={postSelect}
