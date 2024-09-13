@@ -145,8 +145,15 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 <Card key={post._id} className="my-3 border-0 bg-transparent">
                   <Card.Body className="card-container bg-light">
                     <div className="card-home-header mb-3 justify-content-start align-items-center">
-                      <div className="sizePers me-3">
-                        <Image src={element.image} alt="" roundedCircle className="w-100"/>
+                      <div
+                        className="me-3 overflow-hidden rounded-circle"
+                        style={{ width: "50px", height: "50px" }}
+                      >
+                        <Image
+                          src={element.image}
+                          alt=""
+                          className="w-100 object-fit-cover"
+                        />
                       </div>
                       <div>
                         <div className="card-title mb-0">

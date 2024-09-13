@@ -152,13 +152,13 @@ const CenterHome = ({ loggedInUserId }) => {
                     <div className="card-text mb-3">
                       <Card.Text>{post.text}</Card.Text>
                     </div>
-                    <div className="mb-4 w-100">
+                    {post.image && <div className="mb-4 w-100">
                       <Image
                         src={post.image}
                         className="w-100 rounded-2"
                         alt={post._id}
                       />
-                    </div>
+                    </div>}
 
                     <Card.Footer className="text-muted card-home-footer">
                       Pubblicato il {new Date(post.createdAt).toLocaleString()}
