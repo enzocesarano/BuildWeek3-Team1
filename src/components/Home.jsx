@@ -103,14 +103,14 @@ const Home = ({ setModalShow }) => {
 
           <Card>
             <ListGroup variant="flush">
-              <ListGroup.Item className="list-item ">
-                <i className="bi bi-bookmark-fill icon-small "></i> Elementi
+              <ListGroup.Item className="list-item cursor-pointer-pop">
+                <i className="bi bi-bookmark-fill icon-small"></i> Elementi
                 salvati
               </ListGroup.Item>
-              <ListGroup.Item className="list-item">
+              <ListGroup.Item className="list-item cursor-pointer-pop">
                 <i className="bi bi-people-fill icon-small"></i> Gruppi
               </ListGroup.Item>
-              <ListGroup.Item className="list-item">
+              <ListGroup.Item className="list-item cursor-pointer-pop">
                 <i className="bi bi-calendar-event-fill icon-small"></i> Eventi
               </ListGroup.Item>
             </ListGroup>
