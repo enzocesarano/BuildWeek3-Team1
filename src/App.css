@@ -542,12 +542,10 @@ a {
   width: 300px;
 }
 
-
 .imageSet {
   width: 50px !important;
   height: 50px !important;
 }
-
 
 .post-list-wrapper {
   margin-top: 20px;
@@ -579,7 +577,6 @@ a {
 .fs-small {
   font-size: 0.8em;
 }
-
 
 .card-profile-wrapper {
   position: relative;
@@ -637,7 +634,7 @@ a {
   cursor: pointer;
 }
 
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -645,7 +642,7 @@ a {
   cursor: pointer;
 }
 
-.cursor-pointer-pop:hover{
+.cursor-pointer-pop:hover {
   background-color: rgb(237, 237, 237);
 }
 
@@ -654,22 +651,21 @@ a {
   box-shadow: none;
 }
 
-  
-  /* Rimuove l'ombra/bordo azzurrina dal campo di input */
-  .no-focus:focus {
-    box-shadow: none;
-    border-color: #ced4da;
-  }
+/* Rimuove l'ombra/bordo azzurrina dal campo di input */
+.no-focus:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
 
-  .custom-modal .modal-content {
-    height: 100%;
-  }
-  
-  .icon-pointer {
-    cursor: pointer;
-    color: grey;
-  }
-  
+.custom-modal .modal-content {
+  height: 100%;
+}
+
+.icon-pointer {
+  cursor: pointer;
+  color: grey;
+}
+
 /* Pulsante "Pubblica" disattivato */
 .disabled-button {
   background-color: #d3d3d3 !important;
@@ -684,12 +680,10 @@ a {
   color: white;
 }
 
-/* Cambia il cursore sul pulsante disabilitato */
 .disabled-button:hover {
   cursor: not-allowed !important;
 }
 
-  
 .card-container {
   position: relative;
   border-radius: 20px;
@@ -701,20 +695,20 @@ a {
     justify-content: space-between;
     .card-home-subtitle {
       font-size: 0.7em;
-      color: rgb(150, 150, 150)
+      color: rgb(150, 150, 150);
     }
-    .button-title{
+    .button-title {
       display: flex;
       align-items: center;
-  }
-    }
-    .card-title {
-      font-weight: 600;
-    }
-    .card-header-button {
-      margin-right: 1.5em;
     }
   }
+  .card-title {
+    font-weight: 600;
+  }
+  .card-header-button {
+    margin-right: 1.5em;
+  }
+}
 
 .card-home-footer {
   font-size: 0.8em;
@@ -724,7 +718,7 @@ a {
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-  align-items: center; 
+  align-items: center;
 }
 
 .action {
@@ -743,14 +737,13 @@ button {
 }
 
 .lightButton:hover {
-  background-color: #EBF4FD !important;
-  color: #0A66C2 !important;
+  background-color: #ebf4fd !important;
+  color: #0a66c2 !important;
 }
 
 i {
   font-size: 18px;
 }
-
 
 .sizePers {
   width: 7% !important;
