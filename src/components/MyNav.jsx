@@ -324,7 +324,7 @@ function NavScroll() {
       </Navbar>
       {showPopupNav && (
         <div
-          className={`popup-nav popup-navShadow d-flex justify-content-around align-items-center bg-white shadow-sm ${
+          className={`popup-nav popup-navShadow py-2 d-flex justify-content-around align-items-center bg-white shadow-sm ${
             showPopupNav ? "show" : "hide"
           }`}
           style={{ borderBottom: "2px solid #ccc", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}
