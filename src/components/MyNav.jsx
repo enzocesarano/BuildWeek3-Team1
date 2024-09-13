@@ -18,6 +18,7 @@ import {
   FaCompass,
   FaTh,
 } from "react-icons/fa";
+import { MdBadge } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 import SearchModal from "./SearchModal";
 import { fetchSearchResults } from "../reducers/searchResultsReducer";
@@ -187,9 +188,13 @@ function NavScroll() {
                     <a href="#" className="text-secondary ">
                       Talent
                     </a>
-                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                    <a href="#" className="mb-4 mt-3 fw-bold ms-3 ">
                       <FaChartLine className="icon iconBlu me-3 " />
                       <span className="DropdownColortext small-text"> Talent Insights</span>
+                    </a>
+                    <a href="#" className="mb-5 mt-3 fw-bold ms-3 ">
+                      <MdBadge className="icon iconBlu me-3 " />
+                      <span className="DropdownColortext small-text"> Pubblica un’offerta di lavoro</span>
                     </a>
                     <a href="#" className="text-secondary ">
                       Vendite
