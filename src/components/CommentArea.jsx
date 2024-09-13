@@ -34,6 +34,7 @@ const CommentArea = ({ post }) => {
       elementId: post._id,
     });
     dispatch(getComments());
+    setClick(!click)
   };
 
   useEffect(() => {

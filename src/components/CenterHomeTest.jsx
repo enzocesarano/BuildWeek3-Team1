@@ -125,7 +125,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
           return arrayAllProfiles2.map((element, i) => {
             if (element._id === post.user._id) {
               return (
-                <Card key={post._id} className="my-3 border-0 bg-transparent">
+                <Card key={post._id} className="my-1 border-0 bg-transparent">
                   <Card.Body className="card-container bg-light">
                     <div className="card-home-header mb-3 align-items-center">
                       <div className="d-flex align-items-center">
@@ -173,18 +173,10 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                       </div>
                     )}
 
-                    <Card.Footer className="text-muted card-home-footer d-flex justify-content-between">
-                      <p>
+                    <Card.Footer className="text-muted card-home-footer text-end">
+                      <p className="mb-0">
                         Pubblicato il{" "}
                         {new Date(post.createdAt).toLocaleString()}
-                      </p>
-                      <p>
-                        Commenti:{" "}
-                        {
-                          comments.filter(
-                            (comment) => comment.elementId === post._id
-                          ).length
-                        }
                       </p>
                     </Card.Footer>
                     <div className="card-home-button border border-0 border-bottom border-1 border-secondary-subtle mb-3">
@@ -198,7 +190,11 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         onClick={() => handleComment(post._id)}
                       >
                         <ChatLeftText className="m-2" />
-                        Commenti
+                        Commenti {''} {
+                          comments.filter(
+                            (comment) => comment.elementId === post._id
+                          ).length
+                        }
                       </button>
                       <button type="button" className="btn  text-dark">
                         <ArrowRepeat className="m-2" />
