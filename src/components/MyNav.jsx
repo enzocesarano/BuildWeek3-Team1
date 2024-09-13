@@ -309,7 +309,6 @@ function NavScroll() {
                   </div>
                 </NavDropdown>
               </div>
-              <div className="separator-bar"></div>
               <div className="icon-above-dropdown ">
                 <a href="https://www.linkedin.com/job-posting/?trk=nav_spotlight_post_job&" target="_blank">
                   <div className="icon-with-text workIconColor">
