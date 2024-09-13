@@ -121,7 +121,7 @@ const ActivityProfile = ({ showButton = true, userId }) => {
                 <Button
                   variant="outline-primary"
                   onClick={handleShow}
-                  className="me-2 rounded-5"
+                  className="me-2 rounded-5 .lightButton" 
                 >
                   <Plus /> Crea un post
                 </Button>

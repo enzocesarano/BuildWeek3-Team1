@@ -733,16 +733,18 @@ button {
   display: flex !important;
   align-items: center !important;
   font-weight: 600 !important; /* Imposta il font-weight per rendere il testo più marcato */
-  border: none; /* Se non vuoi bordi */
+  border: none;
   background-color: transparent;
   padding: 20px; /* Se desideri che i pulsanti abbiano uno sfondo trasparente */
 }
-button:hover {
-  background-color: rgb(230, 230, 230) !important;
+
+.lightButton:hover {
+  background-color: #EBF4FD !important;
+  color: #0A66C2 !important;
 }
 
 i {
-  font-size: 18px; /* Se hai bisogno di aggiustare la dimensione dell'icona */
+  font-size: 18px;
 }
 
 
