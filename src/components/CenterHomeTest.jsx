@@ -5,6 +5,7 @@ import {
   FaRegCalendarAlt,
   FaCertificate,
   FaUserTie,
+  FaAngleRight,
 } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
@@ -186,7 +187,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         }
                       </p>
                     </Card.Footer>
-                    <div className="card-home-button">
+                    <div className="card-home-button border border-0 border-bottom border-1 border-secondary-subtle mb-3">
                       <button type="button" className="btn  text-dark">
                         <HandThumbsUp className="m-2" />
                         Consiglia
@@ -197,7 +198,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         onClick={() => handleComment(post._id)}
                       >
                         <ChatLeftText className="m-2" />
-                        Commenta
+                        Commenti
                       </button>
                       <button type="button" className="btn  text-dark">
                         <ArrowRepeat className="m-2" />
@@ -208,12 +209,13 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         Invia
                       </button>
                     </div>
-                    {visibleComments === post._id &&
-                      comments.map((element, i) => {
-                        if (element.elementId === post._id) {
-                          return <CommentArea key={i} commenti={element} />;
-                        }
-                      })}
+
+                    {visibleComments === post._id && (
+                      <CommentArea
+                        key={i}
+                        post={post}
+                      />
+                    )}
                   </Card.Body>
                 </Card>
               );
@@ -226,3 +228,9 @@ const CenterHomeTest = ({ loggedInUserId }) => {
 };
 
 export default CenterHomeTest;
+
+/*  comments.map((element, i) => {
+                        if (element.elementId === post._id) {
+                          return ;
+                        }
+                      }) */
