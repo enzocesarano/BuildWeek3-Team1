@@ -12,7 +12,10 @@ export const DELETE_POST = "DELETE_POST";
 export const SET_IMG_EXPERIENCE = "SET_IMG_EXPERIENCE";
 export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 export const SET_IMG_POST = "SET_IMG_POST";
-export const EDIT_POST = "EDIT_POST"
+export const EDIT_POST = "EDIT_POST";
+export const GET_COMMENTS = "GET_COMMENTS";
+export const POST_COMMENTS = "POST_COMMENTS";
+export const DELETE_COMMENT = "DELETE_COMMENT"
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
@@ -264,10 +267,10 @@ export const setMyPost = (idPost, editPost) => {
         }
       })
       .then((updatedPost) => {
-       dispatch({
-        type: EDIT_POST,
-        payload: updatedPost
-       })
+        dispatch({
+          type: EDIT_POST,
+          payload: updatedPost,
+        });
       })
       .catch((err) => {
         console.error(err);
@@ -469,7 +472,94 @@ export const fetchSearchResults = (query) => async (dispatch) => {
   }
 };
 
+export const getComments = () => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+  return (dispatch) => {
+    fetch(baseEndpoint, {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((comments) => {
+        dispatch({
+          type: GET_COMMENTS,
+          payload: comments,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
 
+export const postComments = (comment) => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+  return (dispatch) => {
+    fetch(baseEndpoint, {
+      method: "POST",
+      body: JSON.stringify(comment),
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((comments) => {
+        dispatch({
+          type: POST_COMMENTS,
+          payload: comments,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
+
+
+export const deleteComment = (id, comment) => {
+  const baseEndpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+  return (dispatch) => {
+    fetch(baseEndpoint + id, {
+      method: "DELETE",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWY3OGIzN2FiYWQyODAwMTliZDRiNWYiLCJpYXQiOjE3MjYyMTE1NDIsImV4cCI6MTcyNzQyMTE0Mn0.0RhNu27pQmWcPI3JZollC5MFnDUkcmLOCBs561B29bg",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Errore nel recupero del profilo");
+        }
+      })
+      .then((comments) => {
+        dispatch({
+          type: DELETE_COMMENT,
+          payload: comments,
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+};
 
 /* 
 fetch("https://striveschool-api.herokuapp.com/api/put-your-endpoint-here/", {

@@ -5,6 +5,7 @@ import {
   FaRegCalendarAlt,
   FaCertificate,
   FaUserTie,
+  FaAngleRight,
 } from "react-icons/fa";
 import { MdWork } from "react-icons/md";
 import { RiBarChart2Fill } from "react-icons/ri";
@@ -19,6 +20,7 @@ import {
   Send,
 } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import CommentArea from "./CommentArea";
 
 const CenterHomeTest = ({ loggedInUserId }) => {
   const [state, dispatch] = useReducer(postsReducer, { posts: [] });
@@ -28,6 +30,15 @@ const CenterHomeTest = ({ loggedInUserId }) => {
   const arrayAllProfiles2 = useSelector(
     (state) => state.arrayAllProfiles.arrayAllProfiles
   );
+
+  const comments = useSelector((state) => state.comments.comments);
+
+  const [visibleComments, setVisibleComments] = useState(null);
+
+  const handleComment = (postId) => {
+    setVisibleComments((prevPostId) => (prevPostId === postId ? null : postId));
+  };
+
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -50,7 +61,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
       const sortedPosts = userPosts.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
-      const latestPosts = sortedPosts.slice(0, 10);
+      const latestPosts = sortedPosts.slice(0, 40);
 
       dispatch(setPosts(latestPosts));
     } catch (error) {
@@ -130,7 +141,7 @@ const CenterHomeTest = ({ loggedInUserId }) => {
           return arrayAllProfiles2.map((element, i) => {
             if (element._id === post.user._id) {
               return (
-                <Card key={post._id} className="my-3 border-0 bg-transparent">
+                <Card key={post._id} className="my-1 border-0 bg-transparent">
                   <Card.Body className="card-container bg-light">
                     <div className="card-home-header mb-3 align-items-center">
                       <div className="d-flex align-items-center">
@@ -180,18 +191,28 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                       </div>
                     )}
 
-                    <Card.Footer className="text-muted card-home-footer">
-                      Pubblicato il {new Date(post.createdAt).toLocaleString()}
+                    <Card.Footer className="text-muted card-home-footer text-end">
+                      <p className="mb-0">
+                        Pubblicato il{" "}
+                        {new Date(post.createdAt).toLocaleString()}
+                      </p>
                     </Card.Footer>
-                    <div className="card-home-button">
+                    <div className="card-home-button border border-0 border-bottom border-1 border-secondary-subtle mb-3">
                       <button type="button" className="btn  text-dark">
                         <HandThumbsUp className="m-2" />
                         Consiglia
                       </button>
-                      <button type="button" className="btn  text-dark">
-                        {" "}
+                      <button
+                        type="button"
+                        className="btn  text-dark"
+                        onClick={() => handleComment(post._id)}
+                      >
                         <ChatLeftText className="m-2" />
-                        Commenta
+                        Commenti {''} {
+                          comments.filter(
+                            (comment) => comment.elementId === post._id
+                          ).length
+                        }
                       </button>
                       <button type="button" className="btn  text-dark">
                         <ArrowRepeat className="m-2" />
@@ -202,9 +223,13 @@ const CenterHomeTest = ({ loggedInUserId }) => {
                         Invia
                       </button>
                     </div>
-                    <div className="d-none">
-                      <h6 className="text-dark">COMMENTI</h6>
-                    </div>
+
+                    {visibleComments === post._id && (
+                      <CommentArea
+                        key={i}
+                        post={post}
+                      />
+                    )}
                   </Card.Body>
                 </Card>
               );
@@ -217,3 +242,9 @@ const CenterHomeTest = ({ loggedInUserId }) => {
 };
 
 export default CenterHomeTest;
+
+/*  comments.map((element, i) => {
+                        if (element.elementId === post._id) {
+                          return ;
+                        }
+                      }) */
