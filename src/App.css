@@ -762,6 +762,15 @@ i {
   }
 }
 
+@keyframes slideUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
 .popup-nav {
   position: fixed;
   top: 60px;
@@ -777,7 +786,13 @@ i {
   opacity: 1;
   animation: slideDown 0.5s ease-in-out forwards;
   background-color: rgba(255, 255, 255, 0.5);
+  animation: slideDown 0.5s forwards;
 }
+
+.popup-nav.hide {
+  animation: slideUp 0.5s forwards;
+}
+
 .btn-popuNav:hover {
   background-color: #004182;
 }

@@ -22,6 +22,7 @@ import { MdBadge } from "react-icons/md";
 import { BsChatDotsFill } from "react-icons/bs";
 import SearchModal from "./SearchModal";
 import { fetchSearchResults } from "../reducers/searchResultsReducer";
+import { useNavigate } from "react-router-dom";
 
 function NavScroll() {
   const myProfile = useSelector((state) => state.myProfile.myProfile);
@@ -32,6 +33,7 @@ function NavScroll() {
   const location = useLocation();
   const dispatch = useDispatch();
   const [showPopupNav, setShowPopupNav] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +61,10 @@ function NavScroll() {
   const handleProfileSelect = () => {
     setQuery("");
     setModalShow(false);
+  };
+
+  const handleProfileClick = () => {
+    navigate(`/profile/${myProfile.id}`);
   };
 
   const filteredProfiles = arrayAllProfiles.filter((profile) => {
@@ -319,16 +325,15 @@ function NavScroll() {
       {showPopupNav && (
         <div
           className={`popup-nav popup-navShadow d-flex justify-content-around align-items-center bg-white shadow-sm ${
-            showPopupNav ? "show" : ""
+            showPopupNav ? "show" : "hide"
           }`}
           style={{ borderBottom: "2px solid #ccc", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}
         >
-          <div className="d-flex align-items-center py-1">
+          <div className="d-flex align-items-center" onClick={handleProfileClick} style={{ cursor: "pointer" }}>
             <img className="imgPopupProfile me-3" src={myProfile.image} alt="Profile" />
             <div>
               <p className="fw-bold mb-0">
-                {" "}
-                <span className="small-font">{myProfile.name}</span>{" "}
+                <span className="small-font">{myProfile.name}</span>
                 <span className="small-font">{myProfile.surname}</span>
               </p>
               <p className="mb-0 small-font">{myProfile.title}</p>
@@ -344,7 +349,7 @@ function NavScroll() {
             >
               Aggiungi sezione del profilo
             </Button>
-            <Button variant="primary rounded-5 btn-popuNav ">Disponibile per</Button>
+            <Button variant="primary rounded-5 btn-popuNav">Disponibile per</Button>
           </div>
         </div>
       )}
