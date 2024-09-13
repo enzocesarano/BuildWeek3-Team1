@@ -16,11 +16,11 @@ const ModalEditPost = ({ show, onHide, post, commentElement }) => {
 
   useEffect(() => {
     setComment({
-        comment: commentElement.comment,
-        rate: commentElement.rate,
-        elementId: post._id,
-      });
-  }, [commentElement])
+      comment: commentElement.comment,
+      rate: commentElement.rate,
+      elementId: post._id,
+    });
+  }, [commentElement]);
 
   const submit = (e) => {
     e.preventDefault();
@@ -35,14 +35,12 @@ const ModalEditPost = ({ show, onHide, post, commentElement }) => {
   };
 
   return (
-    <Modal show={show} onHide={onHide} size="lg" dialogClassName="custom-modal">
-      <Modal.Header closeButton>
-        <Modal.Title>Modifica commento</Modal.Title>
-      </Modal.Header>
+    <Modal show={show} onHide={onHide} size="lg" dialogClassName="custom-modal" centered>
       <Modal.Body>
-        <Form onSubmit={submit}>
+        <Modal.Title className="fs-5 mb-2">Modifica il tuo commento</Modal.Title>
+        <Form onSubmit={submit} className="bg-transparent">
           <Form.Group
-            className="mb-3 d-flex align-items-center"
+            className="d-flex align-items-center"
             controlId="exampleForm.ControlInput1"
           >
             <Form.Control

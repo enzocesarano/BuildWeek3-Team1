@@ -45,8 +45,8 @@ const PostList = () => {
     setVisibleComments((prevPostId) => (prevPostId === postId ? null : postId));
   };
 
-  const handleSet = () => {
-    setClick(!click);
+  const myFetch = () => {
+    fetchPosts();
   };
 
   const handleClick = (post) => {
@@ -263,7 +263,7 @@ const PostList = () => {
             show={modalShow}
             onHide={() => setModalShow(false)}
             element={postSelect}
-            function1={handleSet}
+            function1={() => myFetch()}
           />
         </Container>
       );
