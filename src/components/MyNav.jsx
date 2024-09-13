@@ -318,30 +318,33 @@ function NavScroll() {
       </Navbar>
       {showPopupNav && (
         <div
-          className={`popup-nav d-flex justify-content-around align-items-center bg-white shadow-sm ${
+          className={`popup-nav popup-navShadow d-flex justify-content-around align-items-center bg-white shadow-sm ${
             showPopupNav ? "show" : ""
           }`}
+          style={{ borderBottom: "2px solid #ccc", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}
         >
-          <div className="d-flex align-items-center">
-            <Image
-              src="path/to/your/image.jpg"
-              roundedCircle
-              className="me-3"
-              style={{ width: "50px", height: "50px" }}
-            />
+          <div className="d-flex align-items-center py-1">
+            <img className="imgPopupProfile me-3" src={myProfile.image} alt="Profile" />
             <div>
-              <p className="fw-bold mb-0">Nome</p>
-              <p className="mb-0">Lavoro</p>
+              <p className="fw-bold mb-0">
+                {" "}
+                <span className="small-font">{myProfile.name}</span>{" "}
+                <span className="small-font">{myProfile.surname}</span>
+              </p>
+              <p className="mb-0 small-font">{myProfile.title}</p>
             </div>
           </div>
           <div className="d-flex">
-            <Button variant="outline-dark" className="me-2 rounded-5">
+            <Button variant="outline-dark" className="me-2 rounded-5 md-font">
               Altro
             </Button>
-            <Button variant="text-parimary btn-AddSection" className="me-2 rounded-5 visualizProfile-button">
+            <Button
+              variant="border border-primary text-primary btn-AddSection"
+              className="me-2 rounded-5 visualizProfile-button md-font"
+            >
               Aggiungi sezione del profilo
             </Button>
-            <Button variant="primary rounded-5 btn-popuNav">Disponibile per</Button>
+            <Button variant="primary rounded-5 btn-popuNav ">Disponibile per</Button>
           </div>
         </div>
       )}

@@ -786,3 +786,17 @@ i {
   background-color: #ebf4fd;
   border: 2px solid #004182;
 }
+.imgPopupProfile {
+  width: 4vh;
+  border-radius: 50px;
+}
+.small-font {
+  font-size: 12px;
+}
+.popup-navShadow {
+  border-bottom: 2px solid #ccc;
+  box-shadow: 2 4px 30px rgba(1, 1, 1, 1);
+}
+.md-font {
+  font-size: 0.9rem;
+}
